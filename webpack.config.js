@@ -45,27 +45,27 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'tslint',
-        exclude: [/node_modules/]
+        exclude: [path.join(__dirname, 'node_modules')]
       }
     ],
     loaders: [
       {
         test: /\.ts$/,
         loader: 'babel!ts',
-        exclude: [/node_modules/]
+        exclude: [path.join(__dirname, 'node_modules')]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: [
+          path.join(__dirname, 'node_modules'),
+          path.join(__dirname, 'semantic')
+        ]
       },
       {
         test: /\.css$/,
         loader: 'css',
-        //include: [path.join(__dirname, 'src')]
       },
-      /*
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
-        exclude: [path.join(__dirname, 'src')]
-      },
-      */
       {
         test: /\.html.haml$/,
         loader: 'haml-haml'
@@ -105,11 +105,9 @@ function devtool() {
 
 function commonPlugins() {
   return [
-    //new CommonsChunkPlugin('vendor', 'vendor.js'),
     new DefinePlugin({
       __PRODUCTION__: JSON.stringify(isProduction())
     }),
-    //new ExtractTextPlugin('vendor.css'),
     new HtmlWebpackPlugin({
       inject: 'head',
       template: './src/index.html.haml'
