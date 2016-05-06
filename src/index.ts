@@ -1,15 +1,15 @@
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
-import {enableProdMode, provide} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { enableProdMode, provide } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import {CharacterFacade} from './common/character_facade';
-import {App} from './app/app';
+import { CharacterFacade } from './common/character_facade';
+import { App } from './app/app';
 
-import {HAL_PROVIDERS} from './hal';
+import { HAL_PROVIDERS } from './hal';
 
-import {__PRODUCTION__} from './globals';
+import { __PRODUCTION__ } from './globals';
 
 /* Load CSS stylesheets. */
 import 'semantic/semantic.css';

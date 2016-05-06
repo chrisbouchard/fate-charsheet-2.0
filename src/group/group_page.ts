@@ -1,11 +1,11 @@
-import {AsyncPipe} from '@angular/common';
-import {Component} from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component } from '@angular/core';
 import {RouteParams} from '@angular/router-deprecated';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
-import {CharacterFacade} from '../common/character_facade';
-import {List} from '../list/list';
-import {Character} from '../model/character';
+import { CharacterFacade } from '../common/character_facade';
+import { List } from '../list/list';
+import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-group-page',

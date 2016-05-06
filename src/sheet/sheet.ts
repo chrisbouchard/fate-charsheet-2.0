@@ -1,12 +1,12 @@
-import {Component, Input} from '@angular/core';
-import {RouterLink} from '@angular/router-deprecated';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router-deprecated';
 
-import {autobind} from 'core-decorators';
+import { autobind } from 'core-decorators';
 
-import {COMMON_PIPES} from '../common/pipes';
-import {Character} from '../model/character';
-import {StressBox} from '../model/stress_track';
-import {Stunt} from '../model/stunt';
+import { COMMON_PIPES } from '../common/pipes';
+import { Character } from '../model/character';
+import { StressBox } from '../model/stress_track';
+import { Stunt } from '../model/stunt';
 
 @Component({
   selector: 'fate-sheet',

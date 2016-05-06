@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HalLinkObject, HalObject, HalObjectSerializer} from '../object';
+import { Injectable } from '@angular/core';
+import { HalLinkObject, HalObject, HalObjectSerializer } from '../object';
 
 export abstract class HalJsonObjectSerializerOptions {
   embeddedKey: string;

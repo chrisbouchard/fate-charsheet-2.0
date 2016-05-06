@@ -1,6 +1,6 @@
-import {describe, expect, it} from '@angular/testing';
+import { describe, expect, it } from '@angular/testing';
 
-import {Player} from './player';
+import { Player } from './player';
 
 describe('Player', () => {
   it('has its id given in the constructor', () => {

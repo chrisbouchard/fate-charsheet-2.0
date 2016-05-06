@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {RouteConfig, RouterLink, RouterOutlet} from '@angular/router-deprecated';
+import { Component, OnInit } from '@angular/core';
+import { RouteConfig, RouterLink, RouterOutlet } from '@angular/router-deprecated';
 
-import {CharacterPage} from '../character/character_page';
-import {GroupPage} from '../group/group_page';
+import { CharacterPage } from '../character/character_page';
+import { GroupPage } from '../group/group_page';
 
 @Component({
   selector: 'body',

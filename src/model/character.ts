@@ -1,10 +1,10 @@
-import {Aspect, COMMON_ASPECTS} from './aspect';
-import {Consequence} from './consequence';
-import {Player} from './player';
-import {Skill} from './skill';
-import {COMMON_STRESS_TRACKS, StressTrack} from './stress_track';
-import {Stunt} from './stunt';
-import {Template} from './template';
+import { Aspect, COMMON_ASPECTS } from './aspect';
+import { Consequence } from './consequence';
+import { Player } from './player';
+import { Skill } from './skill';
+import { COMMON_STRESS_TRACKS, StressTrack } from './stress_track';
+import { Stunt } from './stunt';
+import { Template } from './template';
 
 module Character {
   export interface Options {

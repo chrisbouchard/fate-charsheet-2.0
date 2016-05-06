@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {RouterLink} from '@angular/router-deprecated';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router-deprecated';
 
-import {Character} from '../model/character';
+import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-card',

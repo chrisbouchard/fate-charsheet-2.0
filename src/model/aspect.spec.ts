@@ -1,6 +1,6 @@
-import {describe, expect, it} from '@angular/testing';
+import { describe, expect, it } from '@angular/testing';
 
-import {Aspect} from './aspect';
+import { Aspect } from './aspect';
 
 describe('Aspect', () => {
   it('has its name given in the constructor', () => {

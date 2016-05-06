@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs';
 
-import {HalError} from './error';
-import {HalFieldTypeDescription} from './field';
-import {HalInstanceFactory} from './instance_factory';
-import {HalLinkObject, HalObject, HalObjectSerializer} from './object';
+import { HalError } from './error';
+import { HalFieldTypeDescription } from './field';
+import { HalInstanceFactory } from './instance_factory';
+import { HalLinkObject, HalObject, HalObjectSerializer } from './object';
 
 /**
  *

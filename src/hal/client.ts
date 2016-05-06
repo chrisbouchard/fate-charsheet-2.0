@@ -1,9 +1,9 @@
-import {Injectable, Type} from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 
-import {HalLinkObject} from './object';
-import {HalResource} from './resource';
-import {HalResourceFactory} from './resource_factory';
-import {HalFieldTypeDescription, HalFieldTypeMetadata} from './field';
+import { HalLinkObject } from './object';
+import { HalResource } from './resource';
+import { HalResourceFactory } from './resource_factory';
+import { HalFieldTypeDescription, HalFieldTypeMetadata } from './field';
 
 /**
  *

@@ -1,9 +1,9 @@
-import {Inject, Injectable, Type} from '@angular/core';
+import { Inject, Injectable, Type } from '@angular/core';
 
-import {getCookedFieldDescription, getRawFieldDescription, HalFieldDescription, HalFieldSection, HalFieldTypeDescription} from './field';
-import {HalLinkObject, HalObject, HalObjectSerializer} from './object';
-import {HalResource} from './resource';
-import {HalResourceFactory} from './resource_factory';
+import { getCookedFieldDescription, getRawFieldDescription, HalFieldDescription, HalFieldSection, HalFieldTypeDescription } from './field';
+import { HalLinkObject, HalObject, HalObjectSerializer } from './object';
+import { HalResource } from './resource';
+import { HalResourceFactory } from './resource_factory';
 import {HalCollectionTranslator, HAL_COLLECTION_TRANSLATORS, HalObjectTranslator, HAL_OBJECT_TRANSLATORS,
   HalTranslator} from './translator';
 
