@@ -1,13 +1,19 @@
-require('angular2/bundles/angular2-polyfills');
-require('babel-polyfill');
-require('jquery');
-require('rxjs/Rx');
-require('semantic/semantic');
+Error.stackTraceLimit = Infinity;
 
-require('zone.js/dist/jasmine-patch');
+import 'babel-polyfill';
+import 'reflect-metadata';
 
-var testing = require('angular2/testing');
-var browser = require('angular2/platform/testing/browser');
+import 'zone.js/dist/zone';
+import 'zone.js/dist/long-stack-trace-zone';
+import 'zone.js/dist/jasmine-patch';
+import 'zone.js/dist/async-test';
+
+import 'jquery';
+import 'rxjs/Rx';
+import 'semantic/semantic';
+
+import * as testing from '@angular/core/testing';
+import * as browser from '@angular/platform-browser-dynamic/testing';
 
 testing.setBaseTestProviders(
   browser.TEST_BROWSER_PLATFORM_PROVIDERS,

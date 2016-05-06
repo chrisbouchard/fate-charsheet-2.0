@@ -1,5 +1,3 @@
-import { describe, expect, it } from '@angular/testing';
-
 import { Aspect } from './aspect';
 
 describe('Aspect', () => {
