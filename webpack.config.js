@@ -23,20 +23,7 @@ module.exports = {
   },
 
   entry: {
-    'app': [
-      './src'
-    ] /*,
-    'vendor': [
-      'angular2/bundles/angular2-polyfills',
-      'angular2/common',
-      'angular2/core',
-      'angular2/http',
-      'angular2/platform/browser',
-      'angular2/router',
-      'babel-polyfill',
-      'jquery'
-    ]
-    */
+    'app': ['./src']
   },
 
   output: {
@@ -97,7 +84,8 @@ module.exports = {
       }
     ],
     noParse: [
-      path.join(__dirname, 'node_modules', 'angular2', 'bundles')
+      path.join(__dirname, 'node_modules', 'zone.js'),
+      path.join(__dirname, 'node_modules', 'reflect-metadata')
     ]
   },
 
