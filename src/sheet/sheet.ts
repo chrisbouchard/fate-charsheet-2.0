@@ -15,7 +15,7 @@ import { Stunt } from '../model/stunt';
   styles: [require<string>('./sheet.less')],
   template: require<string>('./sheet.html.haml')
 })
-export class Sheet {
+export class SheetComponent {
   @Input() character: Character;
 
   emptyStressBox: StressBox = { enabled: false, marked: false };

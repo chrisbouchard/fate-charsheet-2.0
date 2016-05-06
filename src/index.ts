@@ -16,7 +16,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { CharacterFacade } from './common/character_facade';
-import { App } from './app/app';
+import { AppComponent } from './app/app';
 
 import { HAL_PROVIDERS } from './hal';
 
@@ -31,7 +31,7 @@ if (__PRODUCTION__) {
 }
 
 $(() => {
-  bootstrap(App, [
+  bootstrap(AppComponent, [
     CharacterFacade,
     HAL_PROVIDERS,
     HTTP_PROVIDERS,

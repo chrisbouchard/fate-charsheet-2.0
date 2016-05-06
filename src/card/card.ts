@@ -8,6 +8,6 @@ import { Character } from '../model/character';
   directives: [RouterLink],
   template: require<string>('./card.html.haml')
 })
-export class Card {
+export class CardComponent {
   @Input() character: Character;
 }

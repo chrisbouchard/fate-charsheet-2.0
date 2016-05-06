@@ -4,16 +4,16 @@ import {RouteParams} from '@angular/router-deprecated';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character_facade';
-import { List } from '../list/list';
+import { ListComponent } from '../list/list';
 import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-group-page',
-  directives: [List],
+  directives: [ListComponent],
   pipes: [AsyncPipe],
   template: require<string>('./group_page.html.haml')
 })
-export class GroupPage {
+export class GroupPageComponent {
 
   characters: Observable<Array<Character>>;
 

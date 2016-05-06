@@ -5,15 +5,15 @@ import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character_facade';
 import { Character } from '../model/character';
-import { Sheet } from '../sheet/sheet';
+import { SheetComponent } from '../sheet/sheet';
 
 @Component({
   selector: 'fate-character-page',
-  directives: [Sheet],
+  directives: [SheetComponent],
   pipes: [AsyncPipe],
   template: require<string>('./character_page.html.haml')
 })
-export class CharacterPage {
+export class CharacterPageComponent {
 
   character: Observable<Character>;
 

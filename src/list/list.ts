@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 
-import { Card } from '../card/card';
+import { CardComponent } from '../card/card';
 import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-list',
-  directives: [Card],
+  directives: [CardComponent],
   template: require<string>('./list.html.haml')
 })
-export class List {
+export class ListComponent {
   @Input() characters: Array<Character>;
 }
 
