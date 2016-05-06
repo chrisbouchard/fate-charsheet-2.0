@@ -38,28 +38,28 @@
       .column
         %h2.ui.header Aspects
         .ui.list
-          .item(*ngFor="#aspect of character?.template.aspectSlots | map:namedAspect")
+          .item(*ngFor="let aspect of character?.template.aspectSlots | map:namedAspect")
             .ui.grey.sub.header {{aspect.title}}
             %a.fate-aspect {{aspect.name || 'Missing'}}
         .ui.list
-          .item(*ngFor="#aspect of character?.unnamedAspects")
+          .item(*ngFor="let aspect of character?.unnamedAspects")
             %a.fate-aspect {{aspect.name}}
       .column
         %h2.ui.header Skills
         %table.ui.very.basic.compact.unstackable.table
           %tbody
-            %tr(*ngFor="#entry of character?.skills | indexed | reversed")
+            %tr(*ngFor="let entry of character?.skills | indexed | reversed")
               %td.collapsing
                 .ui.small.header +{{entry.index}}
               %td
-                %a.ui.basic.horizontal.label(*ngFor="#skill of entry.value") {{skill.name}}
+                %a.ui.basic.horizontal.label(*ngFor="let skill of entry.value") {{skill.name}}
       .column
         %h2.ui.header Stress
         .ui.list
-          .item(*ngFor="#track of character?.template.stressTrackSlots")
+          .item(*ngFor="let track of character?.template.stressTrackSlots")
             .ui.grey.sub.header {{character.template.stressTrackNames.get(track.field)}}
             .ui.horizontal.list
-              .item(*ngFor="#box of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox; #i = index")
+              .item(*ngFor="let box of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox; #i = index")
                 .ui.checkbox
                   %input(type="checkbox" [id]="track.field + i" [(ngModel)]="box.marked" [disabled]="!box.enabled")
                   %label([htmlFor]="track.field + i") {{i + 1}}
@@ -67,7 +67,7 @@
       .column
         %h2.ui.header Stunts
         .ui.relaxed.list
-          .item(*ngFor="#stunt of character?.stunts | sorted:'name'")
+          .item(*ngFor="let stunt of character?.stunts | sorted:'name'")
             .header {{stunt.name}}
             .description {{stunt.description}}
 
