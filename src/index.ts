@@ -1,7 +1,8 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {enableProdMode, provide} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {HashLocationStrategy, LocationStrategy, ROUTER_PROVIDERS} from 'angular2/router';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {enableProdMode, provide} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {CharacterFacade} from './common/character_facade';
 import {App} from './app/app';
@@ -14,7 +15,7 @@ import {__PRODUCTION__} from './globals';
 import 'semantic/semantic.css';
 
 /* Load packages for side-effects. */
-import 'angular2/bundles/angular2-polyfills';
+//import '@angular/bundles/angular2-polyfills';
 import 'babel-polyfill';
 import 'jquery';
 import 'rxjs/Rx';

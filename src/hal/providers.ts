@@ -1,4 +1,4 @@
-import {provide} from 'angular2/core';
+import {provide} from '@angular/core';
 
 import {HalClient} from './client';
 import {HalHttp} from './http';

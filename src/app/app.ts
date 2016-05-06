@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {RouteConfig, RouterLink, RouterOutlet} from '@angular/router-deprecated';
 
 import {CharacterPage} from '../character/character_page';
 import {GroupPage} from '../group/group_page';

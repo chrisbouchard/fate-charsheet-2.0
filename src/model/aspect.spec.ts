@@ -1,4 +1,4 @@
-import {describe, expect, it} from 'angular2/testing';
+import {describe, expect, it} from '@angular/testing';
 
 import {Aspect} from './aspect';
 

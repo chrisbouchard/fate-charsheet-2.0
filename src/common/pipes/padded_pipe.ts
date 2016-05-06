@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from 'angular2/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({ name: 'padded', pure: true })
 export class PaddedPipe implements PipeTransform {

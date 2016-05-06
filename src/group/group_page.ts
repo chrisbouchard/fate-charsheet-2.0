@@ -1,6 +1,6 @@
-import {AsyncPipe} from 'angular2/common';
-import {Component} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {AsyncPipe} from '@angular/common';
+import {Component} from '@angular/core';
+import {RouteParams} from '@angular/router-deprecated';
 import {Observable} from 'rxjs';
 
 import {CharacterFacade} from '../common/character_facade';

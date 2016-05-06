@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {default as UriTemplate, UriValueType, UriMappingType} from 'uri-templates';

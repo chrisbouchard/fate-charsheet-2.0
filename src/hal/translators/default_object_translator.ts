@@ -1,4 +1,4 @@
-import {Type} from 'angular2/core';
+import {Type} from '@angular/core';
 
 import {HalObject} from '../object';
 import {HalObjectTranslator} from '../translator';

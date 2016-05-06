@@ -1,4 +1,4 @@
-import {Inject, Injectable, Type} from 'angular2/core';
+import {Inject, Injectable, Type} from '@angular/core';
 
 import {getCookedFieldDescription, getRawFieldDescription, HalFieldDescription, HalFieldSection, HalFieldTypeDescription} from './field';
 import {HalLinkObject, HalObject, HalObjectSerializer} from './object';
