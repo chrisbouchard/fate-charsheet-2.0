@@ -59,7 +59,7 @@
           .item(*ngFor="let track of character?.template.stressTrackSlots")
             .ui.grey.sub.header {{character.template.stressTrackNames.get(track.field)}}
             .ui.horizontal.list
-              .item(*ngFor="let box of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox; #i = index")
+              .item(*ngFor="let box of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox; let i = index")
                 .ui.checkbox
                   %input(type="checkbox" [id]="track.field + i" [(ngModel)]="box.marked" [disabled]="!box.enabled")
                   %label([htmlFor]="track.field + i") {{i + 1}}
