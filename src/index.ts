@@ -15,7 +15,6 @@ import { __PRODUCTION__ } from './globals';
 import 'semantic/semantic.css';
 
 /* Load packages for side-effects. */
-//import '@angular/bundles/angular2-polyfills';
 import 'babel-polyfill';
 import 'jquery';
 import 'rxjs/Rx';
