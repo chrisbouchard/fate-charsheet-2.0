@@ -3,13 +3,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'map', pure: true })
 export class MappedPipe implements PipeTransform {
 
-  transform<E, T>(value: Iterable<E>, args: any[]): T[] {
+  transform<E, T>(value: Iterable<E>, fn: (x: E) => T): T[] {
     if (!value) {
       return [];
     }
-
-    let fn: (x: E) => T;
-    [fn] = args;
 
     return Array.from(value).map(fn);
   }

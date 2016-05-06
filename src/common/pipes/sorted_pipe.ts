@@ -3,17 +3,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'sorted', pure: true })
 export class SortedPipe implements PipeTransform {
 
-  transform<T>(value: Iterable<T>, args: any[]): T[] {
+  transform<T>(value: Iterable<T>, key: string, reversed: boolean): T[] {
     if (!value) {
       return [];
     }
 
     let array = Array.from(value);
-
-    let key: string;
-    let reversed: boolean;
-
-    [key, reversed] = args;
 
     if (key) {
       array.sort((a: any, b: any) => {
