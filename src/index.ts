@@ -16,7 +16,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { CharacterFacade } from './common/character_facade';
-import { AppComponent } from './app/app';
+import { AppComponent } from './app/app.component';
 
 import { HAL_PROVIDERS } from './hal';
 

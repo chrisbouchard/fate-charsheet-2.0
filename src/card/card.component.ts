@@ -6,7 +6,7 @@ import { Character } from '../model/character';
 @Component({
   selector: 'fate-card',
   directives: [RouterLink],
-  template: require<string>('./card.html.haml')
+  template: require<string>('./card.component.haml')
 })
 export class CardComponent {
   @Input() character: Character;

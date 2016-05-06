@@ -67,7 +67,7 @@ module.exports = {
         loader: 'css',
       },
       {
-        test: /\.html.haml$/,
+        test: /\.haml$/,
         loader: 'haml-haml'
       },
       {
@@ -110,7 +110,7 @@ function commonPlugins() {
     }),
     new HtmlWebpackPlugin({
       inject: 'head',
-      template: './src/index.html.haml'
+      template: './src/index.haml'
     }),
     new ProvidePlugin({ 'jQuery': 'jquery', '$': 'jquery' }),
   ];

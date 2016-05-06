@@ -4,22 +4,21 @@ import {RouteParams} from '@angular/router-deprecated';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character_facade';
+import { ListComponent } from '../list/list.component';
 import { Character } from '../model/character';
-import { SheetComponent } from '../sheet/sheet';
 
 @Component({
-  selector: 'fate-character-page',
-  directives: [SheetComponent],
+  selector: 'fate-group-page',
+  directives: [ListComponent],
   pipes: [AsyncPipe],
-  template: require<string>('./character_page.html.haml')
+  template: require<string>('./group-page.component.haml')
 })
-export class CharacterPageComponent {
+export class GroupPageComponent {
 
-  character: Observable<Character>;
+  characters: Observable<Array<Character>>;
 
   constructor(private params: RouteParams, private characterFacade: CharacterFacade) {
-    const id = params.get('id');
-    this.character = characterFacade.find(id);
+    this.characters = characterFacade.findAll();
   }
 
 }

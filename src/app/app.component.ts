@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteConfig, RouterLink, RouterOutlet } from '@angular/router-deprecated';
 
-import { CharacterPageComponent } from '../character/character_page';
-import { GroupPageComponent } from '../group/group_page';
+import { CharacterPageComponent } from '../character/character-page.component';
+import { GroupPageComponent } from '../group/group-page.component';
 
 @Component({
   selector: 'fate-app',
   directives: [RouterLink, RouterOutlet],
-  styles: [require<string>('./app.less')],
-  template: require<string>('./app.html.haml'),
+  styles: [require<string>('./app.component.less')],
+  template: require<string>('./app.component.haml'),
 })
 @RouteConfig([
   { path: '/', component: GroupPageComponent, name: 'Home' },
