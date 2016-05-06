@@ -9,7 +9,6 @@ import 'jquery';
 import 'rxjs/Rx';
 import 'semantic/semantic';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { enableProdMode, provide } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
@@ -35,10 +34,7 @@ $(() => {
     CharacterFacade,
     HAL_PROVIDERS,
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS,
-    provide(LocationStrategy, {
-      useClass: HashLocationStrategy
-    })
+    ROUTER_PROVIDERS
   ]).catch(err => console.error(err));
 });
 

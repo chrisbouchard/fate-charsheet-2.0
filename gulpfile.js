@@ -48,6 +48,7 @@ gulp.task('webpack-dev-server', function (callback) {
 
   var server = new WebpackDevServer(compiler, {
     contentBase: 'dist',
+    historyApiFallback: true,
     publicPath: serverConfig.output.publicPath,
     stats: statsConfig
   });
