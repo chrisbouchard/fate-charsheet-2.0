@@ -10,30 +10,31 @@ First `cd` into the project root and install the node dependencies.
 $ npm install
 ```
 
-And install `gulp` globally.
+Next build Semantic UI.
 ```console
-$ npm install --global gulp
+$ npm run build-semantic
 ```
 
-Finally, build the project with `gulp`.
+Finally, build the project.
 ```console
-$ gulp build  # Production
-$ gulp server # Live development server
+$ npm run build-prod # Production
+$ npm run build-dev  # Development
+$ npm run server     # Live development server
 ```
 
-The compiled bundles and assets will wind up in `dist`. The app may be run with any static http server with `dist` as
-the webroot.
+The compiled bundles and assets will wind up in `dist`. The app may be run by any static http server with `dist` as the
+webroot. Note that the live development server will not write anything into `dist` -- it's purely in-memory.
 
 ## Testing
 
-Automated tests are run using `gulp`. The following command will run all tests once.
+The following command will run all tests once.
 ```console
-$ gulp test
+$ npm run test
 ```
 
 Tests can also be run continuously.
 ```console
-$ gulp ci
+$ npm run ci
 ```
 
 ## Related Projects
