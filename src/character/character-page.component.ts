@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
+import { RouteParams } from '@angular/router-deprecated';
 import { Observable } from 'rxjs';
 
-import { CharacterFacade } from '../common/character_facade';
+import { CharacterFacade } from '../common/character-facade';
 import { Character } from '../model/character';
 import { SheetComponent } from '../sheet/sheet.component';
 

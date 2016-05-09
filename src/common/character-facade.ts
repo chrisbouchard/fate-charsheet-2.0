@@ -5,7 +5,7 @@ import { Character } from '../model/character';
 import { Consequence, COMMON_CONSEQUENCES } from '../model/consequence';
 import { Player } from '../model/player';
 import { Skill } from '../model/skill';
-import { COMMON_STRESS_TRACKS, StressTrack } from '../model/stress_track';
+import { COMMON_STRESS_TRACKS, StressTrack } from '../model/stress-track';
 import { Stunt } from '../model/stunt';
 import { Template } from '../model/template';
 

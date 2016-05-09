@@ -2,7 +2,7 @@ import { Aspect, COMMON_ASPECTS } from './aspect';
 import { Consequence } from './consequence';
 import { Player } from './player';
 import { Skill } from './skill';
-import { COMMON_STRESS_TRACKS, StressTrack } from './stress_track';
+import { COMMON_STRESS_TRACKS, StressTrack } from './stress-track';
 import { Stunt } from './stunt';
 import { Template } from './template';
 

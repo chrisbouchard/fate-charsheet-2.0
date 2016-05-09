@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { HalError } from './error';
 import { HalFieldTypeDescription } from './field';
-import { HalInstanceFactory } from './instance_factory';
+import { HalInstanceFactory } from './instance-factory';
 import { HalLinkObject, HalObject, HalObjectSerializer } from './object';
 
 /**

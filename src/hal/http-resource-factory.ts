@@ -5,10 +5,10 @@ import { default as UriTemplate, UriValueType, UriMappingType } from 'uri-templa
 
 import { HalFieldTypeDescription, HalFieldTypeMetadata } from './field';
 import { HalHttp } from './http';
-import { HalInstanceFactory } from './instance_factory';
+import { HalInstanceFactory } from './instance-factory';
 import { HalLinkObject } from './object';
 import { HalResource } from './resource';
-import { HalResourceFactory } from './resource_factory';
+import { HalResourceFactory } from './resource-factory';
 
 /**
  *

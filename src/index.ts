@@ -14,7 +14,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import { CharacterFacade } from './common/character_facade';
+import { CharacterFacade } from './common/character-facade';
 import { AppComponent } from './app/app.component';
 
 import { HAL_PROVIDERS } from './hal';
