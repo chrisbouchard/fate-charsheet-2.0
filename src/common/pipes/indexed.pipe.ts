@@ -8,12 +8,12 @@ export interface Entry<E> {
 @Pipe({ name: 'indexed', pure: true })
 export class IndexedPipe implements PipeTransform {
 
-  transform<E>(value: Iterable<E>): Entry<E>[] {
+  transform<E>(value: Iterable<E>, offset: number = 0): Entry<E>[] {
     if (!value) {
       return [];
     }
 
-    return Array.from(value).map((value, index) => ({ index, value }));
+    return Array.from(value).map((value, index) => ({ index: offset + index, value }));
   }
 
 }
