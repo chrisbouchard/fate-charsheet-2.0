@@ -21,8 +21,7 @@ import { HAL_PROVIDERS } from './hal';
 
 import { __PRODUCTION__ } from './globals';
 
-/* Load CSS stylesheets. */
-import 'style!semantic/semantic.css';
+import '!!style!css!semantic/semantic.css';
 
 if (__PRODUCTION__) {
   /* Switch Angular to production mode. */

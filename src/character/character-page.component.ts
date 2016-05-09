@@ -11,7 +11,7 @@ import { SheetComponent } from '../sheet/sheet.component';
   selector: 'fate-character-page',
   directives: [SheetComponent],
   pipes: [AsyncPipe],
-  template: require<string>('./character-page.component.haml')
+  templateUrl: require<string>('./character-page.component.haml')
 })
 export class CharacterPageComponent {
 

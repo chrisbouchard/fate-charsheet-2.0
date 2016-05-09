@@ -7,8 +7,8 @@ import { GroupPageComponent } from '../group/group-page.component';
 @Component({
   selector: 'fate-app',
   directives: [RouterLink, RouterOutlet],
-  styles: [require<string>('./app.component.less')],
-  template: require<string>('./app.component.haml'),
+  styleUrls: [require<string>('./app.component.less')],
+  templateUrl: require<string>('./app.component.haml'),
 })
 @RouteConfig([
   { path: '/', component: GroupPageComponent, name: 'Home' },

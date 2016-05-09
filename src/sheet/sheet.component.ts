@@ -12,8 +12,8 @@ import { Stunt } from '../model/stunt';
   selector: 'fate-sheet',
   directives: [RouterLink],
   pipes: [COMMON_PIPES],
-  styles: [require<string>('./sheet.component.less')],
-  template: require<string>('./sheet.component.haml')
+  styleUrls: [require<string>('./sheet.component.less')],
+  templateUrl: require<string>('./sheet.component.haml')
 })
 export class SheetComponent {
   @Input() character: Character;

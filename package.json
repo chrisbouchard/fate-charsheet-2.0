@@ -46,6 +46,7 @@
     "codelyzer": "0.0.19",
     "cross-env": "1.0.7",
     "css-loader": "0.23.1",
+    "extract-loader": "0.0.2",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
     "gulp": "3.9.1",

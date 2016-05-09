@@ -11,7 +11,7 @@ import { Character } from '../model/character';
   selector: 'fate-group-page',
   directives: [ListComponent],
   pipes: [AsyncPipe],
-  template: require<string>('./group-page.component.haml')
+  templateUrl: require<string>('./group-page.component.haml')
 })
 export class GroupPageComponent {
 

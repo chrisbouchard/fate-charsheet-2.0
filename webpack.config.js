@@ -64,23 +64,23 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'css',
+        loader: 'file?name=styles/[hash].[ext]',
       },
       {
         test: /\.haml$/,
-        loader: 'haml-haml'
+        loader: 'file?name=templates/[hash].html!extract!haml-haml'
       },
       {
         test: /\.html$/,
-        loader: 'html?attrs=false&minimize=false'
+        loader: 'file?name=templates/[hash].[ext]'
       },
       {
         test: /\.less$/,
-        loader: 'raw!less'
+        loader: 'file?name=styles/[hash].[ext]!less'
       },
       {
         test: /\.(eot|png|svg|ttf|woff|woff2)$/,
-        loader: 'url?limit=5000&name=assets/[name]-[hash].[ext]'
+        loader: 'url?limit=5000&name=assets/[hash].[ext]'
       }
     ],
     noParse: [
@@ -110,7 +110,7 @@ function commonPlugins() {
     }),
     new HtmlWebpackPlugin({
       inject: 'head',
-      template: './src/index.haml'
+      template: '!!haml-haml!./src/index.haml'
     }),
     new ProvidePlugin({ 'jQuery': 'jquery', '$': 'jquery' }),
   ];
