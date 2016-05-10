@@ -9,6 +9,8 @@ import 'jquery';
 import 'rxjs/Rx';
 import 'semantic/semantic';
 
+import 'semantic/semantic.css';
+
 import { enableProdMode, provide } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
@@ -20,8 +22,6 @@ import { AppComponent } from './app/app.component';
 import { HAL_PROVIDERS } from './hal';
 
 import { __PRODUCTION__ } from './globals';
-
-import '!!style!css!semantic/semantic.css';
 
 if (__PRODUCTION__) {
   /* Switch Angular to production mode. */

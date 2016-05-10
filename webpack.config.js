@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 
-//var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var DefinePlugin = webpack.DefinePlugin;
 var ProvidePlugin = webpack.ProvidePlugin;
 
@@ -9,7 +8,10 @@ var DedupePlugin = webpack.optimize.DedupePlugin;
 var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
-//var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var extractCssPluginInstance = new ExtractTextPlugin('[name].css');
+
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -48,6 +50,7 @@ module.exports = {
         exclude: [path.join(__dirname, 'node_modules')]
       }
     ],
+
     loaders: [
       {
         test: /\.ts$/,
@@ -62,27 +65,52 @@ module.exports = {
           path.join(__dirname, 'semantic')
         ]
       },
+
       {
-        test: /\.css$/,
-        loader: 'file?name=styles/[hash].[ext]',
+        test: /\.html$/,
+        loader: 'file?name=templates/[name].[hash:8].html'
       },
       {
         test: /\.haml$/,
-        loader: 'file?name=templates/[hash].html!extract!haml-haml'
+        loader: 'file?name=templates/[name].[hash:8].html!extract!haml-haml'
+      },
+
+      {
+        test: /\.css$/,
+        loader: 'file?name=templates/[name].[hash:8].css!extract!css',
+        include: [
+          path.join(__dirname, 'src')
+        ]
       },
       {
-        test: /\.html$/,
-        loader: 'file?name=templates/[hash].[ext]'
+        test: /\.less/,
+        loader: 'file?name=templates/[name].[hash:8].css!extract!css!less',
+        include: [
+          path.join(__dirname, 'src')
+        ]
+      },
+
+      {
+        test: /\.css$/,
+        loader: extractCssPluginInstance.extract('css'),
+        exclude: [
+          path.join(__dirname, 'src')
+        ]
       },
       {
         test: /\.less$/,
-        loader: 'file?name=styles/[hash].[ext]!less'
+        loader: extractCssPluginInstance.extract('css!less'),
+        exclude: [
+          path.join(__dirname, 'src')
+        ]
       },
+
       {
         test: /\.(eot|png|svg|ttf|woff|woff2)$/,
-        loader: 'url?limit=5000&name=assets/[hash].[ext]'
+        loader: 'url?limit=5000&name=assets/[name].[hash:8].[ext]'
       }
     ],
+
     noParse: [
       path.join(__dirname, 'node_modules', 'zone.js'),
       path.join(__dirname, 'node_modules', 'reflect-metadata')
@@ -105,6 +133,7 @@ function devtool() {
 
 function commonPlugins() {
   return [
+    extractCssPluginInstance,
     new DefinePlugin({
       __PRODUCTION__: JSON.stringify(isProduction())
     }),
@@ -124,7 +153,6 @@ function productionPlugins() {
   return [
     new DedupePlugin(),
     new OccurenceOrderPlugin(),
-    // TODO: Figure out how to enable this without breaking things.
     new UglifyJsPlugin()
   ];
 }
