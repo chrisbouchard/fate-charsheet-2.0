@@ -1,7 +1,10 @@
 var gulp = require('gulp');
+var gulpClean = require('gulp-clean');
 var gulpUtil = require('gulp-util');
 
 var karma = require('karma');
+
+var runSequence = require('run-sequence');
 
 var semantic = {
   build: require('./semantic/tasks/build'),
@@ -15,7 +18,10 @@ var webpackConfig = require('./webpack.config');
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['webpack:build']);
+gulp.task('build', function (callback) {
+    runSequence('clean', 'webpack:build', callback);
+});
+
 gulp.task('server', ['semantic:watch', 'webpack-dev-server']);
 
 gulp.task('semantic:build', semantic.build);
@@ -60,6 +66,10 @@ gulp.task('webpack-dev-server', function (callback) {
 
     gulpUtil.log('[webpack-dev-server]', 'http://localhost:8080/');
   });
+});
+
+gulp.task('clean', function () {
+    return gulp.src('./dist', {read: false}).pipe(gulpClean());
 });
 
 gulp.task('test', function (done) {
