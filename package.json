@@ -4,15 +4,15 @@
   "description": "An application to manage FATE character sheets.",
   "repository": "chrisbouchard/fate-charsheet-2.0",
   "scripts": {
-    "postinstall": "typings install",
     "build": "cross-env NODE_ENV=production gulp build",
     "build-dev": "cross-env NODE_ENV=development gulp build",
     "build-prod": "cross-env NODE_ENV=production gulp build",
     "build-semantic": "cross-env NODE_ENV=production gulp semantic:build",
+    "ci": "cross-env NODE_ENV=test gulp ci"
+    "postinstall": "typings install",
     "server": "cross-env NODE_ENV=development gulp server",
     "start": "cross-env NODE_ENV=development gulp server",
     "test": "cross-env NODE_ENV=test gulp test",
-    "ci": "cross-env NODE_ENV=test gulp ci"
   },
   "keywords": [],
   "author": "Chris Bouchard <chris@upliftinglemma.net>",
