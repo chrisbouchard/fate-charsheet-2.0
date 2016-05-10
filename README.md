@@ -34,7 +34,7 @@ $ npm run test
 
 Tests can also be run continuously.
 ```console
-$ npm run ci
+$ npm run test-ci
 ```
 
 ## Related Projects

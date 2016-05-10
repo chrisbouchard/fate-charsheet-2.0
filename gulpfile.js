@@ -79,7 +79,7 @@ gulp.task('test', function (done) {
   }, done).start();
 });
 
-gulp.task('ci', function (done) {
+gulp.task('test-ci', function (done) {
   new karma.Server({
     configFile: __dirname + '/karma.conf.js'
   }, done).start();
