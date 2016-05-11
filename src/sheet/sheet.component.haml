@@ -61,8 +61,8 @@
             .ui.horizontal.list
               .item(*ngFor="let entry of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox | indexed:1")
                 .ui.checkbox
-                  %input(type="checkbox" [id]="track.field + entry.index" [(ngModel)]="entry.value.marked" [disabled]="!entry.value.enabled")
-                  %label([htmlFor]="track.field + entry.index") {{entry.index}}
+                  %input(type="checkbox" [(ngModel)]="entry.value.marked" [disabled]="!entry.value.enabled")
+                  %label {{entry.index}}
         %h2.ui.header Consequences
       .column
         %h2.ui.header Stunts
