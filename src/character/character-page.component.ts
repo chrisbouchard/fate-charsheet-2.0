@@ -22,9 +22,7 @@ export class CharacterPageComponent implements OnInit {
   character: Observable<Character>;
 
   constructor(private params: RouteParams, private store: Store<any>, private appActions: AppActions) {
-    this.character = store.select('app').map((state: AppState) => state.currentCharacter).do(character => {
-      console.log('Update!');
-    });
+    this.character = store.select('app').map((state: AppState) => state.currentCharacter);
   }
 
   ngOnInit(): void {
