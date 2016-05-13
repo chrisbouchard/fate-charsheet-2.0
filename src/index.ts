@@ -17,12 +17,15 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import { CharacterFacade } from './common/character-facade';
+import { provideStore } from '@ngrx/store';
+
+import { routerMiddleware, routerReducer } from 'ngrx-store-router';
+
 import { AppComponent } from './app/app.component';
-
-import { HAL_PROVIDERS } from './hal';
-
+import { CharacterFacade } from './common/character-facade';
 import { __PRODUCTION__ } from './globals';
+import { HAL_PROVIDERS } from './hal';
+import { appReducer } from './store/app-reducer';
 
 if (__PRODUCTION__) {
   /* Switch Angular to production mode. */
@@ -31,11 +34,15 @@ if (__PRODUCTION__) {
 
 $(() => {
   bootstrap(AppComponent, [
-    CharacterFacade,
     FORM_PROVIDERS,
-    HAL_PROVIDERS,
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS
+    ROUTER_PROVIDERS,
+
+    provideStore({app: appReducer, router: routerReducer}),
+    routerMiddleware,
+
+    CharacterFacade,
+    HAL_PROVIDERS
   ]).catch(err => console.error(err));
 });
 
