@@ -30,24 +30,24 @@ module Character {
 }
 
 export class Character implements Character.Options {
-  id: string;
-  name: string;
+  readonly id: string;
+  readonly name: string;
 
-  player: Player;
-  template: Template;
+  readonly player: Player;
+  readonly template: Template;
 
-  color: string;
-  portrait: string;
+  readonly color: string;
+  readonly portrait: string;
 
-  namedAspects: Map<string, Aspect>;
-  unnamedAspects: Set<Aspect>;
+  readonly namedAspects: Map<string, Aspect>;
+  readonly unnamedAspects: Set<Aspect>;
 
-  skills: Set<Skill>[];
-  stunts: Set<Stunt>;
+  readonly skills: Set<Skill>[];
+  readonly stunts: Set<Stunt>;
 
-  stressTracks: Map<string, StressTrack>;
+  readonly stressTracks: Map<string, StressTrack>;
 
-  consequences: Map<string, Set<Consequence>>;
+  readonly consequences: Map<string, Set<Consequence>>;
 
   constructor(options: Character.Options) {
     Object.assign(this, options);
