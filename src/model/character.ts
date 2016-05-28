@@ -1,3 +1,5 @@
+import { List, Map, Record, Set } from 'immutable';
+
 import { Aspect, COMMON_ASPECTS } from './aspect';
 import { Consequence } from './consequence';
 import { Player } from './player';
@@ -20,7 +22,7 @@ module Character {
     namedAspects: Map<string, Aspect>;
     unnamedAspects: Set<Aspect>;
 
-    skills: Set<Skill>[];
+    skills: List<Set<Skill>>;
     stunts: Set<Stunt>;
 
     stressTracks: Map<string, StressTrack>;
@@ -29,7 +31,22 @@ module Character {
   }
 }
 
-export class Character implements Character.Options {
+export const DEFAULT_CHARACTER: Character.Options = {
+  id: undefined,
+  name: undefined,
+  player: undefined,
+  template: undefined,
+  color: undefined,
+  portrait: undefined,
+  namedAspects: Map<string, Aspect>(),
+  unnamedAspects: Set<Aspect>(),
+  skills: List<Set<Skill>>(),
+  stunts: Set<Stunt>(),
+  stressTracks: Map<string, StressTrack>(),
+  consequences: Map<string, Set<Consequence>>()
+};
+
+export class Character extends Record(DEFAULT_CHARACTER) implements Character.Options {
   readonly id: string;
   readonly name: string;
 
@@ -42,24 +59,15 @@ export class Character implements Character.Options {
   readonly namedAspects: Map<string, Aspect>;
   readonly unnamedAspects: Set<Aspect>;
 
-  readonly skills: Set<Skill>[];
+  readonly skills: List<Set<Skill>>;
   readonly stunts: Set<Stunt>;
 
   readonly stressTracks: Map<string, StressTrack>;
 
   readonly consequences: Map<string, Set<Consequence>>;
 
-  constructor(options: Character.Options) {
-    Object.assign(this, options);
-  }
-
   public get aspects(): Set<Aspect> {
-    const aspects = new Set<Aspect>();
-
-    this.namedAspects.forEach(aspect => aspects.add(aspect));
-    this.unnamedAspects.forEach(aspect => aspects.add(aspect));
-
-    return aspects;
+    return this.namedAspects.toSet().union(this.unnamedAspects);
   }
 
   public get highConcept(): Aspect {

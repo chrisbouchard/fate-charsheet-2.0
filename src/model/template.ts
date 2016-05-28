@@ -1,3 +1,5 @@
+import { List, Map } from 'immutable';
+
 export interface StressTrackSlot {
   field: string;
   cap: number;
@@ -12,9 +14,9 @@ module Template {
     consequenceNames: Map<string, string>;
     stressTrackNames: Map<string, string>;
 
-    aspectSlots: string[];
-    consequenceSlots: string[];
-    stressTrackSlots: StressTrackSlot[];
+    aspectSlots: List<string>;
+    consequenceSlots: List<string>;
+    stressTrackSlots: List<StressTrackSlot>;
   }
 }
 
@@ -26,9 +28,9 @@ export class Template implements Template.Options {
   consequenceNames: Map<string, string>;
   stressTrackNames: Map<string, string>;
 
-  aspectSlots: string[];
-  consequenceSlots: string[];
-  stressTrackSlots: StressTrackSlot[];
+  aspectSlots: List<string>;
+  consequenceSlots: List<string>;
+  stressTrackSlots: List<StressTrackSlot>;
 
   constructor(options: Template.Options) {
     Object.assign(this, options);
