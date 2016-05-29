@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../model/app-state';
 import { Character } from '../model/character';
 import { SheetComponent } from '../sheet/sheet.component';
-import { AppActions } from '../store/app-actions';
 
 import { CharacterActions } from './character.actions';
 
