@@ -9,7 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../model/app-state';
 import { Character } from '../model/character';
 import { SheetComponent } from '../sheet/sheet.component';
-import { AppActions } from '../store/app-actions';
+
+import { CharacterActions } from './character.actions';
 
 @Component({
   selector: 'fate-character-page',
@@ -21,13 +22,13 @@ export class CharacterPageComponent implements OnInit {
 
   character: Observable<Character>;
 
-  constructor(private params: RouteParams, private store: Store<any>, private appActions: AppActions) {
-    this.character = store.select('app').map((state: AppState) => state.currentCharacter);
+  constructor(private params: RouteParams, private store: Store<AppState>, private characterActions: CharacterActions) {
+    this.character = store.select(state => state.currentCharacter);
   }
 
   ngOnInit(): void {
     const id = this.params.get('id');
-    this.store.next(this.appActions.selectCharacter(id));
+    this.store.dispatch(this.characterActions.loadCharacter(id));
   }
 
 }

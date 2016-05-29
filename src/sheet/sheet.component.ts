@@ -5,11 +5,11 @@ import { Store } from '@ngrx/store';
 
 import { autobind } from 'core-decorators';
 
+import { CharacterActions } from '../character/character.actions';
 import { COMMON_PIPES } from '../common/pipes';
 import { Character } from '../model/character';
 import { StressBox } from '../model/stress-track';
 import { Stunt } from '../model/stunt';
-import { AppActions} from '../store/app-actions';
 
 @Component({
   selector: 'fate-sheet',
@@ -23,7 +23,7 @@ export class SheetComponent {
 
   emptyStressBox: StressBox = { enabled: false, marked: false };
 
-  constructor(private store: Store<any>, private appActions: AppActions) {}
+  constructor(private store: Store<any>, private characterActions: CharacterActions) {}
 
   @autobind
   namedAspect(slot: string): {title: string, name: string} {
@@ -34,7 +34,7 @@ export class SheetComponent {
   }
 
   setStress(event: any, track: string, stress: number, value: boolean): void {
-    this.store.dispatch(this.appActions.setCharacterStress(track, stress - 1, value));
+    this.store.dispatch(this.characterActions.setCharacterStress(track, stress - 1, value));
     event.preventDefault();
     event.stopPropagation();
   }
