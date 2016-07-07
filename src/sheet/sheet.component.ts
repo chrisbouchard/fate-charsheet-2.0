@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -19,7 +19,7 @@ interface NamedAspect {
 
 @Component({
   selector: 'fate-sheet',
-  directives: [RouterLink],
+  directives: [ROUTER_DIRECTIVES],
   pipes: [COMMON_PIPES],
   styleUrls: [require<string>('./sheet.component.less')],
   templateUrl: require<string>('./sheet.component.haml')

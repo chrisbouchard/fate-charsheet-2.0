@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character-facade';
@@ -17,7 +17,7 @@ export class GroupPageComponent {
 
   characters: Observable<Array<Character>>;
 
-  constructor(private params: RouteParams, private characterFacade: CharacterFacade) {
+  constructor(private route: ActivatedRoute, private characterFacade: CharacterFacade) {
     this.characters = characterFacade.findAll();
   }
 

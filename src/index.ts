@@ -11,11 +11,10 @@ import 'semantic/semantic';
 
 import 'semantic/semantic.css';
 
-import { enableProdMode, provide } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { FORM_PROVIDERS } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { runEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
@@ -23,6 +22,7 @@ import { instrumentStore } from '@ngrx/store-devtools';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { AppComponent } from './app/app.component';
+import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { CharacterActions } from './character/character.actions';
 import { CharacterEffects } from './character/character.effects';
 import { characterReducer } from './character/character.reducer';
@@ -39,7 +39,6 @@ $(() => {
   bootstrap(AppComponent, [
     FORM_PROVIDERS,
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS,
 
     provideStore({
       currentCharacter: characterReducer
@@ -54,6 +53,7 @@ $(() => {
       })
     }),
 
+    APP_ROUTER_PROVIDERS,
     CharacterActions,
     CharacterFacade,
     HAL_PROVIDERS

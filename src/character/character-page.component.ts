@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -18,17 +18,25 @@ import { CharacterActions } from './character.actions';
   pipes: [AsyncPipe],
   templateUrl: require<string>('./character-page.component.haml')
 })
-export class CharacterPageComponent implements OnInit {
+export class CharacterPageComponent implements OnDestroy, OnInit {
 
   character: Observable<Character>;
 
-  constructor(private params: RouteParams, private store: Store<AppState>, private characterActions: CharacterActions) {
+  private paramsSub: any;
+
+  constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
     this.character = store.select(state => state.currentCharacter);
   }
 
   ngOnInit(): void {
-    const id = this.params.get('id');
-    this.store.dispatch(this.characterActions.loadCharacter(id));
+    // TODO: This should be handled by store "middleware".
+    this.paramsSub = this.route.params.subscribe(params => {
+      this.store.dispatch(this.characterActions.loadCharacter(params['id']));
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSub.unsubscribe();
   }
 
 }
