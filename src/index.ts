@@ -17,13 +17,10 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-//import { devtoolsConfig, instrumentStore } from '@ngrx/devtools';
 import { runEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
-
-//import { routerMiddleware, routerReducer } from 'ngrx-store-router';
 
 import { AppComponent } from './app/app.component';
 import { CharacterActions } from './character/character.actions';
