@@ -107,7 +107,7 @@ module.exports = {
 
       {
         test: /\.(eot|png|svg|ttf|woff|woff2)$/,
-        loader: 'url?limit=5000&name=assets/[name].[hash:8].[ext]'
+        loader: 'file?name=assets/[name].[hash:8].[ext]'
       }
     ],
 

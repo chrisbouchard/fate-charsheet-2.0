@@ -20,6 +20,8 @@ import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 //import { devtoolsConfig, instrumentStore } from '@ngrx/devtools';
 import { runEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
+import { instrumentStore } from '@ngrx/store-devtools';
+import { useLogMonitor } from '@ngrx/store-log-monitor';
 
 //import { routerMiddleware, routerReducer } from 'ngrx-store-router';
 
@@ -48,14 +50,12 @@ $(() => {
     runEffects(
       CharacterEffects
     ),
-    /*
-    instrumentStore(),
-    devtoolsConfig({
-      position: 'right',
-      size: 0.3,
-      visible: false
+    instrumentStore({
+      monitor: useLogMonitor({
+        position: 'right',
+        visible: false
+      })
     }),
-    */
 
     CharacterActions,
     CharacterFacade,

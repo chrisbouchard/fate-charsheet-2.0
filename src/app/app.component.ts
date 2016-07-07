@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteConfig, RouterLink, RouterOutlet } from '@angular/router-deprecated';
 
-// import { Devtools } from '@ngrx/devtools';
+import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 
 import { CharacterPageComponent } from '../character/character-page.component';
 import { GroupPageComponent } from '../group/group-page.component';
 
 @Component({
   selector: 'fate-app',
-  directives: [/* Devtools, */ RouterLink, RouterOutlet],
+  directives: [RouterLink, RouterOutlet, StoreLogMonitorComponent],
   styleUrls: [require<string>('./app.component.less')],
   templateUrl: require<string>('./app.component.haml'),
 })
