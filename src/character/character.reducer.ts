@@ -4,7 +4,7 @@ import { Character } from '../model/character';
 
 import { SET_CHARACTER, SET_CHARACTER_STRESS } from './character.actions';
 
-export const characterReducer: ActionReducer<Character> = (currentCharacter: Character = undefined, action: any) => {
+export const characterReducer: ActionReducer<Character> = (currentCharacter: Character = undefined, action: Action) => {
   switch (action.type) {
     case SET_CHARACTER:
       return action.payload.character;
@@ -15,7 +15,7 @@ export const characterReducer: ActionReducer<Character> = (currentCharacter: Cha
       }
 
       return currentCharacter.setIn(
-        ['stressTracks', action.payload.track, action.payload.index],
+        ['stressTracks', action.payload.track, 'boxes', action.payload.index],
         action.payload.value
       );
 
