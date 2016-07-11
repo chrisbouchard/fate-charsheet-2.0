@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+import { Iterable, List, Seq, Set } from 'immutable';
 import * as Immutable from 'immutable';
 
 import { Aspect } from './aspect';
@@ -17,7 +17,7 @@ module Character {
     portrait: string;
 
     aspects: List<Aspect>;
-    skills: List<Skill>;
+    skills: Set<Skill>;
     stunts: List<Stunt>;
 
     stressTracks: List<StressTrack>;
@@ -33,7 +33,7 @@ export const DEFAULT_CHARACTER: Character.Options = {
   portrait: undefined,
 
   aspects: List<Aspect>(),
-  skills: List<Skill>(),
+  skills: Set<Skill>(),
   stunts: List<Stunt>(),
 
   stressTracks: List<StressTrack>(),
@@ -48,7 +48,7 @@ export class Character extends Immutable.Record(DEFAULT_CHARACTER) implements Ch
   readonly portrait: string;
 
   readonly aspects: List<Aspect>;
-  readonly skills: List<Skill>;
+  readonly skills: Set<Skill>;
   readonly stunts: List<Stunt>;
 
   readonly stressTracks: List<StressTrack>;
@@ -56,6 +56,10 @@ export class Character extends Immutable.Record(DEFAULT_CHARACTER) implements Ch
 
   public get highConcept(): Aspect {
     return this.aspects.get(0);
+  }
+
+  public get skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
+    return this.skills.groupBy(skill => skill.rank);
   }
 }
 

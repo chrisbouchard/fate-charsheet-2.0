@@ -43,23 +43,21 @@
             %a.fate-aspect {{aspect.name}}
       .column
         %h2.ui.header Skills
-        -# %table.ui.very.basic.compact.unstackable.table
-        -#   %tbody
-        -#     %tr(*ngFor="let entry of character?.skills | indexed | reversed")
-        -#       %td.collapsing
-        -#         .ui.small.header +{{entry.index}}
-        -#       %td
-        -#         %a.ui.basic.horizontal.label(*ngFor="let skill of entry.value") {{skill.name}}
+        %table.ui.very.basic.compact.unstackable.table
+          %tbody
+            %tr(*ngFor="let entry of character?.skillsByRank | sorted:0 | reversed")
+              %td.collapsing
+                .ui.small.header +{{entry[0]}}
+              %td
+                %a.ui.basic.horizontal.label(*ngFor="let skill of entry[1]") {{skill.name}}
       .column
         %h2.ui.header Stress
         .ui.list
           .item(*ngFor="let track of character?.stressTracks | indexed")
             .ui.grey.sub.header {{track.value.name}}
-            .ui.horizontal.list
-              .item(*ngFor="let entry of track.value.boxes | indexed:1")
-                .ui.checkbox
-                  %input(type="checkbox" [checked]="entry.value" (click)="setStress($event, track.index, entry.index, !entry.value)")
-                  %label {{entry.index}}
+            .ui.large.circular.labels(style="padding-top: 0.25em")
+              %a.ui.label.fate-stress-box(*ngFor="let entry of track.value.boxes | indexed:1" [class.fate-active]="entry.value" (click)="setStress($event, track.index, entry.index, !entry.value)")
+                {{entry.index}}
         %h2.ui.header Consequences
       .column
         %h2.ui.header Stunts

@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+import { List, Set } from 'immutable';
 import { Observable } from 'rxjs';
 
 import { Aspect } from '../model/aspect';
@@ -29,7 +29,7 @@ export class CharacterFacade {
     portrait: require<string>('../assets/placeholder.svg'),
     color: 'purple',
 
-    aspects: List<Aspect>([
+    aspects: List([
       new Aspect({ label: 'High Concept', name: 'Graying Starfleet Devil' }),
       new Aspect({ label: 'Trouble', name: 'Number One' }),
       new Aspect({ label: 'Rank', name: 'Captain' }),
@@ -38,7 +38,7 @@ export class CharacterFacade {
       new Aspect({ name: 'Glint in the Eye' })
     ]),
 
-    skills: List([
+    skills: Set([
       new Skill({ name: 'Foo', rank: 1 }),
       new Skill({ name: 'Bar', rank: 2 }),
       new Skill({ name: 'Baz', rank: 3 })
@@ -53,7 +53,7 @@ export class CharacterFacade {
       new Stunt({ name: 'X Y Z', description: 'Foo bar.' })
     ]),
 
-    stressTracks: List<StressTrack>([
+    stressTracks: List([
       new StressTrack({
         name: 'Physical',
         boxes: List([true, true, false, false])
@@ -73,15 +73,15 @@ export class CharacterFacade {
     portrait: require<string>('../assets/placeholder.svg'),
     color: 'blue',
 
-    aspects: List<Aspect>([
+    aspects: List([
       new Aspect({ label: 'High Concept', name: 'Lorem Ipsum Dolor Sit Amen' }),
       new Aspect({ label: 'Trouble', name: 'Troubling Troubles' })
     ]),
 
-    skills: List<Skill>(),
+    skills: Set<Skill>(),
     stunts: List<Stunt>(),
 
-    stressTracks: List<StressTrack>([
+    stressTracks: List([
       new StressTrack({
         name: 'Physical',
         boxes: List([true, true, false, false])

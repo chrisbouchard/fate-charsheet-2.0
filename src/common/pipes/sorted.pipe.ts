@@ -1,35 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { Iterable } from 'immutable';
+
 @Pipe({ name: 'sorted', pure: true })
 export class SortedPipe implements PipeTransform {
 
-  transform<T>(value: Iterable<T>, key: string, reversed: boolean): T[] {
-    if (!value) {
-      return [];
+  transform<K, V>(value: Iterable<K, V>, key: string): Iterable<K, V> {
+    if (key === undefined) {
+      return value.sort();
     }
 
-    let array = Array.from(value);
-
-    if (key) {
-      array.sort((a: any, b: any) => {
-        if (a[key] < b[key]) {
-          return reversed ? 1 : -1;
-        }
-
-        if (a[key] > b[key]) {
-          return reversed ? -1 : 1;
-        }
-
-        return 0;
-      });
-    }
-    else {
-      array.sort();
-    }
-
-    return array;
+    return value.sortBy((element: any) => element[key]);
   }
 
 }
-
 
