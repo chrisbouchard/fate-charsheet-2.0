@@ -1,14 +1,20 @@
 import { List } from 'immutable';
+import * as Immutable from 'immutable';
 
-export interface StressBox {
-  enabled: boolean;
-  marked: boolean;
+module StressTrack {
+  export interface Options {
+    name: string;
+    boxes: List<boolean>;
+  }
 }
 
-export type StressTrack = List<StressBox>;
-
-export const COMMON_STRESS_TRACKS = {
-  PHYSICAL: 'physical',
-  MENTAL: 'mental'
+export const DEFAULT_STRESS_TRACK: StressTrack.Options = {
+  name: undefined,
+  boxes: List<boolean>()
 };
+
+export class StressTrack extends Immutable.Record(DEFAULT_STRESS_TRACK) implements StressTrack.Options {
+  readonly name: string;
+  readonly boxes: List<boolean>;
+}
 

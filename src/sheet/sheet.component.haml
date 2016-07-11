@@ -38,36 +38,33 @@
       .column
         %h2.ui.header Aspects
         .ui.list
-          .item(*ngFor="let aspect of namedAspects()")
-            .ui.grey.sub.header {{aspect.title}}
-            %a.fate-aspect {{aspect.name || 'Missing'}}
-        .ui.list
-          .item(*ngFor="let aspect of character?.unnamedAspects")
+          .item(*ngFor="let aspect of character?.aspects")
+            .ui.grey.sub.header(*ngIf="aspect.label") {{aspect.label}}
             %a.fate-aspect {{aspect.name}}
       .column
         %h2.ui.header Skills
-        %table.ui.very.basic.compact.unstackable.table
-          %tbody
-            %tr(*ngFor="let entry of character?.skills | indexed | reversed")
-              %td.collapsing
-                .ui.small.header +{{entry.index}}
-              %td
-                %a.ui.basic.horizontal.label(*ngFor="let skill of entry.value") {{skill.name}}
+        -# %table.ui.very.basic.compact.unstackable.table
+        -#   %tbody
+        -#     %tr(*ngFor="let entry of character?.skills | indexed | reversed")
+        -#       %td.collapsing
+        -#         .ui.small.header +{{entry.index}}
+        -#       %td
+        -#         %a.ui.basic.horizontal.label(*ngFor="let skill of entry.value") {{skill.name}}
       .column
         %h2.ui.header Stress
         .ui.list
-          .item(*ngFor="let track of character?.template.stressTrackSlots")
-            .ui.grey.sub.header {{character.template.stressTrackNames.get(track.field)}}
+          .item(*ngFor="let track of character?.stressTracks | indexed")
+            .ui.grey.sub.header {{track.value.name}}
             .ui.horizontal.list
-              .item(*ngFor="let entry of character?.stressTracks.get(track.field) | padded:track.cap:emptyStressBox | indexed:1")
+              .item(*ngFor="let entry of track.value.boxes | indexed:1")
                 .ui.checkbox
-                  %input(type="checkbox" [checked]="entry.value.marked" [disabled]="!entry.value.enabled" (click)="setStress($event, track.field, entry.index, !entry.value.marked)")
+                  %input(type="checkbox" [checked]="entry.value" (click)="setStress($event, track.index, entry.index, !entry.value)")
                   %label {{entry.index}}
         %h2.ui.header Consequences
       .column
         %h2.ui.header Stunts
         .ui.relaxed.list
-          .item(*ngFor="let stunt of character?.stunts | sorted:'name'")
+          .item(*ngFor="let stunt of character?.stunts")
             .header {{stunt.name}}
             .description {{stunt.description}}
 

@@ -19,7 +19,7 @@ export class CharacterActions {
     return { type: SET_CHARACTER, payload: { character } };
   }
 
-  setCharacterStress(track: string, index: number, value: boolean): Action {
+  setCharacterStress(track: number, index: number, value: boolean): Action {
     return { type: SET_CHARACTER_STRESS, payload: { track, index, value } };
   }
 

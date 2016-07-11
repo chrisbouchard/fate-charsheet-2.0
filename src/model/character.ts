@@ -1,81 +1,61 @@
-import { List, Map, Record, Set } from 'immutable';
+import { List } from 'immutable';
+import * as Immutable from 'immutable';
 
-import { Aspect, COMMON_ASPECTS } from './aspect';
+import { Aspect } from './aspect';
 import { Consequence } from './consequence';
 import { Player } from './player';
 import { Skill } from './skill';
-import { COMMON_STRESS_TRACKS, StressTrack } from './stress-track';
+import { StressTrack } from './stress-track';
 import { Stunt } from './stunt';
-import { Template } from './template';
 
 module Character {
   export interface Options {
-    id: string;
     name: string;
-
     player: Player;
-    template: Template;
 
     color: string;
     portrait: string;
 
-    namedAspects: Map<string, Aspect>;
-    unnamedAspects: Set<Aspect>;
+    aspects: List<Aspect>;
+    skills: List<Skill>;
+    stunts: List<Stunt>;
 
-    skills: List<Set<Skill>>;
-    stunts: Set<Stunt>;
-
-    stressTracks: Map<string, StressTrack>;
-
-    consequences: Map<string, Set<Consequence>>;
+    stressTracks: List<StressTrack>;
+    consequences: List<Consequence>;
   }
 }
 
 export const DEFAULT_CHARACTER: Character.Options = {
-  id: undefined,
   name: undefined,
   player: undefined,
-  template: undefined,
+
   color: undefined,
   portrait: undefined,
-  namedAspects: Map<string, Aspect>(),
-  unnamedAspects: Set<Aspect>(),
-  skills: List<Set<Skill>>(),
-  stunts: Set<Stunt>(),
-  stressTracks: Map<string, StressTrack>(),
-  consequences: Map<string, Set<Consequence>>()
+
+  aspects: List<Aspect>(),
+  skills: List<Skill>(),
+  stunts: List<Stunt>(),
+
+  stressTracks: List<StressTrack>(),
+  consequences: List<Consequence>()
 };
 
-export class Character extends Record(DEFAULT_CHARACTER) implements Character.Options {
-  readonly id: string;
+export class Character extends Immutable.Record(DEFAULT_CHARACTER) implements Character.Options {
   readonly name: string;
-
   readonly player: Player;
-  readonly template: Template;
 
   readonly color: string;
   readonly portrait: string;
 
-  readonly namedAspects: Map<string, Aspect>;
-  readonly unnamedAspects: Set<Aspect>;
+  readonly aspects: List<Aspect>;
+  readonly skills: List<Skill>;
+  readonly stunts: List<Stunt>;
 
-  readonly skills: List<Set<Skill>>;
-  readonly stunts: Set<Stunt>;
-
-  readonly stressTracks: Map<string, StressTrack>;
-
-  readonly consequences: Map<string, Set<Consequence>>;
-
-  public get aspects(): Set<Aspect> {
-    return this.namedAspects.toSet().union(this.unnamedAspects);
-  }
+  readonly stressTracks: List<StressTrack>;
+  readonly consequences: List<Consequence>;
 
   public get highConcept(): Aspect {
-    return this.namedAspects.get(COMMON_ASPECTS.HIGH_CONCEPT);
-  }
-
-  public get trouble(): Aspect {
-    return this.namedAspects.get(COMMON_ASPECTS.TROUBLE);
+    return this.aspects.get(0);
   }
 }
 
