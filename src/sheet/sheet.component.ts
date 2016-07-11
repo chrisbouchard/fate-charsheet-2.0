@@ -5,9 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { CharacterActions } from '../character/character.actions';
 import { COMMON_PIPES } from '../common/pipes';
-import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
-import { Stunt } from '../model/stunt';
 
 interface NamedAspect {
   title: string;
