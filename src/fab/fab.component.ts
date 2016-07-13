@@ -1,4 +1,6 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener, Query, QueryList } from '@angular/core';
+
+import { FabActionComponent } from './fab-action.component';
 
 @Component({
   selector: 'fate-fab',
@@ -6,6 +8,12 @@ import { Component, HostBinding, HostListener } from '@angular/core';
   templateUrl: require<string>('./fab.component.haml')
 })
 export class FabComponent {
+
+  actions: QueryList<FabActionComponent>;
+
+  constructor(@Query(FabActionComponent) actions: QueryList<FabActionComponent>) {
+    this.actions = actions;
+  }
 
   @HostBinding('class.fate-fab-active')
   active: boolean = false;
