@@ -12,4 +12,3 @@ export class PaddedPipe implements PipeTransform {
 
 }
 
-

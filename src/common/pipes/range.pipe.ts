@@ -13,4 +13,3 @@ export class RangePipe implements PipeTransform {
 
 }
 
-

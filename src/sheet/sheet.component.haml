@@ -47,7 +47,7 @@
           %tbody
             %tr(*ngFor="let entry of character?.skillsByRank | sorted:0 | reversed")
               %td.collapsing
-                .ui.small.header +{{entry[0]}}
+                .ui.small.header {{entry[0] | signed}}
               %td
                 %a.ui.basic.horizontal.label(*ngFor="let skill of entry[1]") {{skill.name}}
       .column
@@ -57,7 +57,7 @@
             .ui.grey.sub.header {{track[1].name}}
             .ui.large.circular.labels(style="padding-top: 0.25em")
               %a.ui.label.fate-stress-box(*ngFor="let entry of track[1].boxes | indexed:1" [class.fate-active]="entry[1]" (click)="setStress($event, track[0], entry[0], !entry[1])")
-                {{entry.index}}
+                {{entry[0]}}
         %h2.ui.header Consequences
       .column
         %h2.ui.header Stunts
