@@ -1,19 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export interface Entry<E> {
-  index: number;
-  value: E;
-}
+import { Iterable, Seq } from 'immutable';
 
 @Pipe({ name: 'indexed', pure: true })
 export class IndexedPipe implements PipeTransform {
 
-  transform<E>(value: Iterable<E>, offset: number = 0): Entry<E>[] {
-    if (!value) {
-      return [];
+  transform<K, V>(value: Iterable<K, V>, offset: number = 0): Iterable.Keyed<number, V> {
+    if (value !== undefined) {
+      return value.valueSeq().toKeyedSeq().mapKeys(i => i + offset);
     }
-
-    return Array.from(value).map((value, index) => ({ index: offset + index, value }));
   }
 
 }

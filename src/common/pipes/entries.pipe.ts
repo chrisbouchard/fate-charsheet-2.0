@@ -1,19 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export interface Entry<K, V> {
-  key: K;
-  value: V;
-}
+import { Iterable, Seq } from 'immutable';
 
 @Pipe({ name: 'entries', pure: true })
 export class EntriesPipe implements PipeTransform {
 
-  transform<K, V>(value: Map<K, V>): Entry<K, V>[] {
-    if (!value) {
-      return [];
+  transform<K, V>(value: Iterable<K, V>): Seq.Keyed<K, V> {
+    if (value !== undefined) {
+      return value.toKeyedSeq();
     }
-
-    return Array.from(value).map(entry => ({ key: entry[0], value: entry[1] }));
   }
 
 }

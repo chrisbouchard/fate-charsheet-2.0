@@ -6,6 +6,10 @@ import { Iterable } from 'immutable';
 export class SortedPipe implements PipeTransform {
 
   transform<K, V>(value: Iterable<K, V>, key: string): Iterable<K, V> {
+    if (value === undefined) {
+      return;
+    }
+
     if (key === undefined) {
       return value.sort();
     }
