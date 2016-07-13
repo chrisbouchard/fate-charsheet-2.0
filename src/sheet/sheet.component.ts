@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { CharacterActions } from '../character/character.actions';
 import { COMMON_PIPES } from '../common/pipes';
+import { FabComponent } from '../fab/fab.component';
 import { Character } from '../model/character';
 
 interface NamedAspect {
@@ -14,7 +15,7 @@ interface NamedAspect {
 
 @Component({
   selector: 'fate-sheet',
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, FabComponent],
   pipes: [COMMON_PIPES],
   styleUrls: [require<string>('./sheet.component.less')],
   templateUrl: require<string>('./sheet.component.haml')
