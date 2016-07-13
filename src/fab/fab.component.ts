@@ -6,17 +6,28 @@ import { Component, HostBinding, HostListener } from '@angular/core';
   templateUrl: require<string>('./fab.component.haml')
 })
 export class FabComponent {
+
   @HostBinding('class.fate-fab-active')
   active: boolean = false;
 
-  @HostListener('mouseover')
-  onMouseOver(): void {
-    this.active = true;
+  @HostListener('mouseenter', ['$event.target', '$event.currentTarget'])
+  onActivate(target: any, currentTarget: any): void {
+    if (target === currentTarget) {
+      this.active = true;
+    }
   }
 
-  @HostListener('mouseout')
-  onMouseOut(): void {
-    this.active = false;
+  @HostListener('mouseleave', ['$event.target', '$event.currentTarget'])
+  onDeactivate(target: any, currentTarget: any): void {
+    if (target === currentTarget) {
+      this.active = false;
+    }
   }
+
+  @HostListener('click')
+  onClick(): void {
+    this.active = !this.active;
+  }
+
 }
 
