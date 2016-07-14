@@ -5,16 +5,14 @@ import { Iterable } from 'immutable';
 @Pipe({ name: 'sorted', pure: true })
 export class SortedPipe implements PipeTransform {
 
-  transform<K, V>(value: Iterable<K, V>, key: string): Iterable<K, V> {
-    if (value === undefined) {
-      return;
-    }
+  transform<K, V>(value: any, key: string): Iterable<K, V> {
+    const iterable = Iterable<K, V>(value);
 
     if (key === undefined) {
-      return value.sort();
+      return iterable.sort();
     }
 
-    return value.sortBy((element: any) => element[key]);
+    return iterable.sortBy((element: any) => element[key]);
   }
 
 }

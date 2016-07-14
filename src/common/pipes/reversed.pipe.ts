@@ -5,10 +5,8 @@ import { Iterable } from 'immutable';
 @Pipe({ name: 'reversed', pure: true })
 export class ReversedPipe implements PipeTransform {
 
-  transform<K, V>(value: Iterable<K, V>): Iterable<K, V> {
-    if (value !== undefined) {
-      return value.reverse();
-    }
+  transform<K, V>(value: any): Iterable<K, V> {
+    return Iterable<K, V>(value).reverse();
   }
 
 }
