@@ -5,31 +5,27 @@
   bottom: 2em;
 }
 
-button {
-  box-shadow: 0 0 0 1px #D4D4D5, 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15) !important;
-}
-
-.fate-fab-icon {
-  &.fate-fab-main {
-    transition: opacity 0.1s ease, transform 0.5s ease !important;
-  }
-
-  i {
-    margin: 0;
-  }
-}
-
-:host(.fate-fab-active) button {
+.fate-fab-container {
   position: relative;
-  box-shadow: 0 0 0 1px #D4D4D5, 0 2px 4px 0 rgba(34,36,38,.15), 0 2px 10px 0 rgba(34,36,38,.25) !important;
+  text-align: right;
+  border-radius: 50%;
+  box-shadow: 0 5px 5px 0 rgba(34, 36, 38, .30);
+
+  button {
+    margin: 0 !important;
+  }
 }
 
-:host(.fate-fab-active) .fate-fab-icon {
+.fate-fab-icon i {
+  margin: 0;
+}
+
+.fate-fab-main {
+  transition: transform 0.5s ease;
+}
+
+:host(.fate-fab-active) .fate-fab-main {
   transform: rotate(360deg);
-}
-
-.fate-fab-extra-actions button {
-  margin-bottom: 1ex;
 }
 
 .fate-fab-extra-actions {
@@ -37,10 +33,33 @@ button {
   animation-duration: 0.5s;
   animation-name: fade-out;
   animation-fill-mode: both;
+
+  .fate-fab-container {
+    margin-bottom: 1em;
+  }
 }
 
 :host(.fate-fab-active) .fate-fab-extra-actions {
   animation-name: fade-in;
+}
+
+.fate-fab-label {
+  position: absolute !important;
+  white-space: nowrap;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+
+.fate-fab-main-label {
+  animation-duration: 0.5s;
+  animation-name: label-fade-out;
+  animation-fill-mode: both;
+}
+
+:host(.fate-fab-active) .fate-fab-main-label {
+  animation-name: label-fade-in;
 }
 
 @keyframes fade-in {
@@ -80,6 +99,34 @@ button {
     opacity: 0;
     top: 1ex;
     max-height: 0;
+  }
+}
+
+@keyframes label-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes label-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
   }
 }
 

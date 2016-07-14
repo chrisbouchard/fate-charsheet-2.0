@@ -1,9 +1,15 @@
 .fate-fab-extra-actions
-  %button.massive.circular.ui.icon.blue.button
-    .fate-fab-icon
-      %i.plus.icon/
+  .fate-fab-container(*ngFor="let action of actions.toArray() | reversed" (click)="action.doClick($event)")
+    .fate-fab-label(*ngIf="showLabels && action.label")
+      %a.ui.right.pointing.label {{action.label}}
+    %button.massive.circular.ui.icon.button(class="{{action.color}}")
+      .fate-fab-icon
+        %i.icon(class="{{action.icon}}")/
 
-%button.massive.circular.ui.icon.red.button
-  .fate-fab-icon.fate-fab-main
-    %i.icon([class.user]="!active" [class.minus]="active")/
+.fate-fab-container((click)="doClick($event)")
+  .fate-fab-label.fate-fab-main-label(*ngIf="showLabels && label" (animationend)="checkLabel()")
+    %a.ui.right.pointing.label {{label}}
+  %button.massive.circular.ui.icon.button(class="{{currentColor}}")
+    .fate-fab-icon.fate-fab-main
+      %i.icon(class="{{currentIcon}}")/
 

@@ -18,7 +18,7 @@
           .eight.wide.mobile.four.wide.tablet.four.wide.computer.column
             %a.ui.tiny.statistic
               .label Fate Points
-              .value 1
+              .value {{fatePoints}}
           .eight.wide.mobile.four.wide.tablet.four.wide.computer.column
             %a.ui.tiny.statistic
               .label Refresh
@@ -65,5 +65,7 @@
           .item(*ngFor="let stunt of character?.stunts")
             .header {{stunt.name}}
             .description {{stunt.description}}
-%fate-fab
+%fate-fab(color="red" icon="minus" inactiveIcon="user" label="Spend a Fate Point" (action)="spendPoint()")
+  %fate-fab-action(color="blue" icon="plus" label="Add a Fate Point" (action)="addPoint()")/
+  %fate-fab-action(color="yellow" icon="pencil" label="Edit {{character?.name}}")/
 
