@@ -1,4 +1,4 @@
-.fate-fab-extra-actions
+.fate-fab-extra-actions((animationend)="show()")
   .fate-fab-container(*ngFor="let action of actions.toArray() | reversed" (click)="action.doClick($event)")
     .fate-fab-label(*ngIf="showLabels && action.label")
       %a.ui.right.pointing.label {{action.label}}
