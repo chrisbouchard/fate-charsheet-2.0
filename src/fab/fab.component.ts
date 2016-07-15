@@ -30,12 +30,14 @@ export class FabComponent {
   @HostBinding('class.fate-fab-preload')
   preload: boolean = true;
 
+  showActions: boolean = true;
   showLabels: boolean = true;
 
   @HostListener('mouseenter', ['$event.target', '$event.currentTarget'])
   onActivate(target: any, currentTarget: any): void {
     if (target === currentTarget) {
       this.active = true;
+      this.showActions = true;
       this.showLabels = true;
     }
   }
@@ -52,7 +54,15 @@ export class FabComponent {
     this.active = !this.active;
   }
 
+  checkActions(): void {
+    if (!this.active) {
+      this.showActions = false;
+    }
+  }
+
   checkLabel(): void {
+    this.preload = false;
+
     if (!this.active) {
       this.showLabels = false;
     }
@@ -63,10 +73,6 @@ export class FabComponent {
       console.log('main click');
       this.action.emit(event);
     }
-  }
-
-  show(): void {
-    this.preload = false;
   }
 
   get currentColor(): string {
