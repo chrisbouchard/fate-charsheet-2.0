@@ -35,12 +35,10 @@ export class SheetComponent {
   }
 
   addPoint(): void {
-    console.log('add');
     this.fatePoints += 1;
   }
 
   spendPoint(): void {
-    console.log('spend');
     this.fatePoints -= 1;
   }
 }

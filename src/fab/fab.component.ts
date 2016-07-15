@@ -1,4 +1,5 @@
-import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, Renderer, OnDestroy, OnInit,
+  Output, QueryList } from '@angular/core';
 
 import { COMMON_PIPES } from '../common/pipes';
 
@@ -10,7 +11,7 @@ import { FabActionComponent } from './fab-action.component';
   styleUrls: [require<string>('./fab.component.less')],
   templateUrl: require<string>('./fab.component.haml')
 })
-export class FabComponent {
+export class FabComponent implements OnDestroy, OnInit {
 
   @ContentChildren(FabActionComponent)
   actions: QueryList<FabActionComponent>;
@@ -24,34 +25,52 @@ export class FabComponent {
 
   @Output() action = new EventEmitter();
 
-  @HostBinding('class.fate-fab-active')
   active: boolean = false;
-
-  @HostBinding('class.fate-fab-preload')
   preload: boolean = true;
-
   showActions: boolean = true;
   showLabels: boolean = true;
 
-  @HostListener('mouseenter', ['$event.target', '$event.currentTarget'])
-  onActivate(target: any, currentTarget: any): void {
-    if (target === currentTarget) {
-      this.active = true;
-      this.showActions = true;
-      this.showLabels = true;
+  private unregisterClickListener: Function;
+
+  constructor(private renderer: Renderer) {}
+
+  ngOnInit(): void {
+    this.unregisterClickListener = this.renderer.listenGlobal('body', 'click', (event: Event) => this.onClick(event));
+  }
+
+  ngOnDestroy(): void {
+    this.unregisterClickListener();
+  }
+
+  activate(): void {
+    this.active = true;
+    this.showActions = true;
+    this.showLabels = true;
+  }
+
+  deactivate(): void {
+    this.active = false;
+  }
+
+  onClick(event: Event): void {
+    if (this.active) {
+      this.deactivate();
+    }
+    else {
+      this.activate();
     }
   }
 
-  @HostListener('mouseleave', ['$event.target', '$event.currentTarget'])
-  onDeactivate(target: any, currentTarget: any): void {
-    if (target === currentTarget) {
-      this.active = false;
+  onMouseEnter(event: Event): void {
+    if (event.eventPhase === Event.AT_TARGET) {
+      this.activate();
     }
   }
 
-  @HostListener('click')
-  onClick(): void {
-    this.active = !this.active;
+  onMouseLeave(event: Event): void {
+    if (event.eventPhase === Event.AT_TARGET) {
+      this.deactivate();
+    }
   }
 
   checkActions(): void {

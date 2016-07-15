@@ -1,4 +1,4 @@
-:host {
+#fate-fab-wrapper {
   position: fixed;
   padding: 1em;
   right: 2em;
@@ -31,7 +31,7 @@
   transition: transform 0.5s ease;
 }
 
-:host(.fate-fab-active) .fate-fab-main {
+.fate-fab-active .fate-fab-main {
   transform: rotate(360deg);
 }
 
@@ -46,7 +46,7 @@
   }
 }
 
-:host(.fate-fab-active) .fate-fab-extra-actions {
+.fate-fab-active .fate-fab-extra-actions {
   animation-name: fade-in;
 }
 
@@ -65,7 +65,7 @@
   animation-fill-mode: both;
 }
 
-:host(.fate-fab-active) .fate-fab-main-label {
+.fate-fab-active .fate-fab-main-label {
   animation-name: label-fade-in;
 }
 
