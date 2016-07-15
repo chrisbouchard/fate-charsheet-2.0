@@ -68,9 +68,8 @@ export class FabComponent {
     }
   }
 
-  doClick(event: any): void {
+  doAction(event: any): void {
     if (this.active) {
-      console.log('main click');
       this.action.emit(event);
     }
   }

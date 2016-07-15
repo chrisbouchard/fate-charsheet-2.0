@@ -12,7 +12,7 @@ export class FabActionComponent {
 
   @Output() action = new EventEmitter();
 
-  doClick(event: any): void {
+  doAction(event: any): void {
     console.log('action click');
     this.action.emit(event);
   }
