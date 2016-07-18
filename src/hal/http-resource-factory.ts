@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { default as UriTemplate, UriValueType, UriMappingType } from 'uri-templates';
+import { default as UriTemplate, UriMappingType, UriValueType } from 'uri-templates';
 
 import { HalFieldTypeDescription, HalFieldTypeMetadata } from './field';
 import { HalHttp } from './http';

@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 
 import { CharacterActions } from '../character/character.actions';
 import { COMMON_PIPES } from '../common/pipes';
-import { FabComponent } from '../fab/fab.component';
 import { FabActionComponent } from '../fab/fab-action.component';
+import { FabComponent } from '../fab/fab.component';
 import { Character } from '../model/character';
 
 interface NamedAspect {

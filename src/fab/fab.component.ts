@@ -1,5 +1,5 @@
-import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, Renderer, OnDestroy, OnInit,
-  Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit, Output,
+  QueryList, Renderer } from '@angular/core';
 
 import { COMMON_PIPES } from '../common/pipes';
 

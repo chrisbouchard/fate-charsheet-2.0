@@ -2,8 +2,8 @@
 import 'babel-polyfill';
 import 'reflect-metadata';
 
-import 'zone.js/dist/zone';
 import 'zone.js/dist/long-stack-trace-zone';
+import 'zone.js/dist/zone';
 
 import 'jquery';
 import 'rxjs/Rx';
@@ -11,8 +11,8 @@ import 'semantic/semantic';
 
 import 'semantic/semantic.css';
 
-import { enableProdMode } from '@angular/core';
 import { FORM_PROVIDERS } from '@angular/common';
+import { enableProdMode } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 

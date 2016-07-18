@@ -1,4 +1,5 @@
 import { OpaqueToken, Type } from '@angular/core';
+
 import { HalObject } from './object';
 
 export interface HalTranslator {

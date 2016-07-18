@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HalLinkObject, HalObject, HalObjectSerializer } from '../object';
 
 export abstract class HalJsonObjectSerializerOptions {

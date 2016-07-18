@@ -1,4 +1,5 @@
 import { RouterConfig } from '@angular/router';
+
 import { GroupPageComponent } from '../group/group-page.component';
 
 export const GROUP_ROUTES: RouterConfig = [

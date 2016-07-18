@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { StateUpdates, Effect } from '@ngrx/effects';
+import { Effect, StateUpdates } from '@ngrx/effects';
 
 import { Observable } from 'rxjs/Observable';
 

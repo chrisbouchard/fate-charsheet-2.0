@@ -6,7 +6,8 @@ import { HalHttpResourceFactory } from './http-resource-factory';
 import { HalInstanceFactory } from './instance-factory';
 import { HalObjectSerializer } from './object';
 import { HalResourceFactory } from './resource-factory';
-import { HalCollectionTranslator, HalObjectTranslator, HalTranslator, HAL_COLLECTION_TRANSLATORS, HAL_OBJECT_TRANSLATORS } from './translator';
+import { HAL_COLLECTION_TRANSLATORS, HAL_OBJECT_TRANSLATORS, HalCollectionTranslator, HalObjectTranslator,
+  HalTranslator } from './translator';
 
 import {BaseHalJsonObjectSerializerOptions, HalJsonObjectSerializer, HalJsonObjectSerializerOptions} from './serializers/json-object';
 
