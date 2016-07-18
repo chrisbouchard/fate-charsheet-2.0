@@ -10,6 +10,7 @@
     "indent": [true, "spaces"],
     "no-trailing-whitespace": true,
     "one-line": [true, "check-open-brace"],
+    "ordered-imports": [true, "alphabatize", "check-groups"],
     "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
     "semicolon": [true, "always"],
