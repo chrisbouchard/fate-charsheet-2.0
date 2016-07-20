@@ -30,12 +30,13 @@ export class FabComponent implements OnDestroy, OnInit {
   showActions: boolean = true;
   showLabels: boolean = true;
 
+  private insideClick: boolean = false;
   private unregisterClickListener: Function;
 
   constructor(private renderer: Renderer) {}
 
   ngOnInit(): void {
-    this.unregisterClickListener = this.renderer.listenGlobal('body', 'click', (event: Event) => this.onClick(event));
+    this.unregisterClickListener = this.renderer.listenGlobal('body', 'click', (event: Event) => this.onGlobalClick(event));
   }
 
   ngOnDestroy(): void {
@@ -52,6 +53,14 @@ export class FabComponent implements OnDestroy, OnInit {
     this.active = false;
   }
 
+  onGlobalClick(event: Event): void {
+    if (!this.insideClick) {
+      this.deactivate();
+    }
+
+    this.insideClick = false;
+  }
+
   onClick(event: Event): void {
     if (this.active) {
       this.deactivate();
@@ -59,6 +68,8 @@ export class FabComponent implements OnDestroy, OnInit {
     else {
       this.activate();
     }
+
+    this.insideClick = true;
   }
 
   onMouseEnter(event: Event): void {
