@@ -49,10 +49,10 @@ export class CharacterFacade {
       new Skill({ name: 'Fight', rank: 2 }),
       new Skill({ name: 'Investigate', rank: 2 }),
       new Skill({ name: 'Lore', rank: 2 }),
-      new Skill({ name: 'Notice', rank: 3 })
-      new Skill({ name: 'Physique', rank: 3 })
-      new Skill({ name: 'Provoke', rank: 3 })
-      new Skill({ name: 'Rapport', rank: 4 })
+      new Skill({ name: 'Notice', rank: 3 }),
+      new Skill({ name: 'Physique', rank: 3 }),
+      new Skill({ name: 'Provoke', rank: 3 }),
+      new Skill({ name: 'Rapport', rank: 4 }),
       new Skill({ name: 'Resources', rank: 4 })
     ]),
 
