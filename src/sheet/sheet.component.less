@@ -1,9 +1,22 @@
-a.fate-aspect {
-  color: inherit;
+.fate-taggable {
+  color: rgba(0, 0, 0, 0.87);
 
   &:hover {
     color: #1E70BF;
   }
+}
+
+.fate-skill {
+  display: flex;
+  align-items: center;
+}
+
+.fate-skill-adjective {
+  margin-bottom: 0 !important;
+}
+
+.fate-skill-rank {
+  padding-right: 1ex;
 }
 
 a.fate-stress-box {
@@ -30,5 +43,15 @@ a.fate-stress-box {
       border-color: transparent;
     }
   }
+}
+
+.fate-consequence {
+  display: flex;
+  align-items: center;
+}
+
+.fate-empty-consequence {
+  font-style: italic;
+  color: gray;
 }
 

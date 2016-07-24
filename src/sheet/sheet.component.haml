@@ -40,16 +40,21 @@
         .ui.list
           .item(*ngFor="let aspect of character?.aspects")
             .ui.grey.sub.header(*ngIf="aspect.label") {{aspect.label}}
-            %a.fate-aspect {{aspect.name}}
+            %a.fate-taggable {{aspect.name}}
       .column
         %h2.ui.header Skills
-        %table.ui.very.basic.compact.unstackable.table
-          %tbody
-            %tr(*ngFor="let entry of character?.skillsByRank | sorted:0 | reversed")
-              %td.collapsing
-                .ui.small.header {{entry[0] | signed}}
-              %td
-                %a.ui.basic.horizontal.label(*ngFor="let skill of entry[1]") {{skill.name}}
+        .ui.relaxed.divided.list
+          .item(*ngFor="let entry of character?.skillsByRank.entrySeq() | sorted:0 | reversed")
+            .fate-skill
+              .left.floated.content
+                .fate-skill-rank
+                  .ui.small.header {{entry[0] | signed}}
+              .content
+                .ui.grey.sub.header.fate-skill-adjective
+                  {{adjectiveLadder.get(entry[0])}}
+                .ui.horizontal.list
+                  .item(*ngFor="let skill of entry[1] | sorted:name")
+                    %a.fate-taggable {{skill.name}}
       .column
         %h2.ui.header Stress
         .ui.list
@@ -59,12 +64,25 @@
               %a.ui.label.fate-stress-box(*ngFor="let entry of track[1].boxes | indexed:1" [class.fate-active]="entry[1]" (click)="setStress($event, track[0], entry[0], !entry[1])")
                 {{entry[0]}}
         %h2.ui.header Consequences
+        .ui.relaxed.list
+          .item(*ngFor="let consequence of character?.consequences")
+            .fate-consequence
+              .left.floated.content
+                .ui.small.header {{consequence.rank | signed}}
+              .content
+                .ui.grey.sub.header {{consequence.label}}
+                %a.fate-taggable(*ngIf="consequence.name")
+                  {{consequence.name}}
+                %span.fate-empty-consequence(*ngIf="!consequence.name")
+                  Empty Slot
       .column
         %h2.ui.header Stunts
         .ui.relaxed.list
           .item(*ngFor="let stunt of character?.stunts")
-            .header {{stunt.name}}
+            %a.header
+              %span.fate-taggable {{stunt.name}}
             .description {{stunt.description}}
+
 %fate-fab(color="red" icon="minus" inactiveIcon="user" label="Spend a Fate Point" (action)="spendPoint()")
   %fate-fab-action(color="blue" icon="plus" label="Add a Fate Point" (action)="addPoint()")/
   %fate-fab-action(color="yellow" icon="pencil" label="Edit {{character?.name}}")/

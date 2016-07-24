@@ -3,6 +3,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
+import { Map } from 'immutable';
+
 import { CharacterActions } from '../character/character.actions';
 import { COMMON_PIPES } from '../common/pipes';
 import { FabActionComponent } from '../fab/fab-action.component';
@@ -25,6 +27,20 @@ export class SheetComponent {
   @Input() character: Character;
 
   fatePoints: number = 1;
+
+  adjectiveLadder = Map([
+    [-2, 'Terrible'],
+    [-1, 'Poor'],
+    [0, 'Mediocre'],
+    [1, 'Average'],
+    [2, 'Fair'],
+    [3, 'Good'],
+    [4, 'Great'],
+    [5, 'Superb'],
+    [6, 'Fantastic'],
+    [7, 'Epic'],
+    [8, 'Legendary']
+  ]);
 
   constructor(private store: Store<any>, private characterActions: CharacterActions) {}
 

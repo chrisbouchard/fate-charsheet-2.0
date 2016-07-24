@@ -39,9 +39,21 @@ export class CharacterFacade {
     ]),
 
     skills: Set([
-      new Skill({ name: 'Foo', rank: 1 }),
-      new Skill({ name: 'Bar', rank: 2 }),
-      new Skill({ name: 'Baz', rank: 3 })
+      new Skill({ name: 'Athletics', rank: 1 }),
+      new Skill({ name: 'Burglary', rank: 1 }),
+      new Skill({ name: 'Contacts', rank: 1 }),
+      new Skill({ name: 'Crafts', rank: 1 }),
+      new Skill({ name: 'Deceive', rank: 1 }),
+      new Skill({ name: 'Drive', rank: 1 }),
+      new Skill({ name: 'Empathy', rank: 2 }),
+      new Skill({ name: 'Fight', rank: 2 }),
+      new Skill({ name: 'Investigate', rank: 2 }),
+      new Skill({ name: 'Lore', rank: 2 }),
+      new Skill({ name: 'Notice', rank: 3 })
+      new Skill({ name: 'Physique', rank: 3 })
+      new Skill({ name: 'Provoke', rank: 3 })
+      new Skill({ name: 'Rapport', rank: 4 })
+      new Skill({ name: 'Resources', rank: 4 })
     ]),
 
     stunts: List([
@@ -64,7 +76,21 @@ export class CharacterFacade {
       })
     ]),
 
-    consequences: List<Consequence>()
+    consequences: List<Consequence>([
+      new Consequence({
+        name: 'Shaken, Not Stirred',
+        label: 'Mild',
+        rank: 2
+      }),
+      new Consequence({
+        label: 'Moderate',
+        rank: 4
+      }),
+      new Consequence({
+        label: 'Severe',
+        rank: 6
+      }),
+    ])
   });
 
   private fooBar: Character = new Character({
