@@ -1,5 +1,5 @@
-import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit, Output,
-  QueryList, Renderer } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit,
+  Output, QueryList, Renderer } from '@angular/core';
 
 import { COMMON_PIPES } from '../common/pipes';
 
@@ -30,13 +30,13 @@ export class FabComponent implements OnDestroy, OnInit {
   showActions: boolean = true;
   showLabels: boolean = true;
 
-  private insideClick: boolean = false;
   private unregisterClickListener: Function;
 
-  constructor(private renderer: Renderer) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {}
 
   ngOnInit(): void {
-    this.unregisterClickListener = this.renderer.listenGlobal('body', 'click', (event: Event) => this.onGlobalClick(event));
+    this.unregisterClickListener =
+      this.renderer.listenGlobal('body', 'click', this.onGlobalClick.bind(this));
   }
 
   ngOnDestroy(): void {
@@ -54,22 +54,14 @@ export class FabComponent implements OnDestroy, OnInit {
   }
 
   onGlobalClick(event: Event): void {
-    if (!this.insideClick) {
-      this.deactivate();
-    }
+    const inFab = this.elementRef.nativeElement.contains(event.target);
 
-    this.insideClick = false;
-  }
-
-  onClick(event: Event): void {
-    if (this.active) {
+    if (this.active || !inFab) {
       this.deactivate();
     }
     else {
       this.activate();
     }
-
-    this.insideClick = true;
   }
 
   onMouseEnter(event: Event): void {
