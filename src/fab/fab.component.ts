@@ -35,7 +35,8 @@ export class FabComponent implements OnDestroy, OnInit {
   constructor(private elementRef: ElementRef, private renderer: Renderer) {}
 
   ngOnInit(): void {
-    this.unregisterClickListener = this.renderer.listenGlobal('body', 'click', (event: Event) => this.onGlobalClick(event));
+    this.unregisterClickListener =
+      this.renderer.listenGlobal('body', 'click', this.onGlobalClick.bind(this));
   }
 
   ngOnDestroy(): void {
