@@ -1,6 +1,6 @@
-.ui.inverted.left.vertical.menu.sidebar
-  %a.item Hello
-  %a.item World
+.ui.inverted.basic.segment.left.sidebar((click)="onSidebarClick()")
+  %p Hello world
+  %router-outlet(name="sidebar")/
 .ui.borderless.fixed.top.menu
   .ui.very.padded.container
     %a.header.item((click)="onMenuClick()" [class.active]="sidebarOpen")

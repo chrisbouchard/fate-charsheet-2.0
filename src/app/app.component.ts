@@ -31,5 +31,9 @@ export class AppComponent implements OnInit {
     this.sidebar.sidebar('toggle');
   }
 
+  onSidebarClick(): void {
+    this.sidebar.sidebar('hide');
+  }
+
 }
 
