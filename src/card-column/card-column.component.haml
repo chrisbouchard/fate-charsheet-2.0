@@ -1,4 +1,9 @@
-.ui.one.column.grid
-  .column(*ngFor="let character of characters")
-    %fate-card([character]="character")
+.ui.relaxed.link.inverted.items
+  %a.item(*ngFor="let character of characters")
+    .ui.mini.image
+      %img([src]="character.portrait")
+    .content
+      .header {{character.name}}
+      .meta
+        %span {{character.highConcept?.name}}
 
