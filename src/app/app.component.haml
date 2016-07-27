@@ -1,4 +1,12 @@
 .ui.inverted.vertical.menu.left.sidebar((click)="onSidebarClick()")
+  .item
+    .ui.two.column.grid
+      .center.aligned.column
+        %button.ui.inverted.circular.icon.button
+          %i.info.circle.icon
+      .center.aligned.column
+        %button.ui.inverted.circular.icon.button
+          %i.setting.icon
   %router-outlet(name="sidebar")/
 .ui.borderless.fixed.top.menu
   .ui.very.padded.container
