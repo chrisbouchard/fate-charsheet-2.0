@@ -11,16 +11,17 @@ import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 })
 export class AppComponent implements OnInit {
 
-  private sidebar: any;
-  private sidebarOpen: boolean = false;
+  sidebar: any;
+  sidebarOpen: boolean = false;
 
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.sidebar =
-      ($('.ui.sidebar', this.elementRef.nativeElement) as any)
+      ($('.ui.left.sidebar', this.elementRef.nativeElement) as any)
       .sidebar({
         context: $(this.elementRef.nativeElement),
+        exclusive: true,
         transition: 'slide along',
         onVisible: () => { this.sidebarOpen = true; },
         onHide: () => { this.sidebarOpen = false; }
