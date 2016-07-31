@@ -40,7 +40,7 @@
         .ui.list
           .item(*ngFor="let aspect of character?.aspects")
             .ui.grey.sub.header(*ngIf="aspect.label") {{aspect.label}}
-            %a.fate-taggable {{aspect.name}}
+            %a.fate-taggable((click)="addModifier()") {{aspect.name}}
       .column
         %h2.ui.header Skills
         .ui.relaxed.divided.list
@@ -82,6 +82,18 @@
             %a.header
               %span.fate-taggable {{stunt.name}}
             .description {{stunt.description}}
+
+.fate-sheet-overlay
+  .ui.basic.inverted.padded.segment
+    .ui.eight.column.center.aligned.centered.doubling.grid
+      .column
+        .ui.inverted.statistic
+          .value +5
+          .label Shifts
+      .column
+        .ui.inverted.statistic
+          .value 2
+          .label Fate Points
 
 %fate-fab(color="red" icon="minus" inactiveIcon="user" label="Spend a Fate Point" (action)="spendPoint()")
   %fate-fab-action(color="blue" icon="plus" label="Add a Fate Point" (action)="addPoint()")/

@@ -42,7 +42,10 @@ export class SheetComponent {
     [8, 'Legendary']
   ]);
 
-  constructor(private store: Store<any>, private characterActions: CharacterActions) {}
+  constructor(
+      private characterActions: CharacterActions,
+      private store: Store<any>
+      ) {}
 
   setStress(event: any, track: number, stress: number, value: boolean): void {
     this.store.dispatch(this.characterActions.setCharacterStress(track, stress - 1, value));
@@ -57,5 +60,9 @@ export class SheetComponent {
   spendPoint(): void {
     this.fatePoints -= 1;
   }
+
+  addModifier(): void {
+  }
+
 }
 
