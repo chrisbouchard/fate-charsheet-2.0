@@ -1,0 +1,12 @@
+.item
+  %a.ui.medium.inverted.header(routerLink="/group")
+    Star Trek: Fate
+  .menu
+    %a.item(*ngFor="let character of characters" routerLink="/character/1")
+      .fate-sidebar-container
+        %img.ui.tiny.image([src]="character.portrait")
+        .fate-sidebar-content
+          .ui.small.inverted.header
+            {{character.name}}
+            .sub.header {{character.highConcept?.name}}
+
