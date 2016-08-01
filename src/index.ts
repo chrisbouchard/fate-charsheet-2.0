@@ -22,6 +22,8 @@ import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 
+import { provideRouterConnector, routerReducer } from 'ngrx-store-router';
+
 import { AppComponent } from './app/app.component';
 import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { CharacterActions } from './character/character.actions';
@@ -42,7 +44,8 @@ $(() => {
     HTTP_PROVIDERS,
 
     provideStore({
-      currentCharacter: characterReducer
+      currentCharacter: characterReducer,
+      router: routerReducer
     }),
     runEffects(
       CharacterEffects
@@ -53,6 +56,8 @@ $(() => {
         visible: false
       })
     }),
+
+    provideRouterConnector(),
 
     APP_ROUTER_PROVIDERS,
     CharacterActions,
