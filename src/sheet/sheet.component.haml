@@ -85,15 +85,27 @@
 
 .fate-sheet-overlay
   .ui.basic.inverted.padded.segment
-    .ui.eight.column.center.aligned.centered.doubling.grid
-      .column
-        .ui.inverted.statistic
-          .value +5
-          .label Shifts
-      .column
-        .ui.inverted.statistic
-          .value 2
-          .label Fate Points
+    .ui.centered.stackable.grid
+      .row
+        .eight.wide.column
+          .ui.middle.aligned.three.column.grid
+            .right.aligned.column
+              .ui.inverted.statistic
+                .value +5
+                .label Shifts
+            .center.aligned.column
+              .ui.inverted.header.fate-sheet-overlay-for for
+            .left.aligned.column
+              .ui.inverted.statistic
+                .value 2
+                .label Fate Points
+      .row
+        .eight.wide.column
+          .ui.two.column.grid
+            .column
+              %button.ui.basic.positive.fluid.button Apply
+            .column
+              %button.ui.basic.negative.fluid.button Clear
 
 %fate-fab(color="red" icon="minus" inactiveIcon="user" label="Spend a Fate Point" (action)="spendPoint()")
   %fate-fab-action(color="blue" icon="plus" label="Add a Fate Point" (action)="addPoint()")/
