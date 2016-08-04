@@ -8,7 +8,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     trigger('overlay', [
       state('closed', style({
         opacity: 0,
-        transform: 'scale(1.1)'
+        transform: 'scale(1.1)',
+        display: 'none'
       })),
       state('open', style({
         opacity: 0.9,
