@@ -83,34 +83,6 @@
               %span.fate-taggable {{stunt.name}}
             .description {{stunt.description}}
 
-.fate-sheet-overlay
-  .ui.basic.inverted.padded.segment
-    .ui.centered.stackable.grid
-      .row
-        .eight.wide.column
-          .ui.middle.aligned.three.column.grid
-            .right.aligned.column
-              .ui.inverted.statistic
-                .value +5
-                .label Shifts
-            .center.aligned.column
-              .ui.inverted.header.fate-sheet-overlay-for for
-            .left.aligned.column
-              .ui.inverted.statistic
-                .value 2
-                .label Fate Points
-      .row
-        .eight.wide.column
-          .ui.two.column.grid
-            .column
-              %button.ui.basic.positive.fluid.button
-                %i.ui.checkmark.icon
-                Apply
-            .column
-              %button.ui.basic.negative.fluid.button
-                %i.ui.remove.icon
-                Clear
-
 %fate-fab(color="red" icon="minus" inactiveIcon="user" label="Spend a Fate Point" (action)="spendPoint()")
   %fate-fab-action(color="blue" icon="plus" label="Add a Fate Point" (action)="addPoint()")/
   %fate-fab-action(color="yellow" icon="pencil" label="Edit {{character?.name}}")/

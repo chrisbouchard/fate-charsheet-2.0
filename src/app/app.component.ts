@@ -5,13 +5,17 @@ import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 
 import { RouterConnector } from 'ngrx-store-router';
 
+import { OverlayComponent } from '../overlay/overlay.component';
+
 @Component({
   selector: 'fate-app',
-  directives: [ROUTER_DIRECTIVES, StoreLogMonitorComponent],
+  directives: [OverlayComponent, ROUTER_DIRECTIVES, StoreLogMonitorComponent],
   styleUrls: [require<string>('./app.component.less')],
   templateUrl: require<string>('./app.component.haml'),
 })
 export class AppComponent implements OnDestroy, OnInit {
+
+  overlayOpen: boolean = false;
 
   sidebar: any;
   sidebarOpen: boolean = false;
@@ -33,6 +37,8 @@ export class AppComponent implements OnDestroy, OnInit {
         onVisible: () => { this.sidebarOpen = true; },
         onHide: () => { this.sidebarOpen = false; }
       });
+
+    setInterval(() => { this.overlayOpen = !this.overlayOpen; }, 5000);
   }
 
   ngOnDestroy(): void {
