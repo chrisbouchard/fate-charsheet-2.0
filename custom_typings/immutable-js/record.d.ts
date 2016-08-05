@@ -5,6 +5,9 @@ declare module Immutable {
     interface Base extends Map<string, any> {
       set(key: string, value: any): this;
 
+      update(key: string, updater: (value: any) => any): this;
+      update(key: string, notSetValue: any, updater: (value: any) => any): this;
+
       setIn(keyPath: Array<any>, value: any): this;
       setIn(keyPath: Iterable<any>, value: any): this;
 

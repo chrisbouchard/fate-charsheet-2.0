@@ -33,6 +33,8 @@ import { characterReducer } from './character/character.reducer';
 import { CharacterFacade } from './common/character-facade';
 import { __PRODUCTION__ } from './globals';
 import { HAL_PROVIDERS } from './hal';
+import { UIActions } from './ui/ui.actions';
+import { uiReducer } from './ui/ui.reducer';
 
 if (__PRODUCTION__) {
   /* Switch Angular to production mode. */
@@ -46,24 +48,26 @@ $(() => {
 
     provideStore({
       currentCharacter: characterReducer,
-      router: routerReducer
+      router: routerReducer,
+      uiState: uiReducer
     }),
-    runEffects(
-      CharacterEffects
-    ),
     instrumentStore({
       monitor: useLogMonitor({
         position: 'right',
         visible: false
       })
     }),
+    runEffects(
+      CharacterEffects
+    ),
 
     provideRouterConnector(),
 
     APP_ROUTER_PROVIDERS,
     CharacterActions,
     CharacterFacade,
-    HAL_PROVIDERS
+    HAL_PROVIDERS,
+    UIActions
   ]).catch(err => console.error(err));
 });
 
