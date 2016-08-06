@@ -1,29 +1,38 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
+import { Store } from '@ngrx/store';
 import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 
 import { RouterConnector } from 'ngrx-store-router';
+import { Observable } from 'rxjs/Observable';
 
+import { AppState } from '../model/app-state';
+import { UIState } from '../model/ui-state';
 import { OverlayComponent } from '../overlay/overlay.component';
 
 @Component({
   selector: 'fate-app',
   directives: [OverlayComponent, ROUTER_DIRECTIVES, StoreLogMonitorComponent],
+  pipes: [AsyncPipe],
   styleUrls: [require<string>('./app.component.less')],
   templateUrl: require<string>('./app.component.haml'),
 })
 export class AppComponent implements OnDestroy, OnInit {
 
-  overlayOpen: boolean = false;
+  overlayOpen: Observable<boolean>;
 
   sidebar: any;
   sidebarOpen: boolean = false;
 
   constructor(
     private elementRef: ElementRef,
-    private routerConnector: RouterConnector
-  ) {}
+    private routerConnector: RouterConnector,
+    private store: Store<AppState>
+  ) {
+    this.overlayOpen = store.select(state => state.uiState.overlayOpen);
+  }
 
   ngOnInit(): void {
     this.routerConnector.connect();
@@ -37,8 +46,6 @@ export class AppComponent implements OnDestroy, OnInit {
         onVisible: () => { this.sidebarOpen = true; },
         onHide: () => { this.sidebarOpen = false; }
       });
-
-    setInterval(() => { this.overlayOpen = !this.overlayOpen; }, 5000);
   }
 
   ngOnDestroy(): void {

@@ -10,6 +10,7 @@ import { COMMON_PIPES } from '../common/pipes';
 import { FabActionComponent } from '../fab/fab-action.component';
 import { FabComponent } from '../fab/fab.component';
 import { Character } from '../model/character';
+import { UIActions } from '../ui/ui.actions';
 
 interface NamedAspect {
   title: string;
@@ -44,7 +45,8 @@ export class SheetComponent {
 
   constructor(
       private characterActions: CharacterActions,
-      private store: Store<any>
+      private store: Store<any>,
+      private uiActions: UIActions
       ) {}
 
   setStress(event: any, track: number, stress: number, value: boolean): void {
@@ -62,6 +64,7 @@ export class SheetComponent {
   }
 
   addModifier(): void {
+    this.store.dispatch(this.uiActions.toggleOverlay());
   }
 
 }
