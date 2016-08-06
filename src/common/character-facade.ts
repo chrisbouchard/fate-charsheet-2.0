@@ -124,12 +124,12 @@ export class CharacterFacade {
   private fixedCharacters: Character[] = [ this.amaryllis ];
 
   find(id: string): Observable<Character> {
-    return Observable.of(this.amaryllis).delay(1);
+    return Observable.of(this.amaryllis);
   }
 
   findAll(): Observable<Character[]> {
     const fooBars = Array.from({length: 4}, () => this.fooBar);
-    return Observable.of(this.fixedCharacters.concat(fooBars)).delay(1);
+    return Observable.of(this.fixedCharacters.concat(fooBars));
   }
 
 }

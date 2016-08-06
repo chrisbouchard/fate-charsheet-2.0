@@ -40,7 +40,7 @@
         .ui.list
           .item(*ngFor="let aspect of character?.aspects")
             .ui.grey.sub.header(*ngIf="aspect.label") {{aspect.label}}
-            %a.fate-taggable {{aspect.name}}
+            %a.fate-taggable((click)="addModifier()") {{aspect.name}}
       .column
         %h2.ui.header Skills
         .ui.relaxed.divided.list
