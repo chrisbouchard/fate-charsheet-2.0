@@ -26,6 +26,7 @@ interface NamedAspect {
 })
 export class SheetComponent {
   @Input() character: Character;
+  @Input() loading: boolean;
 
   fatePoints: number = 1;
 

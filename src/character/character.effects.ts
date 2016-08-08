@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Effect, StateUpdates } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -19,15 +20,18 @@ export class CharacterEffects {
   ) {}
 
   // TODO: This needs some error handling
-  @Effect() loadCharacter = this.updates
-    .whenAction(SELECT_CHARACTER)
-    .filter(update => !update.state.characterState.cache.has(update.action.payload.id))
-    .flatMap(update =>
-      this.characterFacade
-        .find(update.action.payload.id)
-        .map(character => ({ id: update.action.payload.id, character }))
-    )
-    .map(result => this.characterActions.cacheCharacter(result.id, result.character));
+  @Effect() loadCharacter: Observable<Action> =
+    this.updates
+      .whenAction(SELECT_CHARACTER)
+      .filter(update => !update.state.characterState.cache.has(update.action.payload.id))
+      .flatMap(update =>
+        Observable.concat(
+          Observable.of(this.characterActions.beginLoadingCharacter(update.action.payload.id)),
+          this.characterFacade
+            .find(update.action.payload.id)
+            .map(character => this.characterActions.cacheCharacter(update.action.payload.id, character))
+        )
+      );
 
 }
 

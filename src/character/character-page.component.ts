@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { AppState } from '../model/app-state';
+import { CacheEntry } from '../model/cache';
 import { Character } from '../model/character';
 import { SheetComponent } from '../sheet/sheet.component';
 
@@ -21,11 +22,17 @@ import { CharacterActions } from './character.actions';
 export class CharacterPageComponent implements OnDestroy, OnInit {
 
   character: Observable<Character>;
+  error: Observable<boolean>;
+  loading: Observable<boolean>;
 
   private paramsSub: any;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
-    this.character = store.select(state => state.characterState.currentCharacter());
+    const cacheEntry = store.select(state => state.characterState.currentCacheEntry());
+
+    this.character = cacheEntry.map(entry => entry.value);
+    this.error = cacheEntry.map(entry => entry.error);
+    this.loading = cacheEntry.map(entry => entry.loading);
   }
 
   ngOnInit(): void {
