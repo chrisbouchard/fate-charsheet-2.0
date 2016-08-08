@@ -25,13 +25,13 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
   private paramsSub: any;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
-    this.character = store.select(state => state.currentCharacter);
+    this.character = store.select(state => state.characterState.currentCharacter());
   }
 
   ngOnInit(): void {
     // TODO: This should be handled by store "middleware".
     this.paramsSub = this.route.params.subscribe(params => {
-      this.store.dispatch(this.characterActions.loadCharacter(params['id']));
+      this.store.dispatch(this.characterActions.selectCharacter(params['id']));
     });
   }
 

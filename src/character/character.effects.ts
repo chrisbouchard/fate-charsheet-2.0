@@ -5,23 +5,29 @@ import { Effect, StateUpdates } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
 import { CharacterFacade } from '../common/character-facade';
-import { Character } from '../model/character';
+import { AppState } from '../model/app-state';
 
-import { CharacterActions, LOAD_CHARACTER } from './character.actions';
+import { CharacterActions, SELECT_CHARACTER } from './character.actions';
 
 @Injectable()
 export class CharacterEffects {
+
   constructor(
-    private updates: StateUpdates<Character>,
+    private updates: StateUpdates<AppState>,
     private characterActions: CharacterActions,
     private characterFacade: CharacterFacade
   ) {}
 
   // TODO: This needs some error handling
   @Effect() loadCharacter = this.updates
-    .whenAction(LOAD_CHARACTER)
-    .map(update => update.action.payload.id)
-    .switchMap(id => this.characterFacade.find(id))
-    .map(character => this.characterActions.setCharacter(character));
+    .whenAction(SELECT_CHARACTER)
+    .filter(update => !update.state.characterState.cache.has(update.action.payload.id))
+    .flatMap(update =>
+      this.characterFacade
+        .find(update.action.payload.id)
+        .map(character => ({ id: update.action.payload.id, character }))
+    )
+    .map(result => this.characterActions.cacheCharacter(result.id, result.character));
+
 }
 
