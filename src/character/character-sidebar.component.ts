@@ -2,9 +2,9 @@ import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CardColumnComponent } from '../card-column/card-column.component';
 import { CharacterFacade } from '../common/character-facade';
 import { Character } from '../model/character';
+import { CardColumnComponent } from '../ui/card-column.component';
 
 @Component({
   selector: 'fate-character-sidebar',

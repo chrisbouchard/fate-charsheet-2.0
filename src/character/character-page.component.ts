@@ -6,10 +6,10 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AppState } from '../model/app-state';
-import { CacheEntry } from '../model/cache';
+import { AppState } from '../app/app.state';
+import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
-import { SheetComponent } from '../sheet/sheet.component';
+import { SheetComponent } from '../ui/sheet.component';
 
 import { CharacterActions } from './character.actions';
 

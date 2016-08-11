@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character-facade';
-import { ListComponent } from '../list/list.component';
 import { Character } from '../model/character';
+import { ListComponent } from '../ui/list.component';
 
 @Component({
   selector: 'fate-group-page',

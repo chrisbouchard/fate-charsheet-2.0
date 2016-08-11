@@ -34,9 +34,9 @@ import { CharacterState } from './character/character.state';
 import { CharacterFacade } from './common/character-facade';
 import { __PRODUCTION__ } from './globals';
 import { HAL_PROVIDERS } from './hal';
-import { UIState } from './model/ui-state';
 import { UIActions } from './ui/ui.actions';
 import { uiReducer } from './ui/ui.reducer';
+import { UIState } from './ui/ui.state';
 
 if (__PRODUCTION__) {
   /* Switch Angular to production mode. */

@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import * as Immutable from 'immutable';
 
-import { CacheEntry } from '../model/cache';
+import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
 export interface ICharacterState {

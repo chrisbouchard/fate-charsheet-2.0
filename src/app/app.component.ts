@@ -8,9 +8,9 @@ import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 import { RouterConnector } from 'ngrx-store-router';
 import { Observable } from 'rxjs/Observable';
 
-import { AppState } from '../model/app-state';
-import { UIState } from '../model/ui-state';
-import { OverlayComponent } from '../overlay/overlay.component';
+import { AppState } from '../app/app.state';
+import { OverlayComponent } from '../ui/overlay.component';
+import { UIState } from '../ui/ui.state';
 
 @Component({
   selector: 'fate-app',

@@ -1,7 +1,7 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
 import { CharacterState } from '../character/character.state';
-import { CacheEntry } from '../model/cache';
+import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
 import { BEGIN_LOADING_CHARACTER, CACHE_CHARACTER, SELECT_CHARACTER, SET_CHARACTER_STRESS } from './character.actions';
