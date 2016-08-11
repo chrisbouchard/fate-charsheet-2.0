@@ -15,11 +15,10 @@ import { GroupModule } from '../group/group.module';
 import { HalModule } from '../hal/hal.module';
 import { UIModule } from '../ui/ui.module';
 
+import { DEFAULT_APP_STATE } from '../app/app.state.ts';
 import { CharacterEffects } from '../character/character.effects';
 import { characterReducer } from '../character/character.reducer';
-import { CharacterState } from '../character/character.state';
 import { uiReducer } from '../ui/ui.reducer';
-import { UIState } from '../ui/ui.state';
 
 import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.routes';
@@ -41,10 +40,7 @@ import { APP_ROUTES } from './app.routes';
       characterState: characterReducer,
       router: routerReducer,
       uiState: uiReducer
-    }, {
-      characterState: new CharacterState(),
-      uiState: new UIState()
-    }),
+    }, DEFAULT_APP_STATE),
 
     instrumentStore({
       monitor: useLogMonitor({

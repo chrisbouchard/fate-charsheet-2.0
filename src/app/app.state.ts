@@ -8,3 +8,8 @@ export class AppState {
   uiState: UIState;
 }
 
+export const DEFAULT_APP_STATE: AppState = {
+  characterState: new CharacterState(),
+  uiState: new UIState()
+};
+
