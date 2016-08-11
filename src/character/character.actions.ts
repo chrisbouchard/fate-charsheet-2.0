@@ -4,19 +4,24 @@ import { Action } from '@ngrx/store';
 
 import { Character } from '../model/character';
 
-export const LOAD_CHARACTER = 'LOAD_CHARACTER';
-export const SET_CHARACTER = 'SET_CHARACTER';
+export const BEGIN_LOADING_CHARACTER = 'BEGIN_LOADING_CHARACTER';
+export const CACHE_CHARACTER = 'CACHE_CHARACTER';
+export const SELECT_CHARACTER = 'SELECT_CHARACTER';
 export const SET_CHARACTER_STRESS = 'SET_CHARACTER_STRESS';
 
 @Injectable()
 export class CharacterActions {
 
-  loadCharacter(id: string): Action {
-    return { type: LOAD_CHARACTER, payload: { id } };
+  beginLoadingCharacter(id: string): Action {
+    return { type: BEGIN_LOADING_CHARACTER, payload: { id } };
   }
 
-  setCharacter(character: Character): Action {
-    return { type: SET_CHARACTER, payload: { character } };
+  cacheCharacter(id: string, character: Character): Action {
+    return { type: CACHE_CHARACTER, payload: { id, character } };
+  }
+
+  selectCharacter(id: string): Action {
+    return { type: SELECT_CHARACTER, payload: { id } };
   }
 
   setCharacterStress(track: number, index: number, value: boolean): Action {

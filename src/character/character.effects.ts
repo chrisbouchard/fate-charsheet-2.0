@@ -1,27 +1,37 @@
 import { Injectable } from '@angular/core';
 
 import { Effect, StateUpdates } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
 import { CharacterFacade } from '../common/character-facade';
-import { Character } from '../model/character';
+import { AppState } from '../model/app-state';
 
-import { CharacterActions, LOAD_CHARACTER } from './character.actions';
+import { CharacterActions, SELECT_CHARACTER } from './character.actions';
 
 @Injectable()
 export class CharacterEffects {
+
   constructor(
-    private updates: StateUpdates<Character>,
+    private updates: StateUpdates<AppState>,
     private characterActions: CharacterActions,
     private characterFacade: CharacterFacade
   ) {}
 
   // TODO: This needs some error handling
-  @Effect() loadCharacter = this.updates
-    .whenAction(LOAD_CHARACTER)
-    .map(update => update.action.payload.id)
-    .switchMap(id => this.characterFacade.find(id))
-    .map(character => this.characterActions.setCharacter(character));
+  @Effect() loadCharacter: Observable<Action> =
+    this.updates
+      .whenAction(SELECT_CHARACTER)
+      .filter(update => !update.state.characterState.cache.has(update.action.payload.id))
+      .flatMap(update =>
+        Observable.concat(
+          Observable.of(this.characterActions.beginLoadingCharacter(update.action.payload.id)),
+          this.characterFacade
+            .find(update.action.payload.id)
+            .map(character => this.characterActions.cacheCharacter(update.action.payload.id, character))
+        )
+      );
+
 }
 

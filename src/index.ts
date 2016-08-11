@@ -30,9 +30,11 @@ import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { CharacterActions } from './character/character.actions';
 import { CharacterEffects } from './character/character.effects';
 import { characterReducer } from './character/character.reducer';
+import { CharacterState } from './character/character.state';
 import { CharacterFacade } from './common/character-facade';
 import { __PRODUCTION__ } from './globals';
 import { HAL_PROVIDERS } from './hal';
+import { UIState } from './model/ui-state';
 import { UIActions } from './ui/ui.actions';
 import { uiReducer } from './ui/ui.reducer';
 
@@ -47,9 +49,12 @@ $(() => {
     HTTP_PROVIDERS,
 
     provideStore({
-      currentCharacter: characterReducer,
+      characterState: characterReducer,
       router: routerReducer,
       uiState: uiReducer
+    }, {
+      characterState: new CharacterState(),
+      uiState: new UIState()
     }),
     instrumentStore({
       monitor: useLogMonitor({

@@ -1,8 +1,11 @@
-import { Character } from './character';
+import { Map } from 'immutable';
+
+import { CharacterState } from '../character/character.state';
+
 import { UIState } from './ui-state';
 
 export class AppState {
-  currentCharacter: Character;
+  characterState: CharacterState;
   uiState: UIState;
 }
 
