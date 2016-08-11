@@ -12,7 +12,3 @@ export const APP_ROUTES: RouterConfig = [
   ...GROUP_ROUTES
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(APP_ROUTES)
-];
-
