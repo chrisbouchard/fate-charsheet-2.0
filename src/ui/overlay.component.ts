@@ -1,9 +1,7 @@
 import { animate, Component, Input, state, style, transition, trigger } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'fate-overlay',
-  directives: [ROUTER_DIRECTIVES],
   animations: [
     trigger('overlay', [
       state('closed', style({

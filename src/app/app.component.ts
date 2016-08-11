@@ -1,21 +1,15 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 
 import { RouterConnector } from 'ngrx-store-router';
 import { Observable } from 'rxjs/Observable';
 
 import { AppState } from '../app/app.state';
-import { OverlayComponent } from '../ui/overlay.component';
 import { UIState } from '../ui/ui.state';
 
 @Component({
   selector: 'fate-app',
-  directives: [OverlayComponent, ROUTER_DIRECTIVES, StoreLogMonitorComponent],
-  pipes: [AsyncPipe],
   styleUrls: [require<string>('./app.component.less')],
   templateUrl: require<string>('./app.component.haml'),
 })

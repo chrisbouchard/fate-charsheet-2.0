@@ -1,13 +1,10 @@
 import { Component, ContentChildren, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit,
   Output, QueryList, Renderer } from '@angular/core';
 
-import { COMMON_PIPES } from '../common/pipes';
-
 import { FabActionComponent } from './fab-action.component';
 
 @Component({
   selector: 'fate-fab',
-  pipes: [COMMON_PIPES],
   styleUrls: [require<string>('./fab.component.less')],
   templateUrl: require<string>('./fab.component.haml')
 })

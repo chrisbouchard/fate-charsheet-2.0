@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NgModuleFactoryLoader } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { runEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
-import { useLogMonitor } from '@ngrx/store-log-monitor';
+import { StoreLogMonitorComponent, useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { provideRouterConnector, routerReducer } from 'ngrx-store-router';
 
@@ -35,7 +35,7 @@ import { APP_ROUTES } from './app.routes';
     UIModule
   ],
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, StoreLogMonitorComponent ],
   providers: [
     provideStore({
       characterState: characterReducer,

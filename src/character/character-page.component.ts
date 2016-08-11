@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,14 +8,11 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app/app.state';
 import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
-import { SheetComponent } from '../ui/sheet.component';
 
 import { CharacterActions } from './character.actions';
 
 @Component({
   selector: 'fate-character-page',
-  directives: [SheetComponent],
-  pipes: [AsyncPipe],
   templateUrl: require<string>('./character-page.component.haml')
 })
 export class CharacterPageComponent implements OnDestroy, OnInit {

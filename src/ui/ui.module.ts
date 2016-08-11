@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { CommonModule } from '../common/common.module';
 
@@ -12,7 +13,10 @@ import { SheetComponent } from './sheet.component';
 import { UIActions } from './ui.actions';
 
 @NgModule({
-  imports: [ CommonModule ],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   declarations: [
     CardColumnComponent,
     CardComponent,
