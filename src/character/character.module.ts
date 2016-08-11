@@ -1,4 +1,3 @@
-import { CommonModule as NgCommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '../common/common.module';
@@ -10,7 +9,7 @@ import { CharacterSidebarComponent } from './character-sidebar.component';
 import { CharacterActions } from './character.actions';
 
 @NgModule({
-  imports: [ CommonModule, NgCommonModule, UIModule ],
+  imports: [ CommonModule, UIModule ],
   declarations: [ CharacterOverlayComponent, CharacterPageComponent, CharacterSidebarComponent ],
   exports: [ CharacterOverlayComponent, CharacterPageComponent, CharacterSidebarComponent ],
   providers: [ CharacterActions ]

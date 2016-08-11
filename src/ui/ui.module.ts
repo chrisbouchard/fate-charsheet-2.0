@@ -1,4 +1,3 @@
-import { CommonModule as NgCommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '../common/common.module';
@@ -10,18 +9,27 @@ import { FabComponent } from './fab.component';
 import { ListComponent } from './list.component';
 import { OverlayComponent } from './overlay.component';
 import { SheetComponent } from './sheet.component';
-import { StressBoxComponent } from './stress-box.component';
 import { UIActions } from './ui.actions';
 
 @NgModule({
-  imports: [ CommonModule, NgCommonModule ],
+  imports: [ CommonModule ],
   declarations: [
-    CardColumnComponent, CardComponent, FabActionComponent, FabComponent, ListComponent, OverlayComponent,
-    SheetComponent, StressBoxComponent
+    CardColumnComponent,
+    CardComponent,
+    FabActionComponent,
+    FabComponent,
+    ListComponent,
+    OverlayComponent,
+    SheetComponent
   ],
   exports: [
-    CardColumnComponent, CardComponent, FabActionComponent, FabComponent, ListComponent, OverlayComponent,
-    SheetComponent, StressBoxComponent
+    CardColumnComponent,
+    CardComponent,
+    FabActionComponent,
+    FabComponent,
+    ListComponent,
+    OverlayComponent,
+    SheetComponent
   ],
   providers: [ UIActions ]
 })

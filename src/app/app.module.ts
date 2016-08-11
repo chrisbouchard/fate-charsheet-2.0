@@ -31,7 +31,7 @@ import { APP_ROUTES } from './app.routes';
     CommonModule,
     GroupModule,
     HalModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
     UIModule
   ],
   bootstrap: [ AppComponent ],
