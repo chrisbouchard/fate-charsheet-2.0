@@ -1,9 +1,9 @@
-import { RouterConfig } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { GroupPageComponent } from '../group/group-page.component';
 
-export const GROUP_ROUTES: RouterConfig = [
-  { path: 'group', component: GroupPageComponent },
-  { path: 'group/:id', component: GroupPageComponent }
+export const GROUP_ROUTES: Routes = [
+  { path: '', component: GroupPageComponent },
+  { path: ':id', component: GroupPageComponent }
 ];
 

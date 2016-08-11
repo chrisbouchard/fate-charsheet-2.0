@@ -5,8 +5,8 @@ import { Action } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
+import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
-import { AppState } from '../model/app-state';
 
 import { CharacterActions, SELECT_CHARACTER } from './character.actions';
 

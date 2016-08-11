@@ -1,6 +1,6 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
-import { UIState } from '../model/ui-state';
+import { UIState } from './ui.state';
 
 import { CLOSE_MODAL, CLOSE_OVERLAY, CLOSE_SIDEBAR, OPEN_MODAL, OPEN_OVERLAY, OPEN_SIDEBAR, TOGGLE_MODAL,
   TOGGLE_OVERLAY, TOGGLE_SIDEBAR } from './ui.actions';

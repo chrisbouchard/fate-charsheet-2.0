@@ -1,18 +1,18 @@
-import { provideRouter, RouterConfig } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { CharacterPageComponent } from '../character/character-page.component';
 import { CHARACTER_ROUTES } from '../character/character.routes';
-import { GroupPageComponent } from '../group/group-page.component';
 import { GROUP_ROUTES } from '../group/group.routes';
 
-export const APP_ROUTES: RouterConfig = [
+export const APP_ROUTES: Routes = [
   { path: '', redirectTo: '/group', pathMatch: 'full' },
   { path: 'player/:id', redirectTo: '/character', pathMatch: 'full' },
-  ...CHARACTER_ROUTES,
-  ...GROUP_ROUTES
-];
-
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(APP_ROUTES)
+  {
+    path: 'character',
+    children: CHARACTER_ROUTES
+  },
+  {
+    path: 'group',
+    children: GROUP_ROUTES
+  }
 ];
 
