@@ -8,11 +8,6 @@ import { CharacterActions } from '../character/character.actions';
 import { Character } from '../model/character';
 import { UIActions } from '../ui/ui.actions';
 
-interface NamedAspect {
-  title: string;
-  name: string;
-}
-
 @Component({
   selector: 'fate-sheet',
   styleUrls: [require<string>('./sheet.component.less')],
@@ -25,17 +20,17 @@ export class SheetComponent {
   fatePoints: number = 1;
 
   adjectiveLadder = Map([
-    [-2, 'Terrible'],
-    [-1, 'Poor'],
-    [0, 'Mediocre'],
-    [1, 'Average'],
-    [2, 'Fair'],
-    [3, 'Good'],
-    [4, 'Great'],
-    [5, 'Superb'],
-    [6, 'Fantastic'],
-    [7, 'Epic'],
-    [8, 'Legendary']
+    [ -2, 'Terrible' ],
+    [ -1, 'Poor' ],
+    [ +0, 'Mediocre' ],
+    [ +1, 'Average' ],
+    [ +2, 'Fair' ],
+    [ +3, 'Good' ],
+    [ +4, 'Great' ],
+    [ +5, 'Superb' ],
+    [ +6, 'Fantastic' ],
+    [ +7, 'Epic' ],
+    [ +8, 'Legendary' ]
   ]);
 
   constructor(

@@ -60,9 +60,8 @@
         .ui.list
           .item(*ngFor="let track of character?.stressTracks | indexed")
             .ui.grey.sub.header {{track[1].name}}
-            .ui.large.circular.labels(style="padding-top: 0.25em")
-              %a.ui.label.fate-stress-box(*ngFor="let entry of track[1].boxes | indexed:1" [class.fate-active]="entry[1]" (click)="setStress($event, track[0], entry[0], !entry[1])")
-                {{entry[0]}}
+            .ui.horizontal.list.fate-stress-track
+              %fate-stress-box(*ngFor="let entry of track[1].boxes | indexed:1" [label]="entry[0]" [filled]="entry[1]" (click)="setStress($event, track[0], entry[0], !entry[1])")/
         %h2.ui.header Consequences
         .ui.relaxed.list
           .item(*ngFor="let consequence of character?.consequences")
