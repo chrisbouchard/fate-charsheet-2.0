@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
@@ -10,6 +10,7 @@ import { UIActions } from '../ui/ui.actions';
 
 @Component({
   selector: 'fate-sheet',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [require<string>('./sheet.component.less')],
   templateUrl: require<string>('./sheet.component.haml')
 })
@@ -55,6 +56,10 @@ export class SheetComponent {
 
   addModifier(): void {
     this.store.dispatch(this.uiActions.toggleOverlay());
+  }
+
+  getIndex(indexedPair: [number, any]): number {
+    return indexedPair[0];
   }
 
 }
