@@ -8,16 +8,16 @@ import { animate, Component, EventEmitter, Input, state, style, transition, trig
         display: 'none',
         top: '50%',
         right: '50%',
-        bottom: '50%';
+        bottom: '50%',
         left: '50%'
       })),
       state('filled', style({
         top: 0,
         right: 0,
-        bottom: 0;
+        bottom: 0,
         left: 0
       })),
-      transition('empty => filled', animate('500ms ease-out'))
+      transition('empty => filled', animate('500ms ease-out')),
       transition('filled => empty', animate('500ms ease-in'))
     ])
   ],
