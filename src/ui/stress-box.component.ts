@@ -17,8 +17,8 @@ import { animate, Component, EventEmitter, Input, state, style, transition, trig
         bottom: 0;
         left: 0
       })),
-      transition('empty => filled', animate('500ms ease-in'))
-      transition('filled => empty', animate('500ms ease-out'))
+      transition('empty => filled', animate('500ms ease-out'))
+      transition('filled => empty', animate('500ms ease-in'))
     ])
   ],
   styleUrls: [require<string>('./stress-box.component.less')],
