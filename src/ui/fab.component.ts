@@ -1,5 +1,4 @@
-import { Component, ContentChildren, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit,
-  Output, QueryList, Renderer } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, Renderer } from '@angular/core';
 
 import { FabActionComponent } from './fab-action.component';
 

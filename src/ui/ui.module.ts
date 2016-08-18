@@ -10,6 +10,7 @@ import { FabComponent } from './fab.component';
 import { ListComponent } from './list.component';
 import { OverlayComponent } from './overlay.component';
 import { SheetComponent } from './sheet.component';
+import { StressBoxComponent } from './stress-box.component';
 import { UIActions } from './ui.actions';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { UIActions } from './ui.actions';
     FabComponent,
     ListComponent,
     OverlayComponent,
-    SheetComponent
+    SheetComponent,
+    StressBoxComponent
   ],
   exports: [
     CardColumnComponent,
@@ -33,7 +35,8 @@ import { UIActions } from './ui.actions';
     FabComponent,
     ListComponent,
     OverlayComponent,
-    SheetComponent
+    SheetComponent,
+    StressBoxComponent
   ],
   providers: [ UIActions ]
 })
