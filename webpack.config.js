@@ -54,7 +54,7 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'babel!ts',
+        loader: 'awesome-typescript',
         exclude: [path.join(__dirname, 'node_modules')]
       },
       {
