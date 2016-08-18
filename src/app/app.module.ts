@@ -7,12 +7,12 @@ import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
 import { StoreLogMonitorComponent, useLogMonitor } from '@ngrx/store-log-monitor';
 
+import { HalModule } from 'ng2-hal';
 import { provideRouterConnector, routerReducer } from 'ngrx-store-router';
 
 import { CharacterModule } from '../character/character.module';
 import { CommonModule } from '../common/common.module';
 import { GroupModule } from '../group/group.module';
-import { HalModule } from '../hal/hal.module';
 import { UIModule } from '../ui/ui.module';
 
 import { DEFAULT_APP_STATE } from '../app/app.state.ts';
