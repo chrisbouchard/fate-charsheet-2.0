@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Effect, StateUpdates } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Actions, Effect } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -14,22 +14,24 @@ import { CharacterActions, SELECT_CHARACTER } from './character.actions';
 export class CharacterEffects {
 
   constructor(
-    private updates: StateUpdates<AppState>,
+    private actions: Actions,
     private characterActions: CharacterActions,
-    private characterFacade: CharacterFacade
+    private characterFacade: CharacterFacade,
+    private store: Store<AppState>
   ) {}
 
   // TODO: This needs some error handling
   @Effect() loadCharacter: Observable<Action> =
-    this.updates
-      .whenAction(SELECT_CHARACTER)
-      .filter(update => !update.state.characterState.cache.has(update.action.payload.id))
-      .flatMap(update =>
+    this.actions
+      .ofType(SELECT_CHARACTER)
+      .withLatestFrom(this.store)
+      .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
+      .flatMap(([action, state]) =>
         Observable.concat(
-          Observable.of(this.characterActions.beginLoadingCharacter(update.action.payload.id)),
+          Observable.of(this.characterActions.beginLoadingCharacter(action.payload.id)),
           this.characterFacade
-            .find(update.action.payload.id)
-            .map(character => this.characterActions.cacheCharacter(update.action.payload.id, character))
+            .find(action.payload.id)
+            .map(character => this.characterActions.cacheCharacter(action.payload.id, character))
         )
       );
 

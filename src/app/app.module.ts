@@ -2,10 +2,10 @@ import { NgModule, NgModuleFactoryLoader } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { runEffects } from '@ngrx/effects';
-import { provideStore } from '@ngrx/store';
-import { instrumentStore } from '@ngrx/store-devtools';
-import { StoreLogMonitorComponent, useLogMonitor } from '@ngrx/store-log-monitor';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { HalModule } from 'ng2-hal';
 import { provideRouterConnector, routerReducer } from 'ngrx-store-router';
@@ -28,31 +28,27 @@ import { APP_ROUTES } from './app.routes';
     BrowserModule,
     CharacterModule,
     CommonModule,
+    EffectsModule.run(CharacterEffects),
     GroupModule,
     HalModule,
     RouterModule.forRoot(APP_ROUTES),
-    UIModule
-  ],
-  bootstrap: [ AppComponent ],
-  declarations: [ AppComponent, StoreLogMonitorComponent ],
-  providers: [
-    provideStore({
-      characterState: characterReducer,
-      router: routerReducer,
-      uiState: uiReducer
-    }, DEFAULT_APP_STATE),
-
-    instrumentStore({
+    StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         position: 'right',
         visible: false
       })
     }),
-
-    runEffects(
-      CharacterEffects
-    ),
-
+    StoreLogMonitorModule,
+    StoreModule.provideStore({
+      characterState: characterReducer,
+      router: routerReducer,
+      uiState: uiReducer
+    }, DEFAULT_APP_STATE),
+    UIModule
+  ],
+  bootstrap: [ AppComponent ],
+  declarations: [ AppComponent ],
+  providers: [
     provideRouterConnector()
   ]
 })
