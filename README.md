@@ -51,6 +51,5 @@ The following projects are used by FATE Character Sheet:
 * [Semantic-UI](//github.com/Semantic-Org/Semantic-UI) as the main style and layout library.
 * [Typescript](//github.com/Microsoft/TypeScript) to write type-aware JavaScript for components and services.
 * [Webpack](//github.com/webpack/webpack) to bundle everything and run all the compilers/transpilers.
-
 * [ng2-hal](//github.com/chrisbouchard/ng2-hal) to communicate with the backend via HAL+JSON.
 
