@@ -140,10 +140,10 @@ module.exports = (env = defaultEnv) => ({
 
 function devtool(env) {
   if (isProduction(env)) {
-    return 'source-map';
+    return 'hidden-source-map';
   }
 
-  return 'eval-source-map';
+  return 'inline-source-map';
 }
 
 function stats(env) {
