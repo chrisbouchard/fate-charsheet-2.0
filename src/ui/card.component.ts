@@ -4,7 +4,7 @@ import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-card',
-  templateUrl: require<string>('./card.component.haml')
+  templateUrl: './card.component.haml'
 })
 export class CardComponent {
   @Input() character: Character;

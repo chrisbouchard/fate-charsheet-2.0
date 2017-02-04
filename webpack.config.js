@@ -1,12 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var DefinePlugin = webpack.DefinePlugin;
-var ProvidePlugin = webpack.ProvidePlugin;
+var { ContextReplacementPlugin, ProvidePlugin } = webpack;
 
-var DedupePlugin = webpack.optimize.DedupePlugin;
-var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var { CommonsChunkPlugin, DedupePlugin, UglifyJsPlugin } = webpack.optimize;
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -14,150 +11,187 @@ var extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  verbose: true,
-  displayErrorDetails: true,
-  devtool: devtool(),
+const defaultEnv = {
+  profile: "development",
+};
 
-  stats: {
-    colors: true,
-    reasons: true
-  },
-
+module.exports = (env = defaultEnv) => ({
   entry: {
-    'app': ['./src']
+    'app': ['./src'],
+    'polyfill': ['./src/polyfill']
   },
 
   output: {
+    chunkFilename: 'chunk-[name].js',
     filename: '[name].js',
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '',
     sourceMapFilename: '[name].js.map'
   },
 
+  devtool: devtool(env),
+  stats: stats(env),
+
   resolve: {
     alias: {
-      'semantic': path.join(__dirname, 'semantic/dist')
+      'semantic': path.resolve(__dirname, 'semantic/dist')
     },
-    extensions: ['', '.ts', '.js']
+    extensions: ['.ts', '.js']
   },
 
   module: {
-    preLoaders: [
-      {
-        test: /\.ts$/,
-        loader: 'tslint',
-        exclude: [path.join(__dirname, 'node_modules')]
-      }
+    noParse: [
+      /node_modules\/jquery/,
+      /node_modules\/reflect-metadata/,
+      /node_modules\/zone\.js/
     ],
 
-    loaders: [
+    rules: [
       {
-        test: /\.ts$/,
-        loader: 'awesome-typescript',
-        exclude: [path.join(__dirname, 'node_modules')]
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: [
-          path.join(__dirname, 'node_modules'),
-          path.join(__dirname, 'semantic')
+        include: path.resolve(__dirname, 'src'),
+        rules: [
+          {
+            test: /\.ts$/,
+            use: [
+              { loader: 'ng-router-loader' },
+              {
+                loader: 'awesome-typescript-loader',
+                options: {
+                  useBabel: true,
+                  useCache: true
+                }
+              },
+              { loader: 'angular2-template-loader' },
+              { loader: 'tslint-loader' }
+            ]
+          },
+          {
+            test: /\.js$/,
+            loader: 'babel-loader'
+          },
+
+          {
+            test: /\.html$/,
+            loader: 'html-loader'
+          },
+          {
+            test: /\.haml$/,
+            use: [
+              { loader: 'haml-haml-loader' }
+            ]
+          },
+
+          {
+            test: /\.css$/,
+            use: [
+              { loader: 'css-loader' }
+            ]
+          },
+          {
+            test: /\.less/,
+            use: [
+              { loader: 'css-loader' },
+              { loader: 'less-loader' }
+            ]
+          }
         ]
       },
 
       {
-        test: /\.html$/,
-        loader: 'file?name=templates/[name].[hash:8].html'
-      },
-      {
-        test: /\.haml$/,
-        loader: 'file?name=templates/[name].[hash:8].html!extract!haml-haml'
-      },
-
-      {
-        test: /\.css$/,
-        loader: 'file?name=templates/[name].[hash:8].css!extract!css',
         include: [
-          path.join(__dirname, 'src')
-        ]
-      },
-      {
-        test: /\.less/,
-        loader: 'file?name=templates/[name].[hash:8].css!extract!css!less',
-        include: [
-          path.join(__dirname, 'src')
-        ]
-      },
-
-      {
-        test: /\.css$/,
-        loader: extractCssPluginInstance.extract('css'),
-        exclude: [
-          path.join(__dirname, 'src')
-        ]
-      },
-      {
-        test: /\.less$/,
-        loader: extractCssPluginInstance.extract('css!less'),
-        exclude: [
-          path.join(__dirname, 'src')
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, 'semantic'),
+        ],
+        rules: [
+          {
+            test: /\.css$/,
+            loader: extractCssPluginInstance.extract(['css-loader'])
+          },
+          {
+            test: /\.less$/,
+            loader: extractCssPluginInstance.extract(['css-loader', 'less-loader'])
+          }
         ]
       },
 
       {
         test: /\.(eot|png|svg|ttf|woff|woff2)$/,
-        loader: 'file?name=assets/[name].[hash:8].[ext]'
+        loader: 'file-loader',
+        options: {
+          name:'assets/[name].[ext]'
+        }
       }
-    ],
-
-    noParse: [
-      path.join(__dirname, 'node_modules', 'zone.js'),
-      path.join(__dirname, 'node_modules', 'reflect-metadata')
     ]
   },
 
   plugins: [
-    ...commonPlugins(),
-    ...productionPlugins()
-  ]
-}
+    ...commonPlugins(env),
+    ...productionPlugins(env)
+  ],
 
-function devtool() {
-  if (!isProduction()) {
-    return undefined;
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true,
+    publicPath: '',
+    stats: stats()
+  }
+});
+
+
+function devtool(env) {
+  if (isProduction(env)) {
+    return 'source-map';
   }
 
-  return '#cheap-module-eval-source-map';
+  return 'eval-source-map';
 }
 
-function commonPlugins() {
+function stats(env) {
+  return {
+    children: false,
+    chunks: false,
+    colors: true,
+    hash: false,
+    timings: true,
+    version: false
+  };
+}
+
+function commonPlugins(env) {
   return [
+    new ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      path.resolve(__dirname, 'src'),
+      {} // a map of your routes
+    ),
     extractCssPluginInstance,
     new DefinePlugin({
-      __PRODUCTION__: JSON.stringify(isProduction())
-    }),
-    new HtmlWebpackPlugin({
-      inject: 'head',
-      template: '!!haml-haml!./src/index.haml'
+      __PRODUCTION__: JSON.stringify(isProduction(env))
     }),
     new ProvidePlugin({ 'jQuery': 'jquery', '$': 'jquery' }),
+    new HtmlWebpackPlugin({
+      inject: 'head',
+      template: '!!haml-haml-loader!./src/index.haml'
+    }),
+    new CommonsChunkPlugin({
+      names: ['polyfill', 'manifest'],
+      minChunks: Infinity
+    })
   ];
 }
 
-function productionPlugins() {
-  if (!isProduction()) {
+function productionPlugins(env) {
+  if (!isProduction(env)) {
     return [];
   }
 
   return [
-    new DedupePlugin(),
-    new OccurenceOrderPlugin(),
     new UglifyJsPlugin()
   ];
 }
 
-function isProduction() {
-  return process.env.NODE_ENV === 'production';
+function isProduction(env) {
+  return env.profile === 'production';
 }
 

@@ -4,8 +4,8 @@ import { FabActionComponent } from './fab-action.component';
 
 @Component({
   selector: 'fate-fab',
-  styleUrls: [require<string>('./fab.component.less')],
-  templateUrl: require<string>('./fab.component.haml')
+  styleUrls: ['./fab.component.less'],
+  templateUrl: './fab.component.haml'
 })
 export class FabComponent implements OnDestroy, OnInit {
 

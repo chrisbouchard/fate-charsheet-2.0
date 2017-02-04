@@ -21,8 +21,8 @@ import { animate, Component, EventEmitter, Input, state, style, transition, trig
       transition('filled => empty', animate('500ms ease-in'))
     ])
   ],
-  styleUrls: [require<string>('./stress-box.component.less')],
-  templateUrl: require<string>('./stress-box.component.haml')
+  styleUrls: ['./stress-box.component.less'],
+  templateUrl: './stress-box.component.haml'
 })
 export class StressBoxComponent {
 

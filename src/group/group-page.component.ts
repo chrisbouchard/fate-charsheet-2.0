@@ -7,7 +7,7 @@ import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-group-page',
-  templateUrl: require<string>('./group-page.component.haml')
+  templateUrl: './group-page.component.haml'
 })
 export class GroupPageComponent {
 

@@ -11,8 +11,8 @@ import { UIActions } from '../ui/ui.actions';
 @Component({
   selector: 'fate-sheet',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: [require<string>('./sheet.component.less')],
-  templateUrl: require<string>('./sheet.component.haml')
+  styleUrls: ['./sheet.component.less'],
+  templateUrl: './sheet.component.haml'
 })
 export class SheetComponent {
   @Input() character: Character;

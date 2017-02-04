@@ -8,14 +8,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { HalModule } from 'ng2-hal';
-import { provideRouterConnector, routerReducer } from 'ngrx-store-router';
 
 import { CharacterModule } from '../character/character.module';
 import { CommonModule } from '../common/common.module';
 import { GroupModule } from '../group/group.module';
 import { UIModule } from '../ui/ui.module';
 
-import { DEFAULT_APP_STATE } from '../app/app.state.ts';
+import { DEFAULT_APP_STATE } from '../app/app.state';
 import { CharacterEffects } from '../character/character.effects';
 import { characterReducer } from '../character/character.reducer';
 import { uiReducer } from '../ui/ui.reducer';
@@ -41,16 +40,12 @@ import { APP_ROUTES } from './app.routes';
     StoreLogMonitorModule,
     StoreModule.provideStore({
       characterState: characterReducer,
-      router: routerReducer,
       uiState: uiReducer
     }, DEFAULT_APP_STATE),
     UIModule
   ],
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
-  providers: [
-    provideRouterConnector()
-  ]
+  declarations: [ AppComponent ]
 })
 export class AppModule {}
 

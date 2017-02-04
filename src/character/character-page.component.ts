@@ -13,7 +13,7 @@ import { CharacterActions } from './character.actions';
 
 @Component({
   selector: 'fate-character-page',
-  templateUrl: require<string>('./character-page.component.haml')
+  templateUrl: './character-page.component.haml'
 })
 export class CharacterPageComponent implements OnDestroy, OnInit {
 

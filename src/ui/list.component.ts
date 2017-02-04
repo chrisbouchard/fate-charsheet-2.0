@@ -4,7 +4,7 @@ import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-list',
-  templateUrl: require<string>('./list.component.haml')
+  templateUrl: './list.component.haml'
 })
 export class ListComponent {
   @Input() characters: Array<Character>;

@@ -17,8 +17,8 @@ import { animate, Component, Input, state, style, transition, trigger } from '@a
       transition('open => closed', animate('500ms ease'))
     ])
   ],
-  styleUrls: [require<string>('./overlay.component.less')],
-  templateUrl: require<string>('./overlay.component.haml')
+  styleUrls: ['./overlay.component.less'],
+  templateUrl: './overlay.component.haml'
 })
 export class OverlayComponent {
 

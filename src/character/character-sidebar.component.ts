@@ -6,7 +6,7 @@ import { Character } from '../model/character';
 
 @Component({
   selector: 'fate-character-sidebar',
-  templateUrl: require<string>('./character-sidebar.component.haml')
+  templateUrl: './character-sidebar.component.haml'
 })
 export class CharacterSidebarComponent {
 
