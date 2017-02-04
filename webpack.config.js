@@ -1,9 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var { ContextReplacementPlugin, ProvidePlugin } = webpack;
+var { ContextReplacementPlugin, DefinePlugin, ProvidePlugin } = webpack;
 
-var { CommonsChunkPlugin, DedupePlugin, UglifyJsPlugin } = webpack.optimize;
+var { CommonsChunkPlugin, UglifyJsPlugin } = webpack.optimize;
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -100,7 +100,7 @@ module.exports = (env = defaultEnv) => ({
       {
         include: [
           path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'semantic'),
+          path.resolve(__dirname, 'semantic')
         ],
         rules: [
           {
