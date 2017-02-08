@@ -40,5 +40,3 @@ export function makeCharacterState(val?: CharacterState.Options): CharacterState
   });
 }
 
-
-
