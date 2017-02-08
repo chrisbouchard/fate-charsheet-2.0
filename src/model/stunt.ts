@@ -1,4 +1,4 @@
-import * as Immutable from 'immutable';
+import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Stunt {
   export interface Options {
@@ -12,8 +12,8 @@ export const DEFAULT_STUNT: Stunt.Options = {
   description: undefined
 };
 
-export class Stunt extends Immutable.Record(DEFAULT_STUNT) implements Stunt.Options {
-  readonly name: string;
-  readonly description: string;
-}
+export interface Stunt extends TypedRecord<Stunt.Options> {}
+
+export const makeStunt: TypedRecordFactory<Stunt.Options, Stunt> =
+    makeTypedRecord(DEFAULT_STUNT);
 

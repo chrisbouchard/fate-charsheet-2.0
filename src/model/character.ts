@@ -1,5 +1,6 @@
 import { Iterable, List, Seq, Set } from 'immutable';
-import * as Immutable from 'immutable';
+
+import { makeTypedRecord, TypedRecord } from '../common/typed-record';
 
 import { Aspect } from './aspect';
 import { Consequence } from './consequence';
@@ -40,26 +41,22 @@ export const DEFAULT_CHARACTER: Character.Options = {
   consequences: List<Consequence>()
 };
 
-export class Character extends Immutable.Record(DEFAULT_CHARACTER) implements Character.Options {
-  readonly name: string;
-  readonly player: Player;
+export interface Character extends TypedRecord<Character.Options> {
+  highConcept(): Aspect;
+  skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>>;
+}
 
-  readonly color: string;
-  readonly portrait: string;
+const makeRecord = makeTypedRecord(DEFAULT_CHARACTER);
 
-  readonly aspects: List<Aspect>;
-  readonly skills: Set<Skill>;
-  readonly stunts: List<Stunt>;
+export function makeCharacter(val?: Partial<Character.Options>): Character {
+  return Object.create(makeRecord(val), {
+    highConcept(): Aspect {
+      return this.aspects.get(0);
+    },
 
-  readonly stressTracks: List<StressTrack>;
-  readonly consequences: List<Consequence>;
-
-  public get highConcept(): Aspect {
-    return this.aspects.get(0);
-  }
-
-  public get skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
-    return this.skills.groupBy(skill => skill.rank);
-  }
+    skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
+      return this.skills.groupBy(skill => skill.rank);
+    }
+  });
 }
 

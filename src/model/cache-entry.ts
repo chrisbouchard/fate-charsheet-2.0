@@ -1,13 +1,17 @@
 import * as Immutable from 'immutable';
 
+import { makeTypedRecord, TypedRecord } from '../common/typed-record';
 
-export interface ICacheEntry<T> {
-  error: boolean;
-  loading: boolean;
-  value: T;
+
+export module CacheEntry {
+  export interface Options<T> {
+    error: boolean;
+    loading: boolean;
+    value: T;
+  }
 }
 
-export function DEFAULT_CACHE_ENTRY<T>(): ICacheEntry<T> {
+export function DEFAULT_CACHE_ENTRY<T>(): CacheEntry.Options<T> {
   return {
     error: false,
     loading: false,
@@ -15,9 +19,8 @@ export function DEFAULT_CACHE_ENTRY<T>(): ICacheEntry<T> {
   };
 }
 
-export class CacheEntry<T> extends Immutable.Record(DEFAULT_CACHE_ENTRY<T>()) implements ICacheEntry<T> {
-  readonly error: boolean;
-  readonly loading: boolean;
-  readonly value: T;
-}
+export interface CacheEntry<T> extends TypedRecord<CacheEntry.Options<T>> {}
+
+export const makeCacheEntry: <T> (val?: Partial<CacheEntry.Options<T>>) => CacheEntry<T> =
+    makeTypedRecord(DEFAULT_CACHE_ENTRY());
 

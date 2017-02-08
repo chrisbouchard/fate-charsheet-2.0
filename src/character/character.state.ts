@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import * as Immutable from 'immutable';
 
 import { makeTypedRecord, TypedRecord } from '../common/typed-record';
-import { CacheEntry } from '../model/cache-entry';
+import { CacheEntry, makeCacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
 export module CharacterState {
@@ -22,10 +22,12 @@ export interface CharacterState extends TypedRecord<CharacterState.Options> {
   currentCharacter(): Character;
 }
 
-export function makeCharacterState(val?: CharacterState.Options): CharacterState {
-  return Object.create(makeTypedRecord(DEFAULT_CHARACTER_STATE), {
+const makeRecord = makeTypedRecord(DEFAULT_CHARACTER_STATE);
+
+export function makeCharacterState(val?: Partial<CharacterState.Options>): CharacterState {
+  return Object.create(makeRecord(val), {
     currentCacheEntry(): CacheEntry<Character> {
-      return this.cache.get(this.currentId, new CacheEntry<Character>());
+      return this.cache.get(this.currentId, makeCacheEntry<Character>());
     },
 
     currentCharacter(): Character {

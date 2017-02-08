@@ -40,8 +40,10 @@ export interface TypedRecordMethods<T> {
 };
 
 
-export function makeTypedRecord<T>(obj: T, name?: string): (val?: T) => TypedRecord<T> {
-  const immutableRecordConstructor: new (val: T) => any = Record(obj, name);
+export type TypedRecordFactory<T, U extends TypedRecord<T>> = (val?: Partial<T>) => U;
+
+export function makeTypedRecord<T>(obj: T, name?: string): TypedRecordFactory<T, TypedRecord<T>> {
+  const immutableRecordConstructor: new (val: Partial<T>) => any = Record(obj, name);
   return (val = null) => new immutableRecordConstructor(val);
 };
 
