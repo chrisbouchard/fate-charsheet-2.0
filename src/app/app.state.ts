@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 
-import { CharacterState } from '../character/character.state';
+import { CharacterState, makeCharacterState } from '../character/character.state';
 import { UIState } from '../ui/ui.state';
 
 export class AppState {
@@ -9,7 +9,7 @@ export class AppState {
 }
 
 export const DEFAULT_APP_STATE: AppState = {
-  characterState: new CharacterState(),
+  characterState: makeCharacterState(),
   uiState: new UIState()
 };
 
