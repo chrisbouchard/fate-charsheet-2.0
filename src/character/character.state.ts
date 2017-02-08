@@ -5,22 +5,24 @@ import { makeTypedRecord, TypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
-export interface ICharacterState {
-  cache: Map<string, CacheEntry<Character>>;
-  currentId: string;
+export module CharacterState {
+  export interface Options {
+    cache: Map<string, CacheEntry<Character>>;
+    currentId: string;
+  }
 }
 
-export const DEFAULT_CHARACTER_STATE: ICharacterState = {
+export const DEFAULT_CHARACTER_STATE: CharacterState.Options = {
   cache: Map<string, CacheEntry<Character>>(),
   currentId: undefined
 };
 
-export interface CharacterState extends TypedRecord<ICharacterState> {
+export interface CharacterState extends TypedRecord<CharacterState.Options> {
   currentCacheEntry(): CacheEntry<Character>;
   currentCharacter(): Character;
 }
 
-export function makeCharacterState(val?: ICharacterState): CharacterState {
+export function makeCharacterState(val?: CharacterState.Options): CharacterState {
   return Object.create(makeTypedRecord(DEFAULT_CHARACTER_STATE), {
     currentCacheEntry(): CacheEntry<Character> {
       return this.cache.get(this.currentId, new CacheEntry<Character>());
