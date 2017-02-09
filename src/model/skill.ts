@@ -12,8 +12,5 @@ export const DEFAULT_SKILL: Skill.Options = {
   rank: 0
 };
 
-export interface Skill extends TypedRecord<Skill.Options> {}
-
-export const makeSkill: TypedRecordFactory<Skill.Options, Skill> =
-    makeTypedRecord(DEFAULT_SKILL);
+export class Skill extends makeTypedRecord(DEFAULT_SKILL) {}
 

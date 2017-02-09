@@ -9,7 +9,7 @@ import { Skill } from './skill';
 import { StressTrack } from './stress-track';
 import { Stunt } from './stunt';
 
-module Character {
+export module Character {
   export interface Options {
     name: string;
     player: Player;
@@ -41,22 +41,13 @@ export const DEFAULT_CHARACTER: Character.Options = {
   consequences: List<Consequence>()
 };
 
-export interface Character extends TypedRecord<Character.Options> {
-  highConcept(): Aspect;
-  skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>>;
-}
+export class Character extends makeTypedRecord(DEFAULT_CHARACTER) {
+  highConcept(): Aspect {
+    return this.aspects.get(0);
+  }
 
-const makeRecord = makeTypedRecord(DEFAULT_CHARACTER);
-
-export function makeCharacter(val?: Partial<Character.Options>): Character {
-  return Object.create(makeRecord(val), {
-    highConcept(): Aspect {
-      return this.aspects.get(0);
-    },
-
-    skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
-      return this.skills.groupBy(skill => skill.rank);
-    }
-  });
+  skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
+    return this.skills.groupBy(skill => skill.rank);
+  }
 }
 

@@ -19,8 +19,5 @@ export function DEFAULT_CACHE_ENTRY<T>(): CacheEntry.Options<T> {
   };
 }
 
-export interface CacheEntry<T> extends TypedRecord<CacheEntry.Options<T>> {}
-
-export const makeCacheEntry: <T> (val?: Partial<CacheEntry.Options<T>>) => CacheEntry<T> =
-    makeTypedRecord(DEFAULT_CACHE_ENTRY());
+export class CacheEntry<T> extends makeTypedRecord(DEFAULT_CACHE_ENTRY<T>()) {}
 

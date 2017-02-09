@@ -14,8 +14,5 @@ export const DEFAULT_CONSEQUENCE: Consequence.Options = {
   rank: 0
 };
 
-export interface Consequence extends TypedRecord<Consequence.Options> {}
-
-export const makeConsequence: TypedRecordFactory<Consequence.Options, Consequence> =
-    makeTypedRecord(DEFAULT_CONSEQUENCE);
+export class Consequence extends makeTypedRecord(DEFAULT_CONSEQUENCE) {}
 

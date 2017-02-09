@@ -2,6 +2,7 @@ import { List, Map } from 'immutable';
 
 import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
+
 module StressTrackSlot {
   export interface Options {
     field: string;
@@ -14,10 +15,7 @@ export const DEFAULT_STRESS_TRACK_SLOT: StressTrackSlot.Options = {
   cap: 0
 };
 
-export interface StressTrackSlot extends TypedRecord<StressTrackSlot.Options> {}
-
-export const makeStressTrackSlot: TypedRecordFactory<StressTrackSlot.Options, StressTrackSlot> =
-    makeTypedRecord(DEFAULT_STRESS_TRACK_SLOT);
+export class StressTrackSlot extends makeTypedRecord(DEFAULT_STRESS_TRACK_SLOT) {}
 
 
 module Template {
@@ -48,8 +46,5 @@ export const DEFAULT_TEMPLATE: Template.Options = {
   stressTrackSlots: List<StressTrackSlot>()
 };
 
-export interface Template extends TypedRecord<Template.Options> {}
-
-export const makeTemplate: TypedRecordFactory<Template.Options, Template> =
-    makeTypedRecord(DEFAULT_TEMPLATE);
+export class Template extends makeTypedRecord(DEFAULT_TEMPLATE) {}
 

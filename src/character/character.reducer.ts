@@ -1,12 +1,12 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
-import { CharacterState, makeCharacterState } from '../character/character.state';
-import { CacheEntry, makeCacheEntry } from '../model/cache-entry';
+import { CharacterState } from '../character/character.state';
+import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
 import { BEGIN_LOADING_CHARACTER, CACHE_CHARACTER, SELECT_CHARACTER, SET_CHARACTER_STRESS } from './character.actions';
 
-export const characterReducer: ActionReducer<CharacterState> = (state: CharacterState = makeCharacterState(), action: Action): CharacterState => {
+export const characterReducer: ActionReducer<CharacterState> = (state: CharacterState = new CharacterState(), action: Action): CharacterState => {
   switch (action.type) {
 
     case BEGIN_LOADING_CHARACTER:

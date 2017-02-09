@@ -12,8 +12,5 @@ export const DEFAULT_ASPECT: Aspect.Options = {
   name: undefined
 };
 
-export interface Aspect extends TypedRecord<Aspect.Options> {}
-
-export const makeAspect: TypedRecordFactory<Aspect.Options, Aspect> =
-    makeTypedRecord(DEFAULT_ASPECT);
+export class Aspect extends makeTypedRecord(DEFAULT_ASPECT) {}
 

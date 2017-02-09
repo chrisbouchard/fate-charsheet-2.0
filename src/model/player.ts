@@ -12,8 +12,5 @@ export const DEFAULT_PLAYER: Player.Options = {
   name: undefined
 };
 
-export interface Player extends TypedRecord<Player.Options> {}
-
-export const makePlayer: TypedRecordFactory<Player.Options, Player> =
-    makeTypedRecord(DEFAULT_PLAYER);
+export class Player extends makeTypedRecord(DEFAULT_PLAYER) {}
 

@@ -12,8 +12,5 @@ export const DEFAULT_STUNT: Stunt.Options = {
   description: undefined
 };
 
-export interface Stunt extends TypedRecord<Stunt.Options> {}
-
-export const makeStunt: TypedRecordFactory<Stunt.Options, Stunt> =
-    makeTypedRecord(DEFAULT_STUNT);
+export class Stunt extends makeTypedRecord(DEFAULT_STUNT) {}
 

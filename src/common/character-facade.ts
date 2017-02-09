@@ -1,118 +1,118 @@
 import { List, Set } from 'immutable';
 import { Observable } from 'rxjs';
 
-import { Aspect, makeAspect } from '../model/aspect';
-import { Character, makeCharacter } from '../model/character';
-import { Consequence, makeConsequence } from '../model/consequence';
-import { makePlayer, Player } from '../model/player';
-import { makeSkill, Skill } from '../model/skill';
-import { makeStressTrack, StressTrack } from '../model/stress-track';
-import { makeStunt, Stunt } from '../model/stunt';
+import { Aspect } from '../model/aspect';
+import { Character } from '../model/character';
+import { Consequence } from '../model/consequence';
+import { Player } from '../model/player';
+import { Skill } from '../model/skill';
+import { StressTrack } from '../model/stress-track';
+import { Stunt } from '../model/stunt';
 
 const RANK_ASPECT_NAME = 'rank';
 
 export class CharacterFacade {
 
-  private mbouchard: Player = makePlayer({
+  private mbouchard: Player = new Player({
     id: 'mbouchard',
     name: 'Mary Bouchard'
   });
 
-  private jdoe: Player = makePlayer({
+  private jdoe: Player = new Player({
     id: 'jdoe',
     name: 'John Doe'
   });
 
-  private amaryllis: Character = makeCharacter({
+  private amaryllis: Character = new Character({
     name: 'Amaryllis Aster Jennings',
     player: this.mbouchard,
     portrait: require<string>('../assets/placeholder.svg'),
     color: 'purple',
 
     aspects: List([
-      makeAspect({ label: 'High Concept', name: 'Graying Starfleet Devil' }),
-      makeAspect({ label: 'Trouble', name: 'Number One' }),
-      makeAspect({ label: 'Rank', name: 'Captain' }),
-      makeAspect({ name: 'To Boldly Go' }),
-      makeAspect({ name: 'Warp Core on Legs' }),
-      makeAspect({ name: 'Glint in the Eye' })
+      new Aspect({ label: 'High Concept', name: 'Graying Starfleet Devil' }),
+      new Aspect({ label: 'Trouble', name: 'Number One' }),
+      new Aspect({ label: 'Rank', name: 'Captain' }),
+      new Aspect({ name: 'To Boldly Go' }),
+      new Aspect({ name: 'Warp Core on Legs' }),
+      new Aspect({ name: 'Glint in the Eye' })
     ]),
 
     skills: Set([
-      makeSkill({ name: 'Athletics', rank: 1 }),
-      makeSkill({ name: 'Burglary', rank: 1 }),
-      makeSkill({ name: 'Contacts', rank: 1 }),
-      makeSkill({ name: 'Crafts', rank: 1 }),
-      makeSkill({ name: 'Deceive', rank: 1 }),
-      makeSkill({ name: 'Drive', rank: 1 }),
-      makeSkill({ name: 'Empathy', rank: 2 }),
-      makeSkill({ name: 'Fight', rank: 2 }),
-      makeSkill({ name: 'Investigate', rank: 2 }),
-      makeSkill({ name: 'Lore', rank: 2 }),
-      makeSkill({ name: 'Notice', rank: 3 }),
-      makeSkill({ name: 'Physique', rank: 3 }),
-      makeSkill({ name: 'Provoke', rank: 3 }),
-      makeSkill({ name: 'Rapport', rank: 4 }),
-      makeSkill({ name: 'Resources', rank: 4 })
+      new Skill({ name: 'Athletics', rank: 1 }),
+      new Skill({ name: 'Burglary', rank: 1 }),
+      new Skill({ name: 'Contacts', rank: 1 }),
+      new Skill({ name: 'Crafts', rank: 1 }),
+      new Skill({ name: 'Deceive', rank: 1 }),
+      new Skill({ name: 'Drive', rank: 1 }),
+      new Skill({ name: 'Empathy', rank: 2 }),
+      new Skill({ name: 'Fight', rank: 2 }),
+      new Skill({ name: 'Investigate', rank: 2 }),
+      new Skill({ name: 'Lore', rank: 2 }),
+      new Skill({ name: 'Notice', rank: 3 }),
+      new Skill({ name: 'Physique', rank: 3 }),
+      new Skill({ name: 'Provoke', rank: 3 }),
+      new Skill({ name: 'Rapport', rank: 4 }),
+      new Skill({ name: 'Resources', rank: 4 })
     ]),
 
     stunts: List([
-      makeStunt({
+      new Stunt({
         name: 'Test Stunt',
         description: 'A stunt that tests stuff. Lorem ipsum blah blah blah. Lots of text.'
       }),
-      makeStunt({ name: 'A B C', description: 'Foo bar.' }),
-      makeStunt({ name: 'X Y Z', description: 'Foo bar.' })
+      new Stunt({ name: 'A B C', description: 'Foo bar.' }),
+      new Stunt({ name: 'X Y Z', description: 'Foo bar.' })
     ]),
 
     stressTracks: List([
-      makeStressTrack({
+      new StressTrack({
         name: 'Physical',
         boxes: List([true, true, false, false])
       }),
-      makeStressTrack({
+      new StressTrack({
         name: 'Mental',
         boxes: List([false, false])
       })
     ]),
 
     consequences: List<Consequence>([
-      makeConsequence({
+      new Consequence({
         name: 'Shaken, Not Stirred',
         label: 'Mild',
         rank: 2
       }),
-      makeConsequence({
+      new Consequence({
         label: 'Moderate',
         rank: 4
       }),
-      makeConsequence({
+      new Consequence({
         label: 'Severe',
         rank: 6
       }),
     ])
   });
 
-  private fooBar: Character = makeCharacter({
+  private fooBar: Character = new Character({
     name: 'Foo Bar',
     player: this.jdoe,
     portrait: require<string>('../assets/placeholder.svg'),
     color: 'blue',
 
     aspects: List([
-      makeAspect({ label: 'High Concept', name: 'Lorem Ipsum Dolor Sit Amen' }),
-      makeAspect({ label: 'Trouble', name: 'Troubling Troubles' })
+      new Aspect({ label: 'High Concept', name: 'Lorem Ipsum Dolor Sit Amen' }),
+      new Aspect({ label: 'Trouble', name: 'Troubling Troubles' })
     ]),
 
     skills: Set<Skill>(),
     stunts: List<Stunt>(),
 
     stressTracks: List([
-      makeStressTrack({
+      new StressTrack({
         name: 'Physical',
         boxes: List([true, true, false, false])
       }),
-      makeStressTrack({
+      new StressTrack({
         name: 'Mental',
         boxes: List([false, false])
       })

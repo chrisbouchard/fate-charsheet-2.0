@@ -14,8 +14,5 @@ export const DEFAULT_STRESS_TRACK: StressTrack.Options = {
   boxes: List<boolean>()
 };
 
-export interface StressTrack extends TypedRecord<StressTrack.Options> {}
-
-export const makeStressTrack: TypedRecordFactory<StressTrack.Options, StressTrack> =
-    makeTypedRecord(DEFAULT_STRESS_TRACK);
+export class StressTrack extends makeTypedRecord(DEFAULT_STRESS_TRACK) {}
 
