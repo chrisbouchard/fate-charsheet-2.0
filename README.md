@@ -10,15 +10,10 @@ First `cd` into the project root and install the node dependencies.
 $ npm install
 ```
 
-Next build Semantic UI.
+Then build the project.
 ```console
-$ npm run build-semantic
-```
-
-Finally, build the project.
-```console
-$ npm run build-prod # Production
-$ npm run build-dev  # Development
+$ npm run build      # Production build (minified)
+$ npm run build-dev  # Development (un-minified)
 $ npm run server     # Live development server
 ```
 
@@ -43,7 +38,6 @@ The following projects are used by FATE Character Sheet:
 
 * [Angular](//github.com/angular/angular) as the core framework to build components.
 * [Babel](//github.com/babel/babel) to transpile ES6 output from `tsc` down to ES5.
-* [Gulp](//github.com/gulpjs/gulp) to manage the build process.
 * [Haml](//github.com/haml/haml) to write templates more succinctly.
 * [Jasmine](//github.com/jasmine/jasmine) to write unit tests.
 * [Karma](//github.com/karma-runner/karma) to run automated tests.
@@ -52,4 +46,3 @@ The following projects are used by FATE Character Sheet:
 * [Typescript](//github.com/Microsoft/TypeScript) to write type-aware JavaScript for components and services.
 * [Webpack](//github.com/webpack/webpack) to bundle everything and run all the compilers/transpilers.
 * [ng2-hal](//github.com/chrisbouchard/ng2-hal) to communicate with the backend via HAL+JSON.
-
