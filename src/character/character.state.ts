@@ -1,7 +1,6 @@
 import { Map } from 'immutable';
-import * as Immutable from 'immutable';
 
-import { makeTypedRecord, TypedRecord } from '../common/typed-record';
+import { makeTypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 

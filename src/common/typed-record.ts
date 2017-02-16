@@ -37,13 +37,14 @@ export interface TypedRecordMethods<T> {
   mergeIn(keyPath: any[] | Iterable<any, any>, obj: T): this;
   mergeDeepIn(keyPath: any[] | Iterable<any, any>, obj: T): this;
 
-};
+}
 
 
 export type TypedRecordFactory<T, U extends TypedRecord<T>> = new (val?: Partial<T>) => U;
 
 export function makeTypedRecord<T>(obj: T, name?: string): TypedRecordFactory<T, TypedRecord<T>> {
-  const immutableRecordConstructor: new (val: Partial<T>) => any = Record(obj, name);
-  return immutableRecordConstructor;
-};
+  /* The cast is necessary as an intermediate step on the way to TypedRecordFactory<T, TypedRecord<T>>. The return type
+   * is any instead of TypedRecord<T>, so it can be further implicitly cast to the return type. */
+  return Record(obj, name) as TypedRecordFactory<T, any>;
+}
 

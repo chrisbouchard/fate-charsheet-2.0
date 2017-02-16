@@ -24,6 +24,7 @@ export class CharacterEffects {
   @Effect() loadCharacter: Observable<Action> =
     this.actions
       .ofType(SELECT_CHARACTER)
+      .do(action => console.log(action))
       .withLatestFrom(this.store)
       .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
       .flatMap(([action, state]) =>

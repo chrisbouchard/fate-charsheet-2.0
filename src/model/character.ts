@@ -1,6 +1,6 @@
 import { Iterable, List, Seq, Set } from 'immutable';
 
-import { makeTypedRecord, TypedRecord } from '../common/typed-record';
+import { makeTypedRecord } from '../common/typed-record';
 
 import { Aspect } from './aspect';
 import { Consequence } from './consequence';
@@ -42,11 +42,11 @@ export const DEFAULT_CHARACTER: Character.Options = {
 };
 
 export class Character extends makeTypedRecord(DEFAULT_CHARACTER) {
-  highConcept(): Aspect {
+  get highConcept(): Aspect {
     return this.aspects.get(0);
   }
 
-  skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
+  get skillsByRank(): Seq.Keyed<number, Iterable<Skill, Skill>> {
     return this.skills.groupBy(skill => skill.rank);
   }
 }
