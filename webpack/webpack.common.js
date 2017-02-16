@@ -136,7 +136,6 @@ module.exports = resolve => ({
   ],
 
   devServer: {
-    contentBase: resolve('dist'),
     historyApiFallback: true,
     publicPath: '',
     stats: {
