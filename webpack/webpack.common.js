@@ -1,9 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
-const { ContextReplacementPlugin, ProvidePlugin } = webpack;
-const { CommonsChunkPlugin } = webpack.optimize;
+const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
@@ -47,7 +45,10 @@ module.exports = resolve => ({
 
     rules: [
       {
-        include: resolve('src'),
+        include: [
+          resolve('src'),
+          resolve('test')
+        ],
         rules: [
           {
             test: /\.ts$/,
@@ -131,10 +132,6 @@ module.exports = resolve => ({
     new HtmlWebpackPlugin({
       inject: 'body',
       template: '!!haml-haml-loader!./src/index.haml'
-    }),
-    new CommonsChunkPlugin({
-      names: ['polyfill', 'manifest'],
-      minChunks: Infinity
     })
   ],
 

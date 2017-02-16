@@ -1,4 +1,4 @@
-var { DefinePlugin } = require('webpack');
+const { DefinePlugin } = require('webpack');
 
 module.exports = require => ({
   plugins: [
