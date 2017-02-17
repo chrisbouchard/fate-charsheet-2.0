@@ -1,4 +1,4 @@
-import { Map } from 'immutable';
+import { Map, Set } from 'immutable';
 
 import { makeTypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';
@@ -8,12 +8,16 @@ export module CharacterState {
   export interface Options {
     cache: Map<string, CacheEntry<Character>>;
     currentId: string;
+    selectedAspects: Set<string>;
+    selectedSkill: string;
   }
 }
 
 export const DEFAULT_CHARACTER_STATE: CharacterState.Options = {
   cache: Map<string, CacheEntry<Character>>(),
-  currentId: undefined
+  currentId: undefined,
+  selectedAspects: Set<string>(),
+  selectedSkill: undefined
 };
 
 export class CharacterState extends makeTypedRecord(DEFAULT_CHARACTER_STATE) {
