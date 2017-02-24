@@ -13,8 +13,9 @@
     "sourceMap": true,
     "target": "es6"
   },
-  "files": [
-    "custom_typings/custom.d.ts"
+  "typeRoots": [
+    "./node_modules/@types",
+    "./custom_typings"
   ]
 }
 
