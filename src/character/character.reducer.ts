@@ -45,6 +45,10 @@ export const characterReducer: ActionReducer<CharacterState> = (state: Character
         )
       );
 
+    case CLEAR_ASPECTS:
+      // TODO: Write this.
+      return state;
+
     default:
       return state;
 
