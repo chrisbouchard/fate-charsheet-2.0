@@ -12,6 +12,6 @@ declare module 'uri-templates' {
   }
 
   export type UriValueType = string | string[] | { [key: string]: string };
-  export type UriMappingType = {} | { [key: string]: UriValueType }
+  export type UriMappingType = {} | { [key: string]: UriValueType };
 }
 

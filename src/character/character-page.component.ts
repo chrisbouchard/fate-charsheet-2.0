@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
+import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
 import { AppState } from '../app/app.state';
-import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
 import { CharacterActions } from './character.actions';
@@ -21,10 +21,10 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
   error: Observable<boolean>;
   loading: Observable<boolean>;
 
-  private paramsSub: any;
+  private paramsSub: Subscription;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
-    const cacheEntry = store.select(state => state.characterState.currentCacheEntry());
+    const cacheEntry = store.select(state => state.characterState.currentCacheEntry);
 
     this.character = cacheEntry.map(entry => entry.value);
     this.error = cacheEntry.map(entry => entry.error);
@@ -43,4 +43,3 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
   }
 
 }
-
