@@ -1,4 +1,4 @@
-import * as Immutable from 'immutable';
+import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Skill {
   export interface Options {
@@ -12,8 +12,5 @@ export const DEFAULT_SKILL: Skill.Options = {
   rank: 0
 };
 
-export class Skill extends Immutable.Record(DEFAULT_SKILL) implements Skill.Options {
-  readonly name: string;
-  readonly rank: number;
-}
+export class Skill extends makeTypedRecord(DEFAULT_SKILL) {}
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
 
-import { CharacterActions, SELECT_CHARACTER } from './character.actions';
+import { CharacterActions, CharacterActionType } from './character.actions';
 
 @Injectable()
 export class CharacterEffects {
@@ -23,7 +23,8 @@ export class CharacterEffects {
   // TODO: This needs some error handling
   @Effect() loadCharacter: Observable<Action> =
     this.actions
-      .ofType(SELECT_CHARACTER)
+      .ofType(CharacterActionType.SELECT_CHARACTER)
+      .do(action => console.log(action))
       .withLatestFrom(this.store)
       .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
       .flatMap(([action, state]) =>

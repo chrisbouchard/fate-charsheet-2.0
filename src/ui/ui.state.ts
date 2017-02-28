@@ -1,4 +1,4 @@
-import * as Immutable from 'immutable';
+import { makeTypedRecord } from '../common/typed-record';
 
 module UIState {
   export interface Options {
@@ -14,9 +14,5 @@ export const DEFAULT_UI_STATE: UIState.Options = {
   sidebarOpen: false
 };
 
-export class UIState extends Immutable.Record(DEFAULT_UI_STATE) implements UIState.Options {
-  readonly modalOpen: boolean;
-  readonly overlayOpen: boolean;
-  readonly sidebarOpen: boolean;
-}
+export class UIState extends makeTypedRecord(DEFAULT_UI_STATE) {}
 

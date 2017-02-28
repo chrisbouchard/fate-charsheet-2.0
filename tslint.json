@@ -16,7 +16,7 @@
     "semicolon": [true, "always"],
     "triple-equals": true,
     "typedef": [true, "call-signature", "parameter", "property-declaration"],
-    "variable-name": [true, "check-format"],
+    "variable-name": [true, "check-format", "allow-pascal-case"],
     "whitespace": true,
 
     "directive-selector": [true, "attribute", "fate", "camelCase"],

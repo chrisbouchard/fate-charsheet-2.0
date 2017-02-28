@@ -1,11 +1,10 @@
-import { NgModule, NgModuleFactoryLoader } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { HalModule } from 'ng2-hal';
 
@@ -27,22 +26,20 @@ import { APP_ROUTES } from './app.routes';
     BrowserModule,
     CharacterModule,
     CommonModule,
-    EffectsModule.run(CharacterEffects),
     GroupModule,
     HalModule,
+    UIModule,
+
     RouterModule.forRoot(APP_ROUTES),
-    StoreDevtoolsModule.instrumentStore({
-      monitor: useLogMonitor({
-        position: 'right',
-        visible: false
-      })
-    }),
-    StoreLogMonitorModule,
+
     StoreModule.provideStore({
       characterState: characterReducer,
       uiState: uiReducer
     }, DEFAULT_APP_STATE),
-    UIModule
+    EffectsModule.run(CharacterEffects),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   bootstrap: [ AppComponent ],
   declarations: [ AppComponent ]

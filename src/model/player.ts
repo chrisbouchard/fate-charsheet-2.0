@@ -1,3 +1,5 @@
+import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+
 module Player {
   export interface Options {
     id: string;
@@ -5,12 +7,10 @@ module Player {
   }
 }
 
-export class Player {
-  id: string;
-  name: string;
+export const DEFAULT_PLAYER: Player.Options = {
+  id: undefined,
+  name: undefined
+};
 
-  constructor(options: Player.Options) {
-    Object.assign(this, options);
-  }
-}
+export class Player extends makeTypedRecord(DEFAULT_PLAYER) {}
 

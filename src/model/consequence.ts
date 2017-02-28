@@ -1,4 +1,4 @@
-import * as Immutable from 'immutable';
+import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Consequence {
   export interface Options {
@@ -14,9 +14,5 @@ export const DEFAULT_CONSEQUENCE: Consequence.Options = {
   rank: 0
 };
 
-export class Consequence extends Immutable.Record(DEFAULT_CONSEQUENCE) implements Consequence.Options {
-  readonly label: string;
-  readonly name: string;
-  readonly rank: number;
-}
+export class Consequence extends makeTypedRecord(DEFAULT_CONSEQUENCE) {}
 

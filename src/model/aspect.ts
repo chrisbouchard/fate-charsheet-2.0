@@ -1,4 +1,4 @@
-import * as Immutable from 'immutable';
+import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Aspect {
   export interface Options {
@@ -12,8 +12,5 @@ export const DEFAULT_ASPECT: Aspect.Options = {
   name: undefined
 };
 
-export class Aspect extends Immutable.Record(DEFAULT_ASPECT) implements Aspect.Options {
-  readonly label: string;
-  readonly name: string;
-}
+export class Aspect extends makeTypedRecord(DEFAULT_ASPECT) {}
 
