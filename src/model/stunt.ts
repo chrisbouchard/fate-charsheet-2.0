@@ -1,4 +1,4 @@
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Stunt {
   export interface Options {
@@ -12,5 +12,5 @@ export const DEFAULT_STUNT: Stunt.Options = {
   description: undefined
 };
 
-export class Stunt extends makeTypedRecord(DEFAULT_STUNT) {}
+export class Stunt extends MakeTypedRecord(DEFAULT_STUNT) {}
 

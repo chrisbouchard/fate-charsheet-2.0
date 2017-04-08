@@ -26,7 +26,7 @@ export class CharacterFacade {
   private amaryllis: Character = new Character({
     name: 'Amaryllis Aster Jennings',
     player: this.mbouchard,
-    portrait: require<string>('../assets/placeholder.svg'),
+    portrait: require('../assets/placeholder.svg'),
     color: 'purple',
 
     aspects: List([
@@ -96,7 +96,7 @@ export class CharacterFacade {
   private fooBar: Character = new Character({
     name: 'Foo Bar',
     player: this.jdoe,
-    portrait: require<string>('../assets/placeholder.svg'),
+    portrait: require('../assets/placeholder.svg'),
     color: 'blue',
 
     aspects: List([

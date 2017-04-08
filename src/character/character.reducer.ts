@@ -1,5 +1,6 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
+import { toggle } from '../common/util/sets';
 import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 
@@ -52,26 +53,26 @@ export const characterReducer: ActionReducer<CharacterState> = (state: Character
     case CharacterActionType.CLEAR_SKILLS:
       return state.update('detail', detail => detail.delete('selectedSkills'));
 
-    case CharacterActionType.SELECT_ASPECT:
-      if (!state.currentCharacter || !state.currentCharacter.aspects.contains(action.payload.name)) {
+    case CharacterActionType.TOGGLE_ASPECT:
+      if (!state.currentCharacter || !state.currentCharacter.aspects.contains(action.payload.aspect)) {
         return state;
       }
 
       return state.update('detail', detail =>
-          detail.update('selectedAspects', selectedAspects =>
-              selectedAspects.add(action.payload.name)
-          )
+        detail.update('selectedAspects', selectedAspects =>
+          toggle(selectedAspects, action.payload.aspect)
+        )
       );
 
-    case CharacterActionType.SELECT_SKILL:
-      if (!state.currentCharacter || !state.currentCharacter.skills.contains(action.payload.name)) {
+    case CharacterActionType.TOGGLE_SKILL:
+      if (!state.currentCharacter || !state.currentCharacter.skills.contains(action.payload.skill)) {
         return state;
       }
 
       return state.update('detail', detail =>
-          detail.update('selectedSkills', selectedSkills =>
-              selectedSkills.add(action.payload.name)
-          )
+        detail.update('selectedSkills', selectedSkills =>
+          toggle(selectedSkills, action.payload.skill)
+        )
       );
 
 

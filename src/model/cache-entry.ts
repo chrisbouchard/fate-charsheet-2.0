@@ -1,6 +1,6 @@
 import * as Immutable from 'immutable';
 
-import { makeTypedRecord, TypedRecord } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord } from '../common/typed-record';
 
 
 export module CacheEntry {
@@ -19,5 +19,5 @@ export function DEFAULT_CACHE_ENTRY<T>(): CacheEntry.Options<T> {
   };
 }
 
-export class CacheEntry<T> extends makeTypedRecord(DEFAULT_CACHE_ENTRY<T>()) {}
+export class CacheEntry<T> extends MakeTypedRecord(DEFAULT_CACHE_ENTRY<T>()) {}
 

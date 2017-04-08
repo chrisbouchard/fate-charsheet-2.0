@@ -1,6 +1,6 @@
 import { Map, Set } from 'immutable';
 
-import { makeTypedRecord } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';
 import { Character } from '../model/character';
 import { CharacterDetail } from '../model/character-detail';
@@ -19,7 +19,7 @@ export const DEFAULT_CHARACTER_STATE: CharacterState.Options = {
   detail: new CharacterDetail()
 };
 
-export class CharacterState extends makeTypedRecord(DEFAULT_CHARACTER_STATE) {
+export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {
   get currentCacheEntry(): CacheEntry<Character> {
     return this.cache.get(this.currentId, new CacheEntry<Character>());
   }

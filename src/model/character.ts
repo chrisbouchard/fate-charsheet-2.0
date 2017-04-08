@@ -1,6 +1,6 @@
 import { Iterable, List, Seq, Set } from 'immutable';
 
-import { makeTypedRecord } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
 
 import { Aspect } from './aspect';
 import { Consequence } from './consequence';
@@ -41,7 +41,7 @@ export const DEFAULT_CHARACTER: Character.Options = {
   consequences: List<Consequence>()
 };
 
-export class Character extends makeTypedRecord(DEFAULT_CHARACTER) {
+export class Character extends MakeTypedRecord(DEFAULT_CHARACTER) {
   get highConcept(): Aspect {
     return this.aspects.get(0);
   }

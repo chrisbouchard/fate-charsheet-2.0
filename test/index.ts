@@ -26,6 +26,6 @@ TestBed.initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 
-const testContext = require.context('../src', true, /\.spec\.ts/);
+const testContext = (require as any).context('../src', true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
 

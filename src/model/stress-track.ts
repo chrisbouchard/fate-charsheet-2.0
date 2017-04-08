@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module StressTrack {
   export interface Options {
@@ -14,5 +14,5 @@ export const DEFAULT_STRESS_TRACK: StressTrack.Options = {
   boxes: List<boolean>()
 };
 
-export class StressTrack extends makeTypedRecord(DEFAULT_STRESS_TRACK) {}
+export class StressTrack extends MakeTypedRecord(DEFAULT_STRESS_TRACK) {}
 

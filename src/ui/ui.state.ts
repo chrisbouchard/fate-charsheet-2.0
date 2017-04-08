@@ -1,4 +1,4 @@
-import { makeTypedRecord } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
 
 module UIState {
   export interface Options {
@@ -14,5 +14,5 @@ export const DEFAULT_UI_STATE: UIState.Options = {
   sidebarOpen: false
 };
 
-export class UIState extends makeTypedRecord(DEFAULT_UI_STATE) {}
+export class UIState extends MakeTypedRecord(DEFAULT_UI_STATE) {}
 

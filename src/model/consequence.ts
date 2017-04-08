@@ -1,4 +1,4 @@
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Consequence {
   export interface Options {
@@ -14,5 +14,5 @@ export const DEFAULT_CONSEQUENCE: Consequence.Options = {
   rank: 0
 };
 
-export class Consequence extends makeTypedRecord(DEFAULT_CONSEQUENCE) {}
+export class Consequence extends MakeTypedRecord(DEFAULT_CONSEQUENCE) {}
 

@@ -65,7 +65,7 @@ $.api = $.fn.api = function(parameters) {
           ? $(settings.stateContext)
           : $module,
 
-        // request details
+        // request detail
         ajaxSettings,
         requestSettings,
         url,

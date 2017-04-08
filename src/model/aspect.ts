@@ -1,4 +1,4 @@
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Aspect {
   export interface Options {
@@ -12,5 +12,5 @@ export const DEFAULT_ASPECT: Aspect.Options = {
   name: undefined
 };
 
-export class Aspect extends makeTypedRecord(DEFAULT_ASPECT) {}
+export class Aspect extends MakeTypedRecord(DEFAULT_ASPECT) {}
 

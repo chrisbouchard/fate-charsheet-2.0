@@ -1,18 +1,22 @@
 import { Set } from 'immutable';
 
-import { makeTypedRecord } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
+
+import { Aspect } from './aspect';
+import { Skill } from './skill';
+
 
 export module CharacterDetail {
   export interface Options {
-    selectedAspects: Set<string>;
-    selectedSkills: Set<string>;
+    selectedAspects: Set<Aspect>;
+    selectedSkills: Set<Skill>;
   }
 }
 
 export const DEFAULT_CHARACTER_DETAIL: CharacterDetail.Options = {
-  selectedAspects: Set<string>(),
-  selectedSkills: Set<string>()
+  selectedAspects: Set<Aspect>(),
+  selectedSkills: Set<Skill>()
 };
 
-export class CharacterDetail extends makeTypedRecord(DEFAULT_CHARACTER_DETAIL) {}
+export class CharacterDetail extends MakeTypedRecord(DEFAULT_CHARACTER_DETAIL) {}
 

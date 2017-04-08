@@ -38,9 +38,9 @@
       .column
         %h2.ui.header Aspects
         .ui.list
-          .item(*ngFor="let aspect of character?.aspects")
+          .item(*ngFor="let aspect of character?.aspects" (click)="toggleAspect(aspect)")
             .ui.grey.sub.header(*ngIf="aspect.label") {{aspect.label}}
-            %a.fate-taggable((click)="addModifier()") {{aspect.name}}
+            %a.fate-taggable([class.selected]="isAspectSelected(aspect)") {{aspect.name}}
       .column
         %h2.ui.header Skills
         .ui.relaxed.divided.list
@@ -54,7 +54,7 @@
                   {{adjectiveLadder.get(entry[0])}}
                 .ui.horizontal.list
                   .item(*ngFor="let skill of entry[1] | sorted:name")
-                    %a.fate-taggable {{skill.name}}
+                    %a.fate-taggable([class.selected]="isSkillSelected(skill)" (click)="toggleSkill(skill)") {{skill.name}}
       .column
         %h2.ui.header Stress
         .ui.list

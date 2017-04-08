@@ -42,7 +42,7 @@ export interface TypedRecordMethods<T> {
 
 export type TypedRecordFactory<T, U extends TypedRecord<T>> = new (val?: Partial<T>) => U;
 
-export function makeTypedRecord<T>(obj: T, name?: string): TypedRecordFactory<T, TypedRecord<T>> {
+export function MakeTypedRecord<T>(obj: T, name?: string): TypedRecordFactory<T, TypedRecord<T>> {
   /* The cast is necessary as an intermediate step on the way to TypedRecordFactory<T, TypedRecord<T>>. The return type
    * is any instead of TypedRecord<T>, so it can be further implicitly cast to the return type. */
   return Record(obj, name) as TypedRecordFactory<T, any>;

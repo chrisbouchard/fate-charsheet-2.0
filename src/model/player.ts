@@ -1,4 +1,4 @@
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Player {
   export interface Options {
@@ -12,5 +12,5 @@ export const DEFAULT_PLAYER: Player.Options = {
   name: undefined
 };
 
-export class Player extends makeTypedRecord(DEFAULT_PLAYER) {}
+export class Player extends MakeTypedRecord(DEFAULT_PLAYER) {}
 

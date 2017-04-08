@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppState } from '../app/app.state';
 import { Character } from '../model/character';
+import { CharacterDetail } from '../model/character-detail';
 
 import { CharacterActions } from './character.actions';
 
@@ -18,6 +19,7 @@ import { CharacterActions } from './character.actions';
 export class CharacterPageComponent implements OnDestroy, OnInit {
 
   character: Observable<Character>;
+  detail: Observable<CharacterDetail>;
   error: Observable<boolean>;
   loading: Observable<boolean>;
 
@@ -29,6 +31,8 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
     this.character = cacheEntry.map(entry => entry.value);
     this.error = cacheEntry.map(entry => entry.error);
     this.loading = cacheEntry.map(entry => entry.loading);
+
+    this.detail = store.select(state => state.characterState.detail);
   }
 
   ngOnInit(): void {

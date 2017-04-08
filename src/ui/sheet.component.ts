@@ -5,8 +5,12 @@ import { Store } from '@ngrx/store';
 import { Map } from 'immutable';
 
 import { CharacterActions } from '../character/character.actions';
+import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
-import { UIActions } from '../ui/ui.actions';
+import { CharacterDetail } from '../model/character-detail';
+import { Skill } from '../model/skill';
+
+import { UIActions } from './ui.actions';
 
 @Component({
   selector: 'fate-sheet',
@@ -16,6 +20,7 @@ import { UIActions } from '../ui/ui.actions';
 })
 export class SheetComponent {
   @Input() character: Character;
+  @Input() detail: CharacterDetail;
   @Input() loading: boolean;
 
   fatePoints: number = 1;
@@ -44,6 +49,22 @@ export class SheetComponent {
     this.store.dispatch(this.characterActions.setCharacterStress(track, stress - 1, value));
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  isAspectSelected(aspect: Aspect): boolean {
+    return this.detail && this.detail.selectedAspects.contains(aspect);
+  }
+
+  toggleAspect(aspect: Aspect): void {
+    this.store.dispatch(this.characterActions.toggleAspect(aspect));
+  }
+
+  isSkillSelected(skill: Skill): boolean {
+    return this.detail && this.detail.selectedSkills.contains(skill);
+  }
+
+  toggleSkill(skill: Skill): void {
+    this.store.dispatch(this.characterActions.toggleSkill(skill));
   }
 
   addPoint(): void {

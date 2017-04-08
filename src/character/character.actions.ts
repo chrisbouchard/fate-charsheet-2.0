@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 
 import { stringEnum } from '../common/string-enum';
+import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
+import { Skill } from '../model/skill';
 
 
 export const CharacterActionType = stringEnum([
@@ -14,8 +16,8 @@ export const CharacterActionType = stringEnum([
 
     'CLEAR_ASPECTS',
     'CLEAR_SKILLS',
-    'SELECT_ASPECT',
-    'SELECT_SKILL'
+    'TOGGLE_ASPECT',
+    'TOGGLE_SKILL'
 ]);
 
 export type CharacterActionType = keyof typeof CharacterActionType;
@@ -45,16 +47,16 @@ export class CharacterActions {
     return { type: CharacterActionType.CLEAR_ASPECTS };
   }
 
-  clearSkill(): Action {
+  clearSkills(): Action {
     return { type: CharacterActionType.CLEAR_SKILLS };
   }
 
-  selectAspect(name: string): Action {
-    return { type: CharacterActionType.SELECT_ASPECT, payload: { name } };
+  toggleAspect(aspect: Aspect): Action {
+    return { type: CharacterActionType.TOGGLE_ASPECT, payload: { aspect } };
   }
 
-  selectSkill(name: string): Action {
-    return { type: CharacterActionType.SELECT_SKILL, payload: { name } };
+  toggleSkill(skill: Skill): Action {
+    return { type: CharacterActionType.TOGGLE_SKILL, payload: { skill } };
   }
 
 }

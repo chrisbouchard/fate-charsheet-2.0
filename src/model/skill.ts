@@ -1,4 +1,4 @@
-import { makeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
 
 module Skill {
   export interface Options {
@@ -12,5 +12,5 @@ export const DEFAULT_SKILL: Skill.Options = {
   rank: 0
 };
 
-export class Skill extends makeTypedRecord(DEFAULT_SKILL) {}
+export class Skill extends MakeTypedRecord(DEFAULT_SKILL) {}
 
