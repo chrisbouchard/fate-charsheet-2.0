@@ -9,8 +9,6 @@ import { Skill } from '../model/skill';
 import { StressTrack } from '../model/stress-track';
 import { Stunt } from '../model/stunt';
 
-const RANK_ASPECT_NAME = 'rank';
-
 export class CharacterFacade {
 
   private mbouchard: Player = new Player({
