@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character-facade';
@@ -9,12 +8,14 @@ import { Character } from '../model/character';
   selector: 'fate-group-page',
   templateUrl: './group-page.component.haml'
 })
-export class GroupPageComponent {
+export class GroupPageComponent implements OnInit {
 
-  characters: Observable<Array<Character>>;
+  characters: Observable<Character[]>;
 
-  constructor(private route: ActivatedRoute, private characterFacade: CharacterFacade) {
-    this.characters = characterFacade.findAll();
+  constructor(private characterFacade: CharacterFacade) {}
+
+  ngOnInit(): void {
+    this.characters = this.characterFacade.findAll();
   }
 
 }

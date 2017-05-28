@@ -1,4 +1,4 @@
-import { animate, Component, EventEmitter, Input, state, style, transition, trigger } from '@angular/core';
+import { animate, Component, Input, state, style, transition, trigger } from '@angular/core';
 
 @Component({
   selector: 'fate-stress-box',

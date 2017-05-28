@@ -8,6 +8,6 @@ import { Character } from '../model/character';
   templateUrl: './card-column.component.haml'
 })
 export class CardColumnComponent {
-  @Input() characters: Array<Character>;
+  @Input() characters: Character[];
 }
 

@@ -1,4 +1,4 @@
-import { Map, Set } from 'immutable';
+import { Map } from 'immutable';
 
 import { MakeTypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';

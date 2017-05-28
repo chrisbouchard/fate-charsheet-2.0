@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Action } from '@ngrx/store';
 
-import { UIState } from './ui.state';
-
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';

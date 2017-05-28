@@ -122,7 +122,7 @@ export class CharacterFacade {
   private fixedCharacters: Character[] = [ this.amaryllis ];
 
   find(id: string): Observable<Character> {
-    return Observable.of(this.amaryllis).delay(5);
+    return Observable.of(this.amaryllis.set('id', id)).delay(5);
   }
 
   findAll(): Observable<Character[]> {

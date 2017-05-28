@@ -10,7 +10,6 @@
     "eofline": true,
     "indent": [true, "spaces"],
     "no-trailing-whitespace": true,
-    "no-unused-variable": true,
     "no-use-before-declare": true,
     "one-line": [true, "check-open-brace"],
     "ordered-imports": [true, "alphabatize", "check-groups"],

@@ -1,5 +1,4 @@
 import { enableProdMode } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';

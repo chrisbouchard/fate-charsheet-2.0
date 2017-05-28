@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 
-import { MakeTypedRecord, TypedRecord, TypedRecordFactory } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
 
 module StressTrack {
   export interface Options {

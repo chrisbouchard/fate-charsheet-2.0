@@ -7,6 +7,6 @@ import { Character } from '../model/character';
   templateUrl: './list.component.haml'
 })
 export class ListComponent {
-  @Input() characters: Array<Character>;
+  @Input() characters: Character[];
 }
 

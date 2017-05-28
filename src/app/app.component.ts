@@ -1,11 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-
 import { Observable } from 'rxjs/Observable';
 
 import { AppState } from '../app/app.state';
-import { UIState } from '../ui/ui.state';
 
 @Component({
   selector: 'fate-app',
@@ -22,11 +20,11 @@ export class AppComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private store: Store<AppState>
-  ) {
-    this.overlayOpen = store.select(state => state.uiState.overlayOpen);
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.overlayOpen = this.store.select(state => state.uiState.overlayOpen);
+
     this.sidebar =
       ($('.ui.left.sidebar', this.elementRef.nativeElement) as any)
       .sidebar({

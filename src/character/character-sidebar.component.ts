@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CharacterFacade } from '../common/character-facade';
@@ -8,12 +8,14 @@ import { Character } from '../model/character';
   selector: 'fate-character-sidebar',
   templateUrl: './character-sidebar.component.haml'
 })
-export class CharacterSidebarComponent {
+export class CharacterSidebarComponent implements OnInit {
 
-  characters: Observable<Array<Character>>;
+  characters: Observable<Character[]>;
 
-  constructor(private characterFacade: CharacterFacade) {
-    this.characters = characterFacade.findAll();
+  constructor(private characterFacade: CharacterFacade) {}
+
+  ngOnInit(): void {
+    this.characters = this.characterFacade.findAll();
   }
 
 }

@@ -27,7 +27,7 @@ export class CharacterEffects {
       .do(action => console.log(action))
       .withLatestFrom(this.store)
       .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
-      .flatMap(([action, state]) =>
+      .flatMap(([action]) =>
         Observable.concat(
           Observable.of(this.characterActions.beginLoadingCharacter(action.payload.id)),
           this.characterFacade

@@ -11,6 +11,7 @@ import { Stunt } from './stunt';
 
 export module Character {
   export interface Options {
+    id: string;
     name: string;
     player: Player;
 
@@ -27,6 +28,7 @@ export module Character {
 }
 
 export const DEFAULT_CHARACTER: Character.Options = {
+  id: undefined,
   name: undefined,
   player: undefined,
 

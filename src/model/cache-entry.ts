@@ -1,6 +1,4 @@
-import * as Immutable from 'immutable';
-
-import { MakeTypedRecord, TypedRecord } from '../common/typed-record';
+import { MakeTypedRecord } from '../common/typed-record';
 
 
 export module CacheEntry {
