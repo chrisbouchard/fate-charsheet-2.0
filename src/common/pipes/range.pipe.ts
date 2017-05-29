@@ -9,6 +9,8 @@ export class RangePipe implements PipeTransform {
     if (value !== undefined) {
       return Range(0, value);
     }
+
+    return undefined;
   }
 
 }

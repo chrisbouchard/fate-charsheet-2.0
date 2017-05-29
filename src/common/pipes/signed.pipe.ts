@@ -8,6 +8,8 @@ export class SignedPipe implements PipeTransform {
       const prefix = (value < 0) ? '' : '+';
       return prefix + value;
     }
+
+    return undefined;
   }
 
 }

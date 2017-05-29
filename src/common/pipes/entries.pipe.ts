@@ -9,6 +9,8 @@ export class EntriesPipe implements PipeTransform {
     if (value !== undefined) {
       return value.toKeyedSeq();
     }
+
+    return undefined;
   }
 
 }
