@@ -123,7 +123,7 @@ module.exports = resolve => ({
   plugins: [
     new ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /angular(\\|\/)core(\\|\/)@angular/,
       resolve('src'),
       {} // a map of your routes
     ),
