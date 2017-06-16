@@ -5,13 +5,12 @@ import { Range, Seq } from 'immutable';
 @Pipe({ name: 'range', pure: true })
 export class RangePipe implements PipeTransform {
 
-  transform(value: number): Seq.Indexed<number> {
-    if (value !== undefined) {
-      return Range(0, value);
+    transform(value: number): Seq.Indexed<number> {
+        if (value !== undefined) {
+            return Range(0, value);
+        }
+
+        return undefined;
     }
 
-    return undefined;
-  }
-
 }
-

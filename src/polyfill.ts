@@ -12,4 +12,3 @@ import 'rxjs/Rx';
 import 'semantic/semantic';
 
 import 'semantic/semantic.css';
-

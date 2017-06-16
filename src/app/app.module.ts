@@ -22,27 +22,26 @@ import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.routes';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    CharacterModule,
-    CommonModule,
-    GroupModule,
-    HalModule,
-    UIModule,
+    imports: [
+        BrowserModule,
+        CharacterModule,
+        CommonModule,
+        GroupModule,
+        HalModule,
+        UIModule,
 
-    RouterModule.forRoot(APP_ROUTES),
+        RouterModule.forRoot(APP_ROUTES),
 
-    StoreModule.provideStore({
-      characterState: characterReducer,
-      uiState: uiReducer
-    }, DEFAULT_APP_STATE),
-    EffectsModule.run(CharacterEffects),
-    StoreDevtoolsModule.instrumentOnlyWithExtension({
-      maxAge: 5
-    })
-  ],
-  bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ]
+        StoreModule.provideStore({
+            characterState: characterReducer,
+            uiState: uiReducer
+        }, DEFAULT_APP_STATE),
+        EffectsModule.run(CharacterEffects),
+        StoreDevtoolsModule.instrumentOnlyWithExtension({
+            maxAge: 5
+        })
+    ],
+    bootstrap: [ AppComponent ],
+    declarations: [ AppComponent ]
 })
 export class AppModule {}
-

@@ -7,19 +7,19 @@ const productionConfig = require('./webpack/webpack.production.js');
 const testConfig = require('./webpack/webpack.test.js');
 
 module.exports = env => merge([
-  commonConfig(path => resolve(__dirname, path)),
-  getProfileConfig(env.profile)(path => resolve(__dirname, path))
+    commonConfig(path => resolve(__dirname, path)),
+    getProfileConfig(env.profile)(path => resolve(__dirname, path))
 ]);
 
 function getProfileConfig(profile) {
-  switch (profile) {
-  case 'development':
-    return developmentConfig;
+    switch (profile) {
+        case 'development':
+            return developmentConfig;
 
-  case 'test':
-    return testConfig;
-  }
+        case 'test':
+            return testConfig;
+    }
 
-  return productionConfig;
+    return productionConfig;
 }
 

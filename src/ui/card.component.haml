@@ -1,7 +1,6 @@
 %a(class="fate-card ui {{character?.color}} fluid card" [routerLink]="['/character/1']")
-  .image
-    %img([src]="character?.portrait")
-  .content
-    .header {{character?.name}}
-    .meta {{character?.highConcept?.name}}
-
+    .image
+        %img([src]="character?.portrait")
+    .content
+        .header {{character?.name}}
+        .meta {{character?.highConcept?.name}}

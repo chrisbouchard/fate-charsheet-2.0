@@ -13,37 +13,37 @@ import { CharacterDetail } from '../model/character-detail';
 import { CharacterActions } from './character.actions';
 
 @Component({
-  selector: 'fate-character-page',
-  templateUrl: './character-page.component.haml'
+    selector: 'fate-character-page',
+    templateUrl: './character-page.component.haml'
 })
 export class CharacterPageComponent implements OnDestroy, OnInit {
 
-  character: Observable<Character>;
-  detail: Observable<CharacterDetail>;
-  error: Observable<boolean>;
-  loading: Observable<boolean>;
+    character: Observable<Character>;
+    detail: Observable<CharacterDetail>;
+    error: Observable<boolean>;
+    loading: Observable<boolean>;
 
-  private paramsSub: Subscription;
+    private paramsSub: Subscription;
 
-  constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
-    const cacheEntry = store.select(state => state.characterState.currentCacheEntry);
+    constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
+        const cacheEntry = store.select(state => state.characterState.currentCacheEntry);
 
-    this.character = cacheEntry.map(entry => entry.value);
-    this.error = cacheEntry.map(entry => entry.error);
-    this.loading = cacheEntry.map(entry => entry.loading);
+        this.character = cacheEntry.map(entry => entry.value);
+        this.error = cacheEntry.map(entry => entry.error);
+        this.loading = cacheEntry.map(entry => entry.loading);
 
-    this.detail = store.select(state => state.characterState.detail);
-  }
+        this.detail = store.select(state => state.characterState.detail);
+    }
 
-  ngOnInit(): void {
-    // TODO: This should be handled by store "middleware".
-    this.paramsSub = this.route.params.subscribe(params => {
-      this.store.dispatch(this.characterActions.selectCharacter(params['id']));
-    });
-  }
+    ngOnInit(): void {
+        // TODO: This should be handled by store "middleware".
+        this.paramsSub = this.route.params.subscribe(params => {
+            this.store.dispatch(this.characterActions.selectCharacter(params['id']));
+        });
+    }
 
-  ngOnDestroy(): void {
-    this.paramsSub.unsubscribe();
-  }
+    ngOnDestroy(): void {
+        this.paramsSub.unsubscribe();
+    }
 
 }

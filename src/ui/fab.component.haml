@@ -1,16 +1,15 @@
 #fate-fab-wrapper([class.fate-fab-active]="active" [class.fate-fab-preload]="preload" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)")
-  .fate-fab-extra-actions(*ngIf="showActions" (animationend)="checkActions()")
-    .fate-fab-container(*ngFor="let action of actions.toArray() | reversed" (click)="action.doAction($event)")
-      .fate-fab-label(*ngIf="showLabels && action.label")
-        %a.ui.right.pointing.label {{action.label}}
-      %button.huge.circular.ui.icon.button(class="{{action.color}}")
-        .fate-fab-icon
-          %i.icon(class="{{action.icon}}")/
+    .fate-fab-extra-actions(*ngIf="showActions" (animationend)="checkActions()")
+        .fate-fab-container(*ngFor="let action of actions.toArray() | reversed" (click)="action.doAction($event)")
+            .fate-fab-label(*ngIf="showLabels && action.label")
+                %a.ui.right.pointing.label {{action.label}}
+            %button.huge.circular.ui.icon.button(class="{{action.color}}")
+                .fate-fab-icon
+                    %i.icon(class="{{action.icon}}")/
 
-  .fate-fab-container((click)="doAction($event)")
-    .fate-fab-label.fate-fab-main-label(*ngIf="showLabels && label" (animationend)="checkLabel()")
-      %a.ui.right.pointing.label {{label}}
-    %button.huge.circular.ui.icon.button(class="{{currentColor}}")
-      .fate-fab-icon.fate-fab-main
-        %i.icon(class="{{currentIcon}}")/
-
+    .fate-fab-container((click)="doAction($event)")
+        .fate-fab-label.fate-fab-main-label(*ngIf="showLabels && label" (animationend)="checkLabel()")
+            %a.ui.right.pointing.label {{label}}
+        %button.huge.circular.ui.icon.button(class="{{currentColor}}")
+            .fate-fab-icon.fate-fab-main
+                %i.icon(class="{{currentIcon}}")/

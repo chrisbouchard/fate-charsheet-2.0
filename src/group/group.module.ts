@@ -6,12 +6,11 @@ import { UIModule } from '../ui/ui.module';
 import { GroupPageComponent } from './group-page.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    UIModule
-  ],
-  declarations: [ GroupPageComponent ],
-  exports: [ GroupPageComponent ]
+    imports: [
+        CommonModule,
+        UIModule
+    ],
+    declarations: [ GroupPageComponent ],
+    exports: [ GroupPageComponent ]
 })
 export class GroupModule {}
-

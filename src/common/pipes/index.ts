@@ -8,10 +8,9 @@ import { SignedPipe } from './signed.pipe';
 import { SortedPipe } from './sorted.pipe';
 
 export {
-  EntriesPipe, IndexedPipe, MappedPipe, PaddedPipe, RangePipe, ReversedPipe, SignedPipe, SortedPipe
+    EntriesPipe, IndexedPipe, MappedPipe, PaddedPipe, RangePipe, ReversedPipe, SignedPipe, SortedPipe
 };
 
 export const COMMON_PIPES: any[] = [
-  EntriesPipe, IndexedPipe, MappedPipe, PaddedPipe, RangePipe, ReversedPipe, SignedPipe, SortedPipe
+    EntriesPipe, IndexedPipe, MappedPipe, PaddedPipe, RangePipe, ReversedPipe, SignedPipe, SortedPipe
 ];
-

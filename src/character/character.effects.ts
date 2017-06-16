@@ -13,28 +13,27 @@ import { CharacterActions, CharacterActionType } from './character.actions';
 @Injectable()
 export class CharacterEffects {
 
-  constructor(
-    private actions: Actions,
-    private characterActions: CharacterActions,
-    private characterFacade: CharacterFacade,
-    private store: Store<AppState>
-  ) {}
+    constructor(
+        private actions: Actions,
+        private characterActions: CharacterActions,
+        private characterFacade: CharacterFacade,
+        private store: Store<AppState>
+    ) {}
 
-  // TODO: This needs some error handling
-  @Effect() loadCharacter: Observable<Action> =
-    this.actions
-      .ofType(CharacterActionType.SELECT_CHARACTER)
-      .do(action => console.log(action))
-      .withLatestFrom(this.store)
-      .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
-      .flatMap(([action]) =>
-        Observable.concat(
-          Observable.of(this.characterActions.beginLoadingCharacter(action.payload.id)),
-          this.characterFacade
-            .find(action.payload.id)
-            .map(character => this.characterActions.cacheCharacter(action.payload.id, character))
-        )
-      );
+    // TODO: This needs some error handling
+    @Effect() loadCharacter: Observable<Action> =
+        this.actions
+            .ofType(CharacterActionType.SELECT_CHARACTER)
+            .do(action => console.log(action))
+            .withLatestFrom(this.store)
+            .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
+            .flatMap(([action]) =>
+                Observable.concat(
+                    Observable.of(this.characterActions.beginLoadingCharacter(action.payload.id)),
+                    this.characterFacade
+                        .find(action.payload.id)
+                        .map(character => this.characterActions.cacheCharacter(action.payload.id, character))
+                )
+            );
 
 }
-

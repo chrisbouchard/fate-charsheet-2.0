@@ -14,31 +14,30 @@ import { StressBoxComponent } from './stress-box.component';
 import { UIActions } from './ui.actions';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  declarations: [
-    CardColumnComponent,
-    CardComponent,
-    FabActionComponent,
-    FabComponent,
-    ListComponent,
-    OverlayComponent,
-    SheetComponent,
-    StressBoxComponent
-  ],
-  exports: [
-    CardColumnComponent,
-    CardComponent,
-    FabActionComponent,
-    FabComponent,
-    ListComponent,
-    OverlayComponent,
-    SheetComponent,
-    StressBoxComponent
-  ],
-  providers: [ UIActions ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ],
+    declarations: [
+        CardColumnComponent,
+        CardComponent,
+        FabActionComponent,
+        FabComponent,
+        ListComponent,
+        OverlayComponent,
+        SheetComponent,
+        StressBoxComponent
+    ],
+    exports: [
+        CardColumnComponent,
+        CardComponent,
+        FabActionComponent,
+        FabComponent,
+        ListComponent,
+        OverlayComponent,
+        SheetComponent,
+        StressBoxComponent
+    ],
+    providers: [UIActions]
 })
 export class UIModule {}
-

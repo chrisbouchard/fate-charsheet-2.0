@@ -5,18 +5,17 @@ import { CharacterFacade } from '../common/character-facade';
 import { Character } from '../model/character';
 
 @Component({
-  selector: 'fate-character-sidebar',
-  templateUrl: './character-sidebar.component.haml'
+    selector: 'fate-character-sidebar',
+    templateUrl: './character-sidebar.component.haml'
 })
 export class CharacterSidebarComponent implements OnInit {
 
-  characters: Observable<Character[]>;
+    characters: Observable<Character[]>;
 
-  constructor(private characterFacade: CharacterFacade) {}
+    constructor(private characterFacade: CharacterFacade) {}
 
-  ngOnInit(): void {
-    this.characters = this.characterFacade.findAll();
-  }
+    ngOnInit(): void {
+        this.characters = this.characterFacade.findAll();
+    }
 
 }
-

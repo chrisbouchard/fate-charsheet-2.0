@@ -5,13 +5,12 @@ import { CharacterPageComponent } from './character-page.component';
 import { CharacterSidebarComponent } from './character-sidebar.component';
 
 export const CHARACTER_ROUTES: Routes = [
-  {
-    path: ':id',
-    children: [
-      { path: '', component: CharacterPageComponent },
-      { path: '', component: CharacterOverlayComponent, outlet: 'overlay' },
-      { path: '', component: CharacterSidebarComponent, outlet: 'sidebar' }
-    ]
-  }
+    {
+        path: ':id',
+        children: [
+            { path: '', component: CharacterPageComponent },
+            { path: '', component: CharacterOverlayComponent, outlet: 'overlay' },
+            { path: '', component: CharacterSidebarComponent, outlet: 'sidebar' }
+        ]
+    }
 ];
-

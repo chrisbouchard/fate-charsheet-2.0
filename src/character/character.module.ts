@@ -9,21 +9,20 @@ import { CharacterSidebarComponent } from './character-sidebar.component';
 import { CharacterActions } from './character.actions';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    UIModule
-  ],
-  declarations: [
-    CharacterOverlayComponent,
-    CharacterPageComponent,
-    CharacterSidebarComponent
-  ],
-  exports: [
-    CharacterOverlayComponent,
-    CharacterPageComponent,
-    CharacterSidebarComponent
-  ],
-  providers: [ CharacterActions ]
+    imports: [
+        CommonModule,
+        UIModule
+    ],
+    declarations: [
+        CharacterOverlayComponent,
+        CharacterPageComponent,
+        CharacterSidebarComponent
+    ],
+    exports: [
+        CharacterOverlayComponent,
+        CharacterPageComponent,
+        CharacterSidebarComponent
+    ],
+    providers: [ CharacterActions ]
 })
 export class CharacterModule {}
-

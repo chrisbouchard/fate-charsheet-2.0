@@ -1,123 +1,122 @@
 #fate-fab-wrapper {
-  position: fixed;
-  padding: 1em;
-  right: 2em;
-  bottom: 2em;
-  opacity: 1;
+    position: fixed;
+    padding: 1em;
+    right: 2em;
+    bottom: 2em;
+    opacity: 1;
 
-  transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 
-  &.fate-fab-preload {
-    opacity: 0;
-  }
+    &.fate-fab-preload {
+        opacity: 0;
+    }
 }
 
 .fate-fab-container {
-  position: relative;
-  text-align: right;
-  border-radius: 50%;
-  box-shadow: 0 5px 5px 0 rgba(34, 36, 38, .30);
+    position: relative;
+    text-align: right;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px 0 rgba(34, 36, 38, .30);
 
-  button {
-    margin: 0 !important;
-  }
+    button {
+        margin: 0 !important;
+    }
 }
 
 .fate-fab-icon {
-  display: flex;
-  height: 1.25em;
-  width: 1.25em;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    height: 1.25em;
+    width: 1.25em;
+    align-items: center;
+    justify-content: center;
 }
 
 .fate-fab-icon i {
-  margin: 0;
+    margin: 0;
 }
 
 .fate-fab-main {
-  transition: transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
 .fate-fab-active .fate-fab-main {
-  transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 
 .fate-fab-extra-actions {
-  position: relative;
-  animation-duration: 0.5s;
-  animation-name: fade-out;
-  animation-fill-mode: both;
+    position: relative;
+    animation-duration: 0.5s;
+    animation-name: fade-out;
+    animation-fill-mode: both;
 
-  .fate-fab-container {
-    margin-bottom: 1em;
-  }
+    .fate-fab-container {
+        margin-bottom: 1em;
+    }
 }
 
 .fate-fab-active .fate-fab-extra-actions {
-  animation-name: fade-in;
+    animation-name: fade-in;
 }
 
 .fate-fab-label {
-  position: absolute !important;
-  white-space: nowrap;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  overflow: hidden;
+    position: absolute !important;
+    white-space: nowrap;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
 }
 
 .fate-fab-main-label {
-  animation-duration: 0.5s;
-  animation-name: label-fade-out;
-  animation-fill-mode: both;
+    animation-duration: 0.5s;
+    animation-name: label-fade-out;
+    animation-fill-mode: both;
 }
 
 .fate-fab-active .fate-fab-main-label {
-  animation-name: label-fade-in;
+    animation-name: label-fade-in;
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    top: 1ex;
-  }
+    from {
+        opacity: 0;
+        top: 1ex;
+    }
 
-  to {
-    opacity: 1;
-    top: 0;
-  }
+    to {
+        opacity: 1;
+        top: 0;
+    }
 }
 
 @keyframes fade-out {
-  from {
-    opacity: 1;
-    top: 0;
-  }
+    from {
+        opacity: 1;
+        top: 0;
+    }
 
-  to {
-    opacity: 0;
-    top: 1ex;
-  }
+    to {
+        opacity: 0;
+        top: 1ex;
+    }
 }
 
 @keyframes label-fade-in {
-  from {
-    opacity: 0;
-  }
+    from {
+        opacity: 0;
+    }
 
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes label-fade-out {
-  from {
-    opacity: 1;
-  }
+    from {
+        opacity: 1;
+    }
 
-  to {
-    opacity: 0;
-  }
+    to {
+        opacity: 0;
+    }
 }
-
