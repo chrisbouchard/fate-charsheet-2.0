@@ -1,4 +1,5 @@
-import { animate, Component, Input, state, style, transition, trigger } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'fate-overlay',
