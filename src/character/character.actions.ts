@@ -2,25 +2,22 @@ import { Injectable } from '@angular/core';
 
 import { Action } from '@ngrx/store';
 
-import { stringEnum } from '../common/string-enum';
 import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
 import { Skill } from '../model/skill';
 
 
-export const CharacterActionType = stringEnum([
-    'BEGIN_LOADING_CHARACTER',
-    'CACHE_CHARACTER',
-    'SELECT_CHARACTER',
-    'SET_CHARACTER_STRESS',
+export enum CharacterActionType {
+  BEGIN_LOADING_CHARACTER = 'BEGIN_LOADING_CHARACTER',
+  CACHE_CHARACTER = 'CACHE_CHARACTER',
+  SELECT_CHARACTER = 'SELECT_CHARACTER',
+  SET_CHARACTER_STRESS = 'SET_CHARACTER_STRESS',
 
-    'CLEAR_ASPECTS',
-    'CLEAR_SKILLS',
-    'TOGGLE_ASPECT',
-    'TOGGLE_SKILL'
-]);
-
-export type CharacterActionType = keyof typeof CharacterActionType;
+  CLEAR_ASPECTS = 'CLEAR_ASPECTS',
+  CLEAR_SKILLS = 'CLEAR_SKILLS',
+  TOGGLE_ASPECT = 'TOGGLE_ASPECT',
+  TOGGLE_SKILL = 'TOGGLE_SKILL'
+}
 
 
 @Injectable()

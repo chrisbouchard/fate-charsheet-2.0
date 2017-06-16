@@ -33,5 +33,17 @@ export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {
 
     return entry.value;
   }
+
+  updateCurrentCharacter(updater: (character: Character) => Character): this {
+    if (this.currentCharacter === undefined) {
+      return this;
+    }
+
+    return this.update('cache', cache =>
+      cache.update(this.currentId, entry =>
+        entry.update('value', updater)
+      )
+    );
+  };
 }
 

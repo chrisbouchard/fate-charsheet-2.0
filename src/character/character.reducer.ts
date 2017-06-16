@@ -1,4 +1,4 @@
-import { Action, ActionReducer } from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { toggle } from '../common/util/sets';
 import { CacheEntry } from '../model/cache-entry';
@@ -7,7 +7,7 @@ import { Character } from '../model/character';
 import { CharacterActionType } from './character.actions';
 import { CharacterState } from './character.state';
 
-export const characterReducer: ActionReducer<CharacterState> = (state: CharacterState = new CharacterState(), action: Action): CharacterState => {
+export const characterReducer: ActionReducer<CharacterState> = (state = new CharacterState(), action) => {
   switch (action.type) {
 
     case CharacterActionType.BEGIN_LOADING_CHARACTER:
@@ -32,15 +32,11 @@ export const characterReducer: ActionReducer<CharacterState> = (state: Character
         return state;
       }
 
-      return state.update('cache', cache =>
-        cache.update(state.currentId, entry =>
-          entry.update('value', character =>
-            character.update('stressTracks', tracks =>
-              tracks.update(action.payload.track, track =>
-                track.update('boxes', boxes =>
-                  boxes.set(action.payload.index, action.payload.value)
-                )
-              )
+      return state.updateCurrentCharacter(character =>
+        character.update('stressTracks', tracks =>
+          tracks.update(action.payload.track, track =>
+            track.update('boxes', boxes =>
+              boxes.set(action.payload.index, action.payload.value)
             )
           )
         )

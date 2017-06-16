@@ -12,7 +12,7 @@
     "no-trailing-whitespace": true,
     "no-use-before-declare": true,
     "one-line": [true, "check-open-brace"],
-    "ordered-imports": [true, "alphabatize", "check-groups"],
+    "ordered-imports": [true],
     "prefer-const": true,
     "quotemark": [true, "single", "avoid-escape"],
     "radix": true,

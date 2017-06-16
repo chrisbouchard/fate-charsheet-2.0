@@ -18,4 +18,3 @@ export function DEFAULT_CACHE_ENTRY<T>(): CacheEntry.Options<T> {
 }
 
 export class CacheEntry<T> extends MakeTypedRecord(DEFAULT_CACHE_ENTRY<T>()) {}
-

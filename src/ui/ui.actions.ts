@@ -2,59 +2,59 @@ import { Injectable } from '@angular/core';
 
 import { Action } from '@ngrx/store';
 
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export enum UIActionType {
+  CLOSE_MODAL = 'CLOSE_MODAL',
+  OPEN_MODAL = 'OPEN_MODAL',
+  TOGGLE_MODAL = 'TOGGLE_MODAL',
 
-export const CLOSE_OVERLAY = 'CLOSE_OVERLAY';
-export const OPEN_OVERLAY = 'OPEN_OVERLAY';
-export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
+  CLOSE_OVERLAY = 'CLOSE_OVERLAY',
+  OPEN_OVERLAY = 'OPEN_OVERLAY',
+  TOGGLE_OVERLAY = 'TOGGLE_OVERLAY',
 
-export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
-export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
-export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+  CLOSE_SIDEBAR = 'CLOSE_SIDEBAR',
+  OPEN_SIDEBAR = 'OPEN_SIDEBAR',
+  TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+}
 
 @Injectable()
 export class UIActions {
 
   closeModal(): Action {
-    return { type: CLOSE_MODAL };
+    return { type: UIActionType.CLOSE_MODAL };
   }
 
   openModal(): Action {
-    return { type: OPEN_MODAL };
+    return { type: UIActionType.OPEN_MODAL };
   }
 
   toggleModal(): Action {
-    return { type: TOGGLE_MODAL };
+    return { type: UIActionType.TOGGLE_MODAL };
   }
 
 
   closeOverlay(): Action {
-    return { type: CLOSE_OVERLAY };
+    return { type: UIActionType.CLOSE_OVERLAY };
   }
 
   openOverlay(): Action {
-    return { type: OPEN_OVERLAY };
+    return { type: UIActionType.OPEN_OVERLAY };
   }
 
   toggleOverlay(): Action {
-    return { type: TOGGLE_OVERLAY };
+    return { type: UIActionType.TOGGLE_OVERLAY };
   }
 
 
   closeSidebar(): Action {
-    return { type: CLOSE_SIDEBAR };
+    return { type: UIActionType.CLOSE_SIDEBAR };
   }
 
   openSidebar(): Action {
-    return { type: OPEN_SIDEBAR };
+    return { type: UIActionType.OPEN_SIDEBAR };
   }
 
   toggleSidebar(): Action {
-    return { type: TOGGLE_SIDEBAR };
+    return { type: UIActionType.TOGGLE_SIDEBAR };
   }
 
 }
-
-
