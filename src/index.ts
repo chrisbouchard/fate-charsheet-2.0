@@ -1,7 +1,8 @@
 import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { platformBrowser } from '@angular/platform-browser';
 
-import { AppModule } from './app/app.module';
+import { AppModuleNgFactory } from './app/app.module.ngfactory';
+
 import { __PRODUCTION__ } from './globals';
 
 if (__PRODUCTION__) {
@@ -9,4 +10,5 @@ if (__PRODUCTION__) {
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)
+    .catch(err => console.error(err));

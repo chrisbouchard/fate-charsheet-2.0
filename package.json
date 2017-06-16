@@ -22,7 +22,6 @@
     "@angular/core": "4.2.2",
     "@angular/http": "4.2.2",
     "@angular/platform-browser": "4.2.2",
-    "@angular/platform-browser-dynamic": "4.2.2",
     "@angular/router": "4.2.2",
     "@ngrx/core": "1.2.0",
     "@ngrx/effects": "2.0.3",
@@ -43,7 +42,9 @@
     "zone.js": "0.8.12"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "4.2.2",
     "@angular/language-service": "4.2.2",
+    "@ngtools/webpack": "1.5.0-rc.0",
     "@types/core-decorators": "0.10.32",
     "@types/jasmine": "2.5.52",
     "@types/jquery": "2.0.46",

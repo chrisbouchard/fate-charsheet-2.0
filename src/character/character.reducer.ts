@@ -1,4 +1,4 @@
-import { ActionReducer } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 import { toggle } from '../common/util/sets';
 import { CacheEntry } from '../model/cache-entry';
@@ -7,7 +7,7 @@ import { Character } from '../model/character';
 import { CharacterActionType } from './character.actions';
 import { CharacterState } from './character.state';
 
-export const characterReducer: ActionReducer<CharacterState> = (state = new CharacterState(), action) => {
+export function characterReducer(state: CharacterState = new CharacterState(), action: Action): CharacterState {
     switch (action.type) {
 
         case CharacterActionType.BEGIN_LOADING_CHARACTER:
@@ -75,4 +75,4 @@ export const characterReducer: ActionReducer<CharacterState> = (state = new Char
         default:
             return state;
     }
-};
+}
