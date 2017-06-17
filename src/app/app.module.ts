@@ -15,7 +15,7 @@ import { UIModule } from '../ui/ui.module';
 import { CharacterEffects } from '../character/character.effects';
 
 import { AppComponent } from './app.component';
-import { appReducer } from './app.reducer';
+import { appReducers } from './app.reducer';
 import { APP_ROUTES } from './app.routes';
 
 @NgModule({
@@ -29,9 +29,9 @@ import { APP_ROUTES } from './app.routes';
 
         RouterModule.forRoot(APP_ROUTES),
 
-        StoreModule.provideStore(appReducer),
-        EffectsModule.run(CharacterEffects),
-        StoreDevtoolsModule.instrumentOnlyWithExtension()
+        StoreModule.forRoot(appReducers),
+        EffectsModule.forRoot([CharacterEffects]),
+        StoreDevtoolsModule.instrument({ maxAge: 50 })
     ],
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ]
