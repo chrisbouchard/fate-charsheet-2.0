@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 import { Action } from '@ngrx/store';
 
 import { Aspect } from '../model/aspect';
@@ -20,40 +18,51 @@ export enum CharacterActionType {
 }
 
 
-@Injectable()
-export class CharacterActions {
-
-    beginLoadingCharacter(id: string): Action {
-        return { type: CharacterActionType.BEGIN_LOADING_CHARACTER, payload: { id } };
-    }
-
-    cacheCharacter(id: string, character: Character): Action {
-        return { type: CharacterActionType.CACHE_CHARACTER, payload: { id, character } };
-    }
-
-    selectCharacter(id: string): Action {
-        return { type: CharacterActionType.SELECT_CHARACTER, payload: { id } };
-    }
-
-    setCharacterStress(track: number, index: number, value: boolean): Action {
-        return { type: CharacterActionType.SET_CHARACTER_STRESS, payload: { track, index, value } };
-    }
-
-
-    clearAspects(): Action {
-        return { type: CharacterActionType.CLEAR_ASPECTS };
-    }
-
-    clearSkills(): Action {
-        return { type: CharacterActionType.CLEAR_SKILLS };
-    }
-
-    toggleAspect(aspect: Aspect): Action {
-        return { type: CharacterActionType.TOGGLE_ASPECT, payload: { aspect } };
-    }
-
-    toggleSkill(skill: Skill): Action {
-        return { type: CharacterActionType.TOGGLE_SKILL, payload: { skill } };
-    }
-
+export class BeginLoadingCharacterAction implements Action {
+    readonly type = CharacterActionType.BEGIN_LOADING_CHARACTER;
+    constructor(public id: string) {}
 }
+
+export class CacheCharacterAction implements Action {
+    readonly type = CharacterActionType.CACHE_CHARACTER;
+    constructor(public id: string, public character: Character) {}
+}
+
+export class SelectCharacterAction implements Action {
+    readonly type = CharacterActionType.SELECT_CHARACTER;
+    constructor(public id: string) {}
+}
+
+export class SetCharacterStressAction implements Action {
+    readonly type = CharacterActionType.SET_CHARACTER_STRESS;
+    constructor(public track: number, public index: number, public value: boolean) {}
+}
+
+
+export class ClearAspectsAction implements Action {
+    readonly type = CharacterActionType.CLEAR_ASPECTS;
+}
+
+export class ClearSkillsAction implements Action {
+    readonly type = CharacterActionType.CLEAR_SKILLS;
+}
+
+export class ToggleAspectAction implements Action {
+    readonly type = CharacterActionType.TOGGLE_ASPECT;
+    constructor(public aspect: Aspect) {}
+}
+
+export class ToggleSkillAction implements Action {
+    readonly type = CharacterActionType.TOGGLE_SKILL;
+    constructor(public skill: Skill) {}
+}
+
+export type CharacterAction
+    = BeginLoadingCharacterAction
+    | CacheCharacterAction
+    | SelectCharacterAction
+    | SetCharacterStressAction
+    | ClearAspectsAction
+    | ClearSkillsAction
+    | ToggleAspectAction
+    | ToggleSkillAction;

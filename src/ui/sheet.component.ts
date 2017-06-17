@@ -4,13 +4,12 @@ import { Store } from '@ngrx/store';
 
 import { Map } from 'immutable';
 
-import { CharacterActions } from '../character/character.actions';
+import { SetCharacterStressAction, ToggleAspectAction, ToggleSkillAction } from '../character/character.actions';
 import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
 import { CharacterDetail } from '../model/character-detail';
 import { Skill } from '../model/skill';
-
-import { UIActions } from './ui.actions';
+import { ToggleOverlayAction } from './ui.actions';
 
 @Component({
     selector: 'fate-sheet',
@@ -39,13 +38,10 @@ export class SheetComponent {
         [+8, 'Legendary']
     ]);
 
-    constructor(private characterActions: CharacterActions,
-                private store: Store<any>,
-                private uiActions: UIActions) {
-    }
+    constructor(private store: Store<any>) {}
 
     setStress(event: any, track: number, stress: number, value: boolean): void {
-        this.store.dispatch(this.characterActions.setCharacterStress(track, stress - 1, value));
+        this.store.dispatch(new SetCharacterStressAction(track, stress - 1, value));
         event.preventDefault();
         event.stopPropagation();
     }
@@ -55,7 +51,7 @@ export class SheetComponent {
     }
 
     toggleAspect(aspect: Aspect): void {
-        this.store.dispatch(this.characterActions.toggleAspect(aspect));
+        this.store.dispatch(new ToggleAspectAction(aspect));
     }
 
     isSkillSelected(skill: Skill): boolean {
@@ -63,7 +59,7 @@ export class SheetComponent {
     }
 
     toggleSkill(skill: Skill): void {
-        this.store.dispatch(this.characterActions.toggleSkill(skill));
+        this.store.dispatch(new ToggleSkillAction(skill));
     }
 
     addPoint(): void {
@@ -75,7 +71,7 @@ export class SheetComponent {
     }
 
     addModifier(): void {
-        this.store.dispatch(this.uiActions.toggleOverlay());
+        this.store.dispatch(new ToggleOverlayAction());
     }
 
     getIndex(indexedPair: [number, any]): number {

@@ -6,7 +6,6 @@ import { UIModule } from '../ui/ui.module';
 import { CharacterOverlayComponent } from './character-overlay.component';
 import { CharacterPageComponent } from './character-page.component';
 import { CharacterSidebarComponent } from './character-sidebar.component';
-import { CharacterActions } from './character.actions';
 
 @NgModule({
     imports: [
@@ -22,7 +21,6 @@ import { CharacterActions } from './character.actions';
         CharacterOverlayComponent,
         CharacterPageComponent,
         CharacterSidebarComponent
-    ],
-    providers: [ CharacterActions ]
+    ]
 })
 export class CharacterModule {}

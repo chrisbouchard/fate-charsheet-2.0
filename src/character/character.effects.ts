@@ -8,14 +8,16 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
 
-import { CharacterActions, CharacterActionType } from './character.actions';
+import {
+    BeginLoadingCharacterAction, CacheCharacterAction, CharacterActionType,
+    SelectCharacterAction
+} from './character.actions';
 
 @Injectable()
 export class CharacterEffects {
 
     constructor(
         private actions: Actions,
-        private characterActions: CharacterActions,
         private characterFacade: CharacterFacade,
         private store: Store<AppState>
     ) {}
@@ -24,15 +26,16 @@ export class CharacterEffects {
     @Effect() loadCharacter: Observable<Action> =
         this.actions
             .ofType(CharacterActionType.SELECT_CHARACTER)
+            .map(action => action as SelectCharacterAction)
             .do(action => console.log(action))
             .withLatestFrom(this.store)
-            .filter(([action, state]) => !state.characterState.cache.has(action.payload.id))
+            .filter(([action, state]) => !state.characterState.cache.has(action.id))
             .flatMap(([action]) =>
                 Observable.concat(
-                    Observable.of(this.characterActions.beginLoadingCharacter(action.payload.id)),
+                    Observable.of(new BeginLoadingCharacterAction(action.id)),
                     this.characterFacade
-                        .find(action.payload.id)
-                        .map(character => this.characterActions.cacheCharacter(action.payload.id, character))
+                        .find(action.id)
+                        .map(character => new CacheCharacterAction(action.id, character))
                 )
             );
 
