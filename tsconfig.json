@@ -13,7 +13,6 @@
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "noUnusedParameters": false,
-        "outDir": "ngfactory",
         "pretty": true,
         "sourceMap": true,
         "target": "es6"
@@ -31,7 +30,8 @@
         "./custom_typings"
     ],
     "angularCompilerOptions": {
-        "entryModule": "src/app/app.module#AppModule"
+        "entryModule": "src/app/app.module#AppModule",
+        "genDir": "../ngfactory"
     }
 }
 

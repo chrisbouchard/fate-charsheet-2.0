@@ -61,6 +61,13 @@ module.exports = resolve => ({
                                     useCache: true
                                 }
                             },
+                            {
+                                loader: 'ng-router-loader',
+                                options : {
+                                    aot: true,
+                                    genDir: resolve('ngfactory')
+                                }
+                            },
                             { loader: 'tslint-loader' }
                         ]
                     },
