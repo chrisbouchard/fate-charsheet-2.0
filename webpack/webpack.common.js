@@ -1,8 +1,8 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const { AotPlugin } = require('@ngtools/webpack');
-const { ContextReplacementPlugin, NoEmitOnErrorsPlugin, ProgressPlugin, ProvidePlugin } = require('webpack');
+const { NgcWebpackPlugin } = require('ngc-webpack');
+const { ContextReplacementPlugin, ProgressPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
@@ -54,8 +54,13 @@ module.exports = resolve => ({
                     {
                         test: /\.ts$/,
                         use: [
-                            { loader: 'babel-loader' },
-                            { loader: '@ngtools/webpack' },
+                            {
+                                loader: 'awesome-typescript-loader',
+                                options: {
+                                    useBabel: true,
+                                    useCache: true
+                                }
+                            },
                             { loader: 'tslint-loader' }
                         ]
                     },
@@ -115,10 +120,8 @@ module.exports = resolve => ({
     },
 
     plugins: [
-        new NoEmitOnErrorsPlugin(),
-        new ProgressPlugin(),
-        new AotPlugin({
-            tsConfigPath: resolve('tsconfig.json')
+        new NgcWebpackPlugin({
+            tsConfig: resolve('tsconfig.json')
         }),
         new ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows

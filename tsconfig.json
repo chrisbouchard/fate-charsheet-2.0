@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": "",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
@@ -14,6 +13,7 @@
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "noUnusedParameters": false,
+        "outDir": "ngfactory",
         "pretty": true,
         "sourceMap": true,
         "target": "es6"
@@ -31,10 +31,7 @@
         "./custom_typings"
     ],
     "angularCompilerOptions": {
-        "alwaysCompileGeneratedCode": true,
-        "entryModule": "src/app/app.module#AppModule",
-        "genDir": "src",
-        "skipMetadataEmit": true
+        "entryModule": "src/app/app.module#AppModule"
     }
 }
 

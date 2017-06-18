@@ -4,7 +4,7 @@ const { DefinePlugin } = webpack;
 const { CommonsChunkPlugin } = webpack.optimize;
 
 module.exports = require => ({
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
 
     plugins: [
         new DefinePlugin({
