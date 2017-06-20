@@ -1,8 +1,9 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 
 const { NgcWebpackPlugin } = require('ngc-webpack');
-const { ContextReplacementPlugin, ProgressPlugin, ProvidePlugin } = require('webpack');
+const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
@@ -27,7 +28,12 @@ module.exports = resolve => ({
         colors: true,
         hash: false,
         timings: true,
-        version: false
+        version: false,
+
+        maxModules: Infinity,
+        exclude: [
+            /\.\/~\//
+        ]
     },
 
     resolve: {
@@ -47,6 +53,7 @@ module.exports = resolve => ({
         rules: [
             {
                 include: [
+                    resolve('aot'),
                     resolve('src'),
                     resolve('test')
                 ],
@@ -63,9 +70,9 @@ module.exports = resolve => ({
                             },
                             {
                                 loader: 'ng-router-loader',
-                                options : {
+                                options: {
                                     aot: true,
-                                    genDir: resolve('ngfactory')
+                                    genDir: 'aot'
                                 }
                             },
                             { loader: 'tslint-loader' }
@@ -90,7 +97,7 @@ module.exports = resolve => ({
                         loader: 'raw-loader'
                     },
                     {
-                        test: /\.less/,
+                        test: /\.less$/,
                         use: [
                             { loader: 'raw-loader' },
                             { loader: 'less-loader' }
@@ -128,6 +135,7 @@ module.exports = resolve => ({
 
     plugins: [
         new NgcWebpackPlugin({
+            //entryModule: resolve('src/app/app.module#AppModule'),
             tsConfig: resolve('tsconfig.json')
         }),
         new ContextReplacementPlugin(
@@ -141,7 +149,13 @@ module.exports = resolve => ({
         new HtmlWebpackPlugin({
             inject: 'body',
             template: '!!haml-haml-loader!./src/index.haml'
-        })
+        }),
+        new WatchIgnorePlugin([
+            resolve('.awcache'),
+            resolve('aot'),
+            resolve('dist'),
+            resolve('node_modules')
+        ])
     ],
 
     devServer: {
@@ -153,7 +167,12 @@ module.exports = resolve => ({
             colors: true,
             hash: false,
             timings: true,
-            version: false
+            version: false,
+
+            maxModules: Infinity,
+            exclude: [
+                /\.\/~\//
+            ]
         }
     }
 });

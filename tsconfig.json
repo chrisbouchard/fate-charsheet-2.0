@@ -9,6 +9,7 @@
             "es2017"
         ],
         "moduleResolution": "node",
+        "noEmit": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
@@ -22,7 +23,7 @@
     ],
     "exclude": [
         "node_modules/",
-        "ngfactory/",
+        "aot/",
         "src/index.ts"
     ],
     "typeRoots": [
@@ -31,7 +32,8 @@
     ],
     "angularCompilerOptions": {
         "entryModule": "src/app/app.module#AppModule",
-        "genDir": "../ngfactory"
+        "genDir": "aot",
+        "skipMetadataEmit": true
     }
 }
 

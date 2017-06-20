@@ -83,6 +83,7 @@
     "tslint-loader": "3.5.3",
     "typescript": "2.4.0",
     "url-loader": "0.5.9",
+    "watch-ignore-webpack-plugin": "1.0.0",
     "webpack": "2.6.1",
     "webpack-dev-server": "2.4.5",
     "webpack-merge": "4.1.0",

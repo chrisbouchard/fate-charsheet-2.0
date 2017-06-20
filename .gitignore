@@ -1,5 +1,6 @@
 /.awcache/
 /.idea/
+/aot/
 /dist/
 /node_modules/
 /npm-debug.log

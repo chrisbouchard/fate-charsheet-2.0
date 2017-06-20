@@ -1,7 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
 
-import { AppModuleNgFactory } from './app/app.module.ngfactory';
+import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
 
 import { __PRODUCTION__ } from './globals';
 
@@ -11,4 +11,4 @@ if (__PRODUCTION__) {
 }
 
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)
-    .catch(err => console.error(err));
+    .catch(err => console.log(err));
