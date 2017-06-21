@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CharacterModule } from '../character/character.module';
 import { CommonModule } from '../common/common.module';
@@ -31,7 +31,7 @@ import { APP_ROUTES } from './app.routes';
 
         StoreModule.forRoot(appReducers),
         EffectsModule.forRoot([CharacterEffects]),
-        // StoreDevtoolsModule.instrument({ maxAge: 50 })
+        [] || StoreDevtoolsModule.instrument({ maxAge: 50 })
     ],
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ]
