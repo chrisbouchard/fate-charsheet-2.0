@@ -44,5 +44,5 @@ export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {
                 entry.update('value', updater)
             )
         );
-    };
+    }
 }

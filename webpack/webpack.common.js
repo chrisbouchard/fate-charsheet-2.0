@@ -7,11 +7,27 @@ const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
+const fileList = [
+    'manifest.js',
+    'polyfill.js',
+    'app.js'
+];
+
+function indexOfOrInfinity(array, object) {
+    const index = array.indexOf(object);
+
+    if (index === -1) {
+        return Infinity;
+    }
+
+    return index;
+}
+
 
 module.exports = resolve => ({
     entry: {
-        'app': ['./src'],
-        'polyfill': ['./src/polyfill']
+        'app': [resolve('src')],
+        'polyfill': [resolve('src/polyfill')]
     },
 
     output: {
@@ -32,7 +48,7 @@ module.exports = resolve => ({
 
         maxModules: Infinity,
         exclude: [
-            /\.\/~\//
+            /\.\/node_modules\//
         ]
     },
 
@@ -135,7 +151,6 @@ module.exports = resolve => ({
 
     plugins: [
         new NgcWebpackPlugin({
-            //entryModule: resolve('src/app/app.module#AppModule'),
             tsConfig: resolve('tsconfig.json')
         }),
         new ContextReplacementPlugin(
@@ -148,7 +163,13 @@ module.exports = resolve => ({
         new ProvidePlugin({ 'jQuery': 'jquery', '$': 'jquery' }),
         new HtmlWebpackPlugin({
             inject: 'body',
-            template: '!!haml-haml-loader!./src/index.haml'
+            template: '!!haml-haml-loader!./src/index.haml',
+            chunksSortMode(left, right) {
+                const leftIndex = Math.min.apply(null, left.files.map(file => indexOfOrInfinity(fileList, file)));
+                const rightIndex = Math.min.apply(null, right.files.map(file => indexOfOrInfinity(fileList, file)));
+
+                return (leftIndex - rightIndex) || 0;
+            }
         }),
         new WatchIgnorePlugin([
             resolve('.awcache'),
@@ -171,7 +192,7 @@ module.exports = resolve => ({
 
             maxModules: Infinity,
             exclude: [
-                /\.\/~\//
+                /\.\/node_modules\//
             ]
         }
     }

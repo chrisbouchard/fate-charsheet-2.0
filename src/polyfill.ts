@@ -1,14 +1,16 @@
 /* Load packages for side-effects. */
 import 'babel-polyfill';
-import 'reflect-metadata';
+import 'core-js/es7/reflect';
 import 'web-animations-js';
 
 import 'zone.js/dist/zone';
 
+// TODO: Do this only for development
 import 'zone.js/dist/long-stack-trace-zone';
+Error['stackTraceLimit'] = Infinity;
 
 import 'jquery';
-import 'rxjs/Rx';
+import 'rxjs';
 import 'semantic/semantic';
 
 import 'semantic/semantic.css';
