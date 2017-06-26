@@ -30,8 +30,8 @@ import { APP_ROUTES } from './app.routes';
         RouterModule.forRoot(APP_ROUTES),
 
         StoreModule.forRoot(appReducers),
-        EffectsModule.forRoot([CharacterEffects]),
-        [] || StoreDevtoolsModule.instrument({ maxAge: 50 })
+        StoreDevtoolsModule.instrument(),
+        EffectsModule.forRoot([CharacterEffects])
     ],
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ]

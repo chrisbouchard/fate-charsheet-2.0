@@ -27,7 +27,6 @@ export class CharacterEffects {
         this.actions
             .ofType(CharacterActionType.SELECT_CHARACTER)
             .map(action => action as SelectCharacterAction)
-            .do(action => console.log(action))
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
             .flatMap(([action]) =>
