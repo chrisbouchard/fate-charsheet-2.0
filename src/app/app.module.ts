@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CharacterModule } from '../character/character.module';
 import { CommonModule } from '../common/common.module';
@@ -30,8 +30,8 @@ import { APP_ROUTES } from './app.routes';
         RouterModule.forRoot(APP_ROUTES),
 
         StoreModule.forRoot(appReducers),
-        StoreDevtoolsModule.instrument(),
-        EffectsModule.forRoot([CharacterEffects])
+        EffectsModule.forRoot([CharacterEffects]),
+        // StoreDevtoolsModule.instrument()
     ],
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ]
