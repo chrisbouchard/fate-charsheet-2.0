@@ -16,5 +16,23 @@ module.exports = require => ({
             names: ['polyfill', 'manifest'],
             minChunks: Infinity
         })
-    ]
+    ],
+
+    devServer: {
+        historyApiFallback: true,
+        publicPath: '',
+        stats: {
+            children: false,
+            chunks: false,
+            colors: true,
+            hash: false,
+            timings: true,
+            version: false,
+
+            maxModules: Infinity,
+            exclude: [
+                /\.\/node_modules\//
+            ]
+        }
+    }
 });

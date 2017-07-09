@@ -177,23 +177,5 @@ module.exports = resolve => ({
             resolve('dist'),
             resolve('node_modules')
         ])
-    ],
-
-    devServer: {
-        historyApiFallback: true,
-        publicPath: '',
-        stats: {
-            children: false,
-            chunks: false,
-            colors: true,
-            hash: false,
-            timings: true,
-            version: false,
-
-            maxModules: Infinity,
-            exclude: [
-                /\.\/node_modules\//
-            ]
-        }
-    }
+    ]
 });
