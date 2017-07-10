@@ -1,11 +1,10 @@
-import { ActionReducer } from '@ngrx/store';
-
 import { UIState } from './ui.state';
 
-import { UIActionType } from './ui.actions';
+import { UIAction, UIActionType } from './ui.actions';
 
-export const uiReducer: ActionReducer<UIState> = (uiState = new UIState(), action) => {
+export function uiReducer(uiState: UIState = new UIState(), action: UIAction): UIState {
     switch (action.type) {
+
         case UIActionType.CLOSE_MODAL:
             return uiState.set('modalOpen', false);
 
@@ -38,5 +37,6 @@ export const uiReducer: ActionReducer<UIState> = (uiState = new UIState(), actio
 
         default:
             return uiState;
+
     }
-};
+}

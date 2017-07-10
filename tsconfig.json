@@ -9,17 +9,32 @@
             "es2017"
         ],
         "moduleResolution": "node",
+        "noEmit": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        "noUnusedParameters": false,
         "pretty": true,
         "sourceMap": true,
+        "skipLibCheck": true,
         "target": "es6"
     },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules/",
+        "aot/",
+        "src/index.ts"
+    ],
     "typeRoots": [
         "./node_modules/@types",
         "./custom_typings"
-    ]
+    ],
+    "angularCompilerOptions": {
+        "entryModule": "src/app/app.module#AppModule",
+        "genDir": "aot",
+        "skipMetadataEmit": true
+    }
 }
 

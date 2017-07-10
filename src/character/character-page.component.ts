@@ -10,7 +10,7 @@ import { AppState } from '../app/app.state';
 import { Character } from '../model/character';
 import { CharacterDetail } from '../model/character-detail';
 
-import { CharacterActions } from './character.actions';
+import { SelectCharacterAction } from './character.actions';
 
 @Component({
     selector: 'fate-character-page',
@@ -25,7 +25,7 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
 
     private paramsSub: Subscription;
 
-    constructor(private route: ActivatedRoute, private store: Store<AppState>, private characterActions: CharacterActions) {
+    constructor(private route: ActivatedRoute, private store: Store<AppState>) {
         const cacheEntry = store.select(state => state.characterState.currentCacheEntry);
 
         this.character = cacheEntry.map(entry => entry.value);
@@ -38,7 +38,7 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
     ngOnInit(): void {
         // TODO: This should be handled by store "middleware".
         this.paramsSub = this.route.params.subscribe(params => {
-            this.store.dispatch(this.characterActions.selectCharacter(params['id']));
+            this.store.dispatch(new SelectCharacterAction(params['id']));
         });
     }
 

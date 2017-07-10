@@ -11,7 +11,6 @@ import { ListComponent } from './list.component';
 import { OverlayComponent } from './overlay.component';
 import { SheetComponent } from './sheet.component';
 import { StressBoxComponent } from './stress-box.component';
-import { UIActions } from './ui.actions';
 
 @NgModule({
     imports: [
@@ -37,7 +36,6 @@ import { UIActions } from './ui.actions';
         OverlayComponent,
         SheetComponent,
         StressBoxComponent
-    ],
-    providers: [UIActions]
+    ]
 })
 export class UIModule {}

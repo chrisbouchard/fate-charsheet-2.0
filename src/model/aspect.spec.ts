@@ -6,3 +6,4 @@ describe('Aspect', () => {
         expect(aspect.name).toEqual('test');
     });
 });
+

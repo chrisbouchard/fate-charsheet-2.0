@@ -1,15 +1,33 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 
+const { NgcWebpackPlugin } = require('ngc-webpack');
 const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
+const fileList = [
+    'manifest.js',
+    'polyfill.js',
+    'app.js'
+];
+
+function indexOfOrInfinity(array, object) {
+    const index = array.indexOf(object);
+
+    if (index === -1) {
+        return Infinity;
+    }
+
+    return index;
+}
+
 
 module.exports = resolve => ({
     entry: {
-        'app': ['./src'],
-        'polyfill': ['./src/polyfill']
+        'app': [resolve('src')],
+        'polyfill': [resolve('src/polyfill')]
     },
 
     output: {
@@ -26,7 +44,12 @@ module.exports = resolve => ({
         colors: true,
         hash: false,
         timings: true,
-        version: false
+        version: false,
+
+        maxModules: Infinity,
+        exclude: [
+            /\.\/node_modules\//
+        ]
     },
 
     resolve: {
@@ -46,6 +69,7 @@ module.exports = resolve => ({
         rules: [
             {
                 include: [
+                    resolve('aot'),
                     resolve('src'),
                     resolve('test')
                 ],
@@ -53,15 +77,20 @@ module.exports = resolve => ({
                     {
                         test: /\.ts$/,
                         use: [
-                            { loader: 'ng-router-loader' },
                             {
                                 loader: 'awesome-typescript-loader',
                                 options: {
                                     useBabel: true,
-                                    useCache: true
+                                    useCache: false
                                 }
                             },
-                            { loader: 'angular2-template-loader' },
+                            {
+                                loader: 'ng-router-loader',
+                                options: {
+                                    aot: true,
+                                    genDir: 'aot'
+                                }
+                            },
                             { loader: 'tslint-loader' }
                         ]
                     },
@@ -84,7 +113,7 @@ module.exports = resolve => ({
                         loader: 'raw-loader'
                     },
                     {
-                        test: /\.less/,
+                        test: /\.less$/,
                         use: [
                             { loader: 'raw-loader' },
                             { loader: 'less-loader' }
@@ -121,6 +150,9 @@ module.exports = resolve => ({
     },
 
     plugins: [
+        new NgcWebpackPlugin({
+            tsConfig: resolve('tsconfig.json')
+        }),
         new ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)@angular/,
@@ -131,20 +163,19 @@ module.exports = resolve => ({
         new ProvidePlugin({ 'jQuery': 'jquery', '$': 'jquery' }),
         new HtmlWebpackPlugin({
             inject: 'body',
-            template: '!!haml-haml-loader!./src/index.haml'
-        })
-    ],
+            template: '!!haml-haml-loader!./src/index.haml',
+            chunksSortMode(left, right) {
+                const leftIndex = Math.min.apply(null, left.files.map(file => indexOfOrInfinity(fileList, file)));
+                const rightIndex = Math.min.apply(null, right.files.map(file => indexOfOrInfinity(fileList, file)));
 
-    devServer: {
-        historyApiFallback: true,
-        publicPath: '',
-        stats: {
-            children: false,
-            chunks: false,
-            colors: true,
-            hash: false,
-            timings: true,
-            version: false
-        }
-    }
+                return (leftIndex - rightIndex) || 0;
+            }
+        }),
+        new WatchIgnorePlugin([
+            resolve('.awcache'),
+            resolve('aot'),
+            resolve('dist'),
+            resolve('node_modules')
+        ])
+    ]
 });

@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 import { Action } from '@ngrx/store';
 
 export enum UIActionType {
@@ -16,45 +14,53 @@ export enum UIActionType {
     TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 }
 
-@Injectable()
-export class UIActions {
 
-    closeModal(): Action {
-        return {type: UIActionType.CLOSE_MODAL};
-    }
-
-    openModal(): Action {
-        return {type: UIActionType.OPEN_MODAL};
-    }
-
-    toggleModal(): Action {
-        return {type: UIActionType.TOGGLE_MODAL};
-    }
-
-
-    closeOverlay(): Action {
-        return {type: UIActionType.CLOSE_OVERLAY};
-    }
-
-    openOverlay(): Action {
-        return {type: UIActionType.OPEN_OVERLAY};
-    }
-
-    toggleOverlay(): Action {
-        return {type: UIActionType.TOGGLE_OVERLAY};
-    }
-
-
-    closeSidebar(): Action {
-        return {type: UIActionType.CLOSE_SIDEBAR};
-    }
-
-    openSidebar(): Action {
-        return {type: UIActionType.OPEN_SIDEBAR};
-    }
-
-    toggleSidebar(): Action {
-        return {type: UIActionType.TOGGLE_SIDEBAR};
-    }
-
+export class CloseModalAction implements Action {
+    readonly type = UIActionType.CLOSE_MODAL;
 }
+
+export class OpenModalAction implements Action {
+    readonly type = UIActionType.OPEN_MODAL;
+}
+
+export class ToggleModalAction implements Action {
+    readonly type = UIActionType.TOGGLE_MODAL;
+}
+
+
+export class CloseOverlayAction implements Action {
+    readonly type = UIActionType.CLOSE_OVERLAY;
+}
+
+export class OpenOverlayAction implements Action {
+    readonly type = UIActionType.OPEN_OVERLAY;
+}
+
+export class ToggleOverlayAction implements Action {
+    readonly type = UIActionType.TOGGLE_OVERLAY;
+}
+
+
+export class CloseSidebarAction implements Action {
+    readonly type = UIActionType.CLOSE_SIDEBAR;
+}
+
+export class OpenSidebarAction implements Action {
+    readonly type = UIActionType.OPEN_SIDEBAR;
+}
+
+export class ToggleSidebarAction implements Action {
+    readonly type = UIActionType.TOGGLE_SIDEBAR;
+}
+
+
+export type UIAction
+    = CloseModalAction
+    | OpenModalAction
+    | ToggleModalAction
+    | CloseOverlayAction
+    | OpenOverlayAction
+    | ToggleOverlayAction
+    | CloseSidebarAction
+    | OpenSidebarAction
+    | ToggleSidebarAction;

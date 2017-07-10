@@ -1,12 +1,14 @@
 const webpack = require('webpack');
 
+const { CheckerPlugin } = require('awesome-typescript-loader');
+
 const { DefinePlugin } = webpack;
 const { CommonsChunkPlugin } = webpack.optimize;
 
 module.exports = require => ({
-    devtool: 'source-map',
-
+    devtool:  '#cheap-module-source-map',
     plugins: [
+        new CheckerPlugin(),
         new DefinePlugin({
             __PRODUCTION__: false
         }),
@@ -14,5 +16,23 @@ module.exports = require => ({
             names: ['polyfill', 'manifest'],
             minChunks: Infinity
         })
-    ]
+    ],
+
+    devServer: {
+        historyApiFallback: true,
+        publicPath: '',
+        stats: {
+            children: false,
+            chunks: false,
+            colors: true,
+            hash: false,
+            timings: true,
+            version: false,
+
+            maxModules: Infinity,
+            exclude: [
+                /\.\/node_modules\//
+            ]
+        }
+    }
 });
