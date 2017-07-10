@@ -11,3 +11,4 @@ describe('Player', () => {
         expect(player.name).toEqual('test');
     });
 });
+

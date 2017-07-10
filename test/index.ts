@@ -19,12 +19,13 @@ import 'rxjs/Rx';
 import 'semantic/semantic';
 
 import { TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 
 TestBed.initTestEnvironment(
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting()
+    BrowserTestingModule,
+    platformBrowserTesting()
 );
 
 const testContext = (require as any).context('../src', true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
+
