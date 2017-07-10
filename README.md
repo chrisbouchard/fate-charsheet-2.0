@@ -1,7 +1,12 @@
 # FATE Character Sheet 2.0
 
-An [Angular2](https://angular.io/) application to manage [FATE](http://www.evilhat.com/home/fate-core/) character
+[![CircleCI][circleci-badge]][circleci-project]
+
+An [Angular](https://angular.io/) application to manage [FATE](http://www.evilhat.com/home/fate-core/) character
 sheets.
+
+[circleci-badge]: https://circleci.com/gh/chrisbouchard/fate-charsheet-2.0.svg?style=svg&circle-token=ae901cc555d9bbb4a03f0262c2a150e918da42ed
+[circleci-project]: https://circleci.com/gh/chrisbouchard/fate-charsheet-2.0
 
 ## Building
 
