@@ -2,3 +2,15 @@ machine:
   node:
     version: 8.1.3
 
+dependencies:
+  post:
+    - gulp build:
+        pwd: semantic
+
+test:
+  override:
+    - npm run test-circle:
+        environment:
+          JUNIT_REPORT_PATH: $CIRCLE_TEST_REPORTS/junit/
+          JUNIT_REPORT_NAME: test-results.xml
+
