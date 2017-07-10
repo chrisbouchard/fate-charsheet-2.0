@@ -11,6 +11,6 @@ Error['stackTraceLimit'] = Infinity;
 
 import 'jquery';
 import 'rxjs';
-import 'semantic/semantic';
 
-import 'semantic/semantic.css';
+import 'semantic-ui-less/semantic.less';
+
