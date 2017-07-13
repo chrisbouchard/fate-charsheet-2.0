@@ -16,7 +16,6 @@ import 'zone.js/dist/fake-async-test';
 
 import 'jquery';
 import 'rxjs/Rx';
-import 'semantic/semantic';
 
 import { TestBed } from '@angular/core/testing';
 import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
