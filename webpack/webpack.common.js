@@ -53,16 +53,13 @@ module.exports = resolve => ({
     },
 
     resolve: {
-        alias: {
-            'semantic': resolve('semantic/dist')
-        },
         extensions: ['.ts', '.js']
     },
 
     module: {
         noParse: [
             /node_modules\/jquery/,
-            /node_modules\/reflect-metadata/,
+            /node_modules\/web-animations-js/,
             /node_modules\/zone\.js/
         ],
 
@@ -124,23 +121,61 @@ module.exports = resolve => ({
 
             {
                 include: [
-                    resolve('node_modules'),
-                    resolve('semantic')
+                    resolve('node_modules')
+                ],
+                exclude: [
+                    resolve('node_modules/semantic-ui-less')
                 ],
                 rules: [
                     {
                         test: /\.css$/,
-                        loader: extractCssPluginInstance.extract(['css-loader'])
+                        loader: extractCssPluginInstance.extract({
+                            fallback: 'style-loader',
+                            use: [
+                                { loader: 'css-loader' }
+                            ]
+                        })
                     },
                     {
                         test: /\.less$/,
-                        loader: extractCssPluginInstance.extract(['css-loader', 'less-loader'])
+                        loader: extractCssPluginInstance.extract({
+                            fallback: 'style-loader',
+                            use: [
+                                { loader: 'css-loader' },
+                                { loader: 'less-loader' }
+                            ]
+                        })
                     }
                 ]
             },
 
             {
-                test: /\.(eot|png|svg|ttf|woff|woff2)$/,
+                include: [
+                    resolve('node_modules/semantic-ui-less')
+                ],
+                rules: [
+                    {
+                        test: /\.less$/,
+                        loader: extractCssPluginInstance.extract({
+                            fallback: 'style-loader',
+                            use: [
+                                { loader: 'css-loader' },
+                                {
+                                    loader: 'semantic-ui-less-loader',
+                                    options: {
+                                        siteFolder: resolve('semantic/site'),
+                                        themeConfigPath: resolve('semantic/theme.config')
+                                    }
+                                }
+                            ]
+                        })
+                    }
+                ]
+            },
+
+            {
+                test: /\.(eot|gif|jpeg|jpg|png|svg|ttf|woff|woff2)$/,
+                // TODO: url-loader?
                 loader: 'file-loader',
                 options: {
                     name: 'assets/[name].[ext]'
@@ -179,3 +214,4 @@ module.exports = resolve => ({
         ])
     ]
 });
+

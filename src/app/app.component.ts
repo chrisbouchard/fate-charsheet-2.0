@@ -1,9 +1,11 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { AppState } from '../app/app.state';
+import { ToggleSidebarAction } from '../ui/ui.actions';
+
+import { AppState } from './app.state';
 
 @Component({
     selector: 'fate-app',
@@ -13,35 +15,19 @@ import { AppState } from '../app/app.state';
 export class AppComponent implements OnInit {
 
     overlayOpen: Observable<boolean>;
-
-    sidebar: any;
-    sidebarOpen: boolean = false;
+    sidebarOpen: Observable<boolean>;
 
     constructor(
-        private elementRef: ElementRef,
         private store: Store<AppState>
     ) {}
 
     ngOnInit(): void {
         this.overlayOpen = this.store.select(state => state.uiState.overlayOpen);
-
-        this.sidebar =
-            ($('.ui.left.sidebar', this.elementRef.nativeElement) as any)
-                .sidebar({
-                    context: $(this.elementRef.nativeElement),
-                    exclusive: true,
-                    transition: 'slide along',
-                    onVisible: () => { this.sidebarOpen = true; },
-                    onHide: () => { this.sidebarOpen = false; }
-                });
+        this.sidebarOpen = this.store.select(state => state.uiState.sidebarOpen);
     }
 
     onMenuClick(): void {
-        this.sidebar.sidebar('toggle');
-    }
-
-    onSidebarClick(): void {
-        this.sidebar.sidebar('hide');
+        this.store.dispatch(new ToggleSidebarAction());
     }
 
 }
