@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --env.profile=production",
     "build-dev": "webpack --env.profile=development",
-    "clean": "rimraf dist",
+    "clean-aot": "rimraf aot",
+    "clean-dist": "rimraf dist",
+    "clean": "npm run clean-aot && npm run clean-dist",
     "server": "webpack-dev-server --env.profile=development",
     "start": "npm run server",
     "test": "karma start karma.conf.js --single-run",
