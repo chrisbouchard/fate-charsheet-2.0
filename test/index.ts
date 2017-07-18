@@ -18,11 +18,11 @@ import 'jquery';
 import 'rxjs/Rx';
 
 import { TestBed } from '@angular/core/testing';
-import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 TestBed.initTestEnvironment(
-    BrowserTestingModule,
-    platformBrowserTesting()
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting()
 );
 
 const testContext = (require as any).context('../src', true, /\.spec\.ts/);

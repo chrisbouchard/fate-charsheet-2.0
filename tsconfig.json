@@ -25,7 +25,8 @@
     "exclude": [
         "node_modules/",
         "aot/",
-        "src/index.ts"
+        "src/index.aot.ts",
+        "src/index.dynamic.ts"
     ],
     "typeRoots": [
         "./node_modules/@types",
