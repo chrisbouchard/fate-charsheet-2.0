@@ -13,10 +13,11 @@ module.exports = resolve => ({
             loader: 'awesome-typescript-loader',
             options: {
                 useBabel: true,
-                useCache: false
+                useCache: true
             }
         },
-        { loader: 'ng-router-loader' }
+        { loader: 'ng-router-loader' },
+        { loader: 'angular2-template-loader' }
     ],
 
     extraConfig: {

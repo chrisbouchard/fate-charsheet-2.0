@@ -11,7 +11,8 @@ module.exports = resolve => ({
                 useCache: false
             }
         },
-        { loader: 'ng-router-loader' }
+        { loader: 'ng-router-loader' },
+        { loader: 'angular2-template-loader' }
     ],
 
     extraConfig: {
