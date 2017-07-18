@@ -2,8 +2,8 @@ const { NgcWebpackPlugin } = require('ngc-webpack');
 
 const webpack = require('webpack');
 
-const { DefinePlugin } = webpack;
-const { CommonsChunkPlugin, NoEmitOnErrorsPlugin, UglifyJsPlugin } = webpack.optimize;
+const { DefinePlugin, NoEmitOnErrorsPlugin } = webpack;
+const { CommonsChunkPlugin, UglifyJsPlugin } = webpack.optimize;
 
 module.exports = resolve => ({
     appEntry: resolve('src/index.aot'),
