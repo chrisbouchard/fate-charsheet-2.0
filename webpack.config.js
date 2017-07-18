@@ -1,25 +1,30 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
 
-const commonConfig = require('./webpack/webpack.common.js');
-const developmentConfig = require('./webpack/webpack.development.js');
-const productionConfig = require('./webpack/webpack.production.js');
-const testConfig = require('./webpack/webpack.test.js');
+const coreConfig = require('./webpack/webpack.core.js');
 
-module.exports = env => merge([
-    commonConfig(path => resolve(__dirname, path)),
-    getProfileConfig(env.profile)(path => resolve(__dirname, path))
-]);
+const developmentProfile = require('./webpack/development.profile.js');
+const productionProfile = require('./webpack/production.profile.js');
+const testProfile = require('./webpack/test.profile.js');
 
-function getProfileConfig(profile) {
-    switch (profile) {
+module.exports = env => {
+    const profile = getProfile(env.profile)(path => resolve(__dirname, path));
+
+    return merge([
+        coreConfig(profile, path => resolve(__dirname, path)),
+        profile.extraConfig
+    ]);
+};
+
+function getProfile(profileName) {
+    switch (profileName) {
         case 'development':
-            return developmentConfig;
+            return developmentProfile;
 
         case 'test':
-            return testConfig;
+            return testProfile;
     }
 
-    return productionConfig;
+    return productionProfile;
 }
 

@@ -23,10 +23,10 @@ function indexOfOrInfinity(array, object) {
 }
 
 
-module.exports = resolve => ({
+module.exports = (profile, resolve) => ({
     entry: {
-        'app': [resolve('src')],
-        'polyfill': [resolve('src/polyfill')]
+        'app': [profile.appEntry],
+        'polyfill': [resolve('src/polyfill')],
     },
 
     output: {
@@ -73,20 +73,7 @@ module.exports = resolve => ({
                     {
                         test: /\.ts$/,
                         use: [
-                            {
-                                loader: 'awesome-typescript-loader',
-                                options: {
-                                    useBabel: true,
-                                    useCache: false
-                                }
-                            },
-                            {
-                                loader: 'ng-router-loader',
-                                options: {
-                                    aot: true,
-                                    genDir: 'aot'
-                                }
-                            },
+                            ...profile.typescriptLoaders,
                             { loader: 'tslint-loader' }
                         ]
                     },
@@ -207,7 +194,7 @@ module.exports = resolve => ({
             resolve('aot'),
             resolve('dist'),
             resolve('node_modules')
-        ])
+        ]),
     ]
 });
 
