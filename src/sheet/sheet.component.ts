@@ -9,7 +9,7 @@ import { Aspect } from '../model/aspect';
 import { Character } from '../model/character';
 import { CharacterDetail } from '../model/character-detail';
 import { Skill } from '../model/skill';
-import { ToggleOverlayAction } from './ui.actions';
+import { ToggleOverlayAction } from '../ui/ui.actions';
 
 @Component({
     selector: 'fate-sheet',

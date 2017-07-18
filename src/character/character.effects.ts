@@ -9,7 +9,9 @@ import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
 
 import {
-    BeginLoadingCharacterAction, CacheCharacterAction, CharacterActionType,
+    BeginLoadingCharacterAction,
+    CacheCharacterAction,
+    CharacterActionType,
     SelectCharacterAction
 } from './character.actions';
 
