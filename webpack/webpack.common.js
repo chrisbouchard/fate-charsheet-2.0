@@ -2,7 +2,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 
-const { NgcWebpackPlugin } = require('ngc-webpack');
 const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
@@ -185,9 +184,6 @@ module.exports = resolve => ({
     },
 
     plugins: [
-        new NgcWebpackPlugin({
-            tsConfig: resolve('tsconfig.json')
-        }),
         new ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)@angular/,
