@@ -4,12 +4,5 @@ machine:
     version: 8.1.4
   post:
     - npm install --global npm@5.3.0
-
-test:
-  override:
-    - npm run build
-    - npm run test-circleci:
-        environment:
-          JUNIT_REPORT_PATH: $CIRCLE_TEST_REPORTS/junit/
-          JUNIT_REPORT_NAME: test-results.xml
-
+  environment:
+    MOCHA_FILE: "$CIRCLE_TEST_REPORTS/test-results.xml"

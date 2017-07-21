@@ -1,6 +1,7 @@
 const nodeExternals = require('webpack-node-externals');
-
 const webpack = require('webpack');
+
+const { NgcWebpackPlugin } = require('ngc-webpack');
 
 const { DefinePlugin, NoEmitOnErrorsPlugin } = webpack;
 const { UglifyJsPlugin } = webpack.optimize;

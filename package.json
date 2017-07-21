@@ -11,8 +11,8 @@
     "clean": "npm run clean-aot && npm run clean-dist",
     "server": "webpack-dev-server --env.profile=development",
     "start": "npm run server",
+    "test": "mocha-webpack --webpack-config webpack.test-prod.config.js",
     "test-dev": "mocha-webpack --webpack-config webpack.test-dev.config.js",
-    "test-prod": "mocha-webpack --webpack-config webpack.test-prod.config.js",
     "test-ci": "npm run test-dev -- --watch"
   },
   "keywords": [],
