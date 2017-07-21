@@ -5,7 +5,8 @@ const coreConfig = require('./webpack/webpack.core.js');
 
 const developmentProfile = require('./webpack/development.profile.js');
 const productionProfile = require('./webpack/production.profile.js');
-const testProfile = require('./webpack/test.profile.js');
+const testDevProfile = require('./webpack/test-dev.profile.js');
+const testProdProfile = require('./webpack/test-prod.profile.js');
 
 module.exports = env => {
     const profile = getProfile(env.profile)(path => resolve(__dirname, path));
@@ -21,8 +22,11 @@ function getProfile(profileName) {
         case 'development':
             return developmentProfile;
 
-        case 'test':
-            return testProfile;
+        case 'test-dev':
+            return testDevProfile;
+
+        case 'test-prod':
+            return testProdProfile;
     }
 
     return productionProfile;
