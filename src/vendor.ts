@@ -13,4 +13,3 @@ import 'jquery';
 import 'rxjs';
 
 import 'semantic-ui-less/semantic.less';
-

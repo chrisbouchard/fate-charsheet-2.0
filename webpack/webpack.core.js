@@ -8,7 +8,7 @@ const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
 const fileList = [
     'manifest.js',
-    'polyfill.js',
+    'vendor.js',
     'app.js'
 ];
 
@@ -26,15 +26,14 @@ function indexOfOrInfinity(array, object) {
 module.exports = (profile, resolve) => ({
     entry: {
         'app': [profile.appEntry],
-        'polyfill': [resolve('src/polyfill')],
+        'vendor': [resolve('src/vendor')],
     },
 
     output: {
         chunkFilename: 'chunk-[name].js',
         filename: '[name].js',
         path: resolve('dist'),
-        publicPath: '',
-        sourceMapFilename: '[name].js.map'
+        publicPath: ''
     },
 
     stats: {

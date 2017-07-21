@@ -34,8 +34,7 @@
     ],
     "angularCompilerOptions": {
         "entryModule": "src/app/app.module#AppModule",
-        "genDir": "aot",
-        "skipMetadataEmit": true
+        "genDir": "aot"
     }
 }
 

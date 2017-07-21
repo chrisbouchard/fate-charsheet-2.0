@@ -26,7 +26,7 @@ module.exports = resolve => ({
     ],
 
     extraConfig: {
-        devtool: 'hidden-source-map',
+        devtool: 'source-map',
         plugins: [
             new NgcWebpackPlugin({
                 tsConfig: resolve('tsconfig.json')
@@ -39,7 +39,13 @@ module.exports = resolve => ({
                 names: ['polyfill', 'manifest'],
                 minChunks: Infinity
             }),
-            new UglifyJsPlugin()
+            new UglifyJsPlugin({
+                parallel: true,
+                sourceMap: true,
+                uglifyOptions: {
+                    ie8: false
+                }
+            })
         ]
     }
 });
