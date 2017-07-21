@@ -13,7 +13,7 @@
     "start": "npm run server",
     "test-dev": "mocha-webpack --webpack-config webpack.test-dev.config.js",
     "test-prod": "mocha-webpack --webpack-config webpack.test-prod.config.js",
-    "test-ci": "mocha-webpack --watch  --webpack-config webpack.test-dev.config.js"
+    "test-ci": "npm run test-dev -- --watch"
   },
   "keywords": [],
   "author": "Chris Bouchard <chris@upliftinglemma.net>",
@@ -80,6 +80,7 @@
     "less": "2.7.2",
     "less-loader": "4.0.5",
     "mocha": "3.4.2",
+    "mocha-circleci-reporter": "0.0.2",
     "mocha-webpack": "0.7.0",
     "ng-router-loader": "2.1.0",
     "ngc-webpack": "3.0.0",
