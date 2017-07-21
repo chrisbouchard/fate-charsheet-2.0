@@ -1,14 +1,16 @@
+import * as assert from 'assert';
+
 import { Player } from './player';
 
 describe('Player', () => {
     it('has its id given in the constructor', () => {
-        let player = new Player({id: '1', name: 'test'});
-        expect(player.id).toEqual('1');
+        const player = new Player({id: '1', name: 'test'});
+        assert.equal(player.id, '1');
     });
 
     it('has its name given in the constructor', () => {
-        let player = new Player({id: '1', name: 'test'});
-        expect(player.name).toEqual('test');
+        const player = new Player({id: '1', name: 'test'});
+        assert.equal(player.name, 'test');
     });
 });
 
