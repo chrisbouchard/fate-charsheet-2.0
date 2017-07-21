@@ -1,5 +1,6 @@
 /.awcache/
 /.idea/
+/.tmp/
 /aot/
 /dist/
 /node_modules/

@@ -1,5 +1,10 @@
 const nodeExternals = require('webpack-node-externals');
 
+const webpack = require('webpack');
+
+const { DefinePlugin, NoEmitOnErrorsPlugin } = webpack;
+const { UglifyJsPlugin } = webpack.optimize;
+
 const profileFn = require('./production.profile.js');
 
 module.exports = resolve => {
@@ -9,9 +14,25 @@ module.exports = resolve => {
         typescriptLoaders: profile.typescriptLoaders,
 
         extraConfig: {
+            devtool: 'source-map',
             target: 'node',
             externals: [nodeExternals()],
-            ...profile.extraConfig
+            plugins: [
+                new NgcWebpackPlugin({
+                    tsConfig: resolve('tsconfig.json')
+                }),
+                new DefinePlugin({
+                    __PRODUCTION__: true
+                }),
+                new NoEmitOnErrorsPlugin(),
+                new UglifyJsPlugin({
+                    parallel: true,
+                    sourceMap: true,
+                    uglifyOptions: {
+                        ie8: false
+                    }
+                })
+            ]
         }
     };
 };

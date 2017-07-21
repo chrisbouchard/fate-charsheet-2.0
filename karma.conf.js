@@ -1,5 +1,5 @@
 module.exports = function (config) {
-  var webpackConfig = require('./webpack.config.js')({
+  var webpackConfig = require('./webpack.config.babel.js')({
     profile: 'test'
   });
 
