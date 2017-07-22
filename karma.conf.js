@@ -6,7 +6,7 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    files: ['test/index.ts'],
+    files: ['test/index.dynamic.ts'],
     preprocessors: {
       'test/index.ts': ['webpack']
     },

@@ -11,7 +11,7 @@ const profileFn = require('./production.profile.js');
 module.exports = resolve => {
     const profile = profileFn(resolve);
     return {
-        appEntry: profile.appEntry,
+        appEntry: resolve('test/index.aot'),
         typescriptLoaders: profile.typescriptLoaders,
 
         extraConfig: {

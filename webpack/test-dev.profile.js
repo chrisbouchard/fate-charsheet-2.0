@@ -8,7 +8,7 @@ const profileFn = require('./development.profile.js');
 module.exports = resolve => {
     const profile = profileFn(resolve);
     return {
-        appEntry: profile.appEntry,
+        appEntry: resolve('test/index.dynamic'),
         typescriptLoaders: profile.typescriptLoaders,
 
         extraConfig: {
