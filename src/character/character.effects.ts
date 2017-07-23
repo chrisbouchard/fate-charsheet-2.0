@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Actions, Effect } from '@ngrx/effects';
+import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 import { Action, Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
@@ -23,6 +24,14 @@ export class CharacterEffects {
         private characterFacade: CharacterFacade,
         private store: Store<AppState>
     ) {}
+
+    @Effect() navigateCharacter: Observable<Action> =
+        this.actions
+            .ofType(ROUTER_NAVIGATION)
+            .map(action => action as RouterNavigationAction)
+            .map(action => action.payload.routerState.root.firstChild)
+            .filter(state => state && state.url[0].path === 'character')
+            .map(state => new SelectCharacterAction(state.firstChild.url[0].path));
 
     // TODO: This needs some error handling
     @Effect() loadCharacter: Observable<Action> =

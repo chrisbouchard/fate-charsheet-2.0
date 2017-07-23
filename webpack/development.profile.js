@@ -1,5 +1,3 @@
-const { CheckerPlugin } = require('awesome-typescript-loader');
-
 const webpack = require('webpack');
 
 const { DefinePlugin } = webpack;
@@ -23,7 +21,6 @@ module.exports = resolve => ({
     extraConfig: {
         devtool:  '#cheap-module-source-map',
         plugins: [
-            new CheckerPlugin(),
             new DefinePlugin({
                 __PRODUCTION__: false
             }),
