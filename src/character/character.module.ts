@@ -6,7 +6,6 @@ import { CommonModule } from '../common/common.module';
 import { SheetModule } from '../sheet/sheet.module';
 import { UIModule } from '../ui/ui.module';
 
-import { CharacterIdResolver } from './character-id-resolver.service';
 import { CharacterOverlayComponent } from './character-overlay.component';
 import { CharacterPageComponent } from './character-page.component';
 import { CharacterSidebarComponent } from './character-sidebar.component';
@@ -28,9 +27,6 @@ import { CharacterEffects } from './character.effects';
         CharacterOverlayComponent,
         CharacterPageComponent,
         CharacterSidebarComponent
-    ],
-    providers: [
-        CharacterIdResolver
     ]
 })
 export class CharacterModule {}

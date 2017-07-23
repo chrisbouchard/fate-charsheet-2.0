@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -25,6 +26,7 @@ import { APP_ROUTES } from './app.routes';
         RouterModule.forRoot(APP_ROUTES),
 
         StoreModule.forRoot(appReducers),
+        StoreRouterConnectingModule,
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({ maxAge: 25 }),
 
