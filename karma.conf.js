@@ -1,12 +1,12 @@
 module.exports = function (config) {
-  var webpackConfig = require('./webpack.config.js')({
+  var webpackConfig = require('./webpack.config.babel.js')({
     profile: 'test'
   });
 
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    files: ['test/index.ts'],
+    files: ['test/index.dynamic.ts'],
     preprocessors: {
       'test/index.ts': ['webpack']
     },

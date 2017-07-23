@@ -2,14 +2,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 
-const { NgcWebpackPlugin } = require('ngc-webpack');
 const { ContextReplacementPlugin, ProvidePlugin } = require('webpack');
 
 const extractCssPluginInstance = new ExtractTextPlugin('[name].css');
 
 const fileList = [
     'manifest.js',
-    'polyfill.js',
+    'vendor.js',
     'app.js'
 ];
 
@@ -24,18 +23,17 @@ function indexOfOrInfinity(array, object) {
 }
 
 
-module.exports = resolve => ({
+module.exports = (profile, resolve) => ({
     entry: {
-        'app': [resolve('src')],
-        'polyfill': [resolve('src/polyfill')]
+        'app': [profile.appEntry],
+        'vendor': [resolve('src/vendor')],
     },
 
     output: {
         chunkFilename: 'chunk-[name].js',
         filename: '[name].js',
         path: resolve('dist'),
-        publicPath: '',
-        sourceMapFilename: '[name].js.map'
+        publicPath: ''
     },
 
     stats: {
@@ -74,20 +72,7 @@ module.exports = resolve => ({
                     {
                         test: /\.ts$/,
                         use: [
-                            {
-                                loader: 'awesome-typescript-loader',
-                                options: {
-                                    useBabel: true,
-                                    useCache: false
-                                }
-                            },
-                            {
-                                loader: 'ng-router-loader',
-                                options: {
-                                    aot: true,
-                                    genDir: 'aot'
-                                }
-                            },
+                            ...profile.typescriptLoaders,
                             { loader: 'tslint-loader' }
                         ]
                     },
@@ -185,9 +170,6 @@ module.exports = resolve => ({
     },
 
     plugins: [
-        new NgcWebpackPlugin({
-            tsConfig: resolve('tsconfig.json')
-        }),
         new ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)@angular/,
@@ -211,7 +193,7 @@ module.exports = resolve => ({
             resolve('aot'),
             resolve('dist'),
             resolve('node_modules')
-        ])
+        ]),
     ]
 });
 

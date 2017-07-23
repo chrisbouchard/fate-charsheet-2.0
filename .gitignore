@@ -1,7 +1,10 @@
 /.awcache/
 /.idea/
+/.tmp/
 /aot/
 /dist/
 /node_modules/
 /npm-debug.log
 /semantic/dist/
+
+test-results.xml

@@ -1,0 +1,3 @@
+--colors
+--reporter mocha-circleci-reporter
+src/**/*.spec.ts
