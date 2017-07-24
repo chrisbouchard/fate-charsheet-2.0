@@ -13,6 +13,7 @@ import {
     BeginLoadingCharacterAction,
     CacheCharacterAction,
     CharacterActionType,
+    ErrorLoadingCharacterAction,
     SelectCharacterAction
 } from './character.actions';
 
@@ -25,7 +26,7 @@ export class CharacterEffects {
         private store: Store<AppState>
     ) {}
 
-    @Effect() navigateCharacter: Observable<Action> =
+    @Effect() navigateToCharacter: Observable<Action> =
         this.actions
             .ofType(ROUTER_NAVIGATION)
             .map(action => action as RouterNavigationAction)
@@ -33,7 +34,6 @@ export class CharacterEffects {
             .filter(state => state && state.url[0].path === 'character')
             .map(state => new SelectCharacterAction(state.firstChild.url[0].path));
 
-    // TODO: This needs some error handling
     @Effect() loadCharacter: Observable<Action> =
         this.actions
             .ofType(CharacterActionType.SELECT_CHARACTER)
@@ -41,11 +41,13 @@ export class CharacterEffects {
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
             .switchMap(([action]) =>
-                this.characterFacade
-                    .find(action.id)
-                    /* Cast to Action to keep the type loose enough to call startWith. */
-                    .map(character => new CacheCharacterAction(action.id, character) as Action)
-                    .startWith(new BeginLoadingCharacterAction(action.id))
-            );
+                Observable.concat(
+                    this.characterFacade
+                        .find(action.id)
+                        .map(character => new CacheCharacterAction(action.id, character)),
+                    Observable.of(new BeginLoadingCharacterAction(action.id))
+                )
+            )
+            .catch(error => Observable.of(new ErrorLoadingCharacterAction(error)));
 
 }
