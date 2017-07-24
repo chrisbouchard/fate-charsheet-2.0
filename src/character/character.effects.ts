@@ -40,7 +40,7 @@ export class CharacterEffects {
             .map(action => action as SelectCharacterAction)
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
-            .flatMap(([action]) =>
+            .switchMap(([action]) =>
                 Observable.concat(
                     Observable.of(new BeginLoadingCharacterAction(action.id)),
                     this.characterFacade
