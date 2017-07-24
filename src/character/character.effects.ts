@@ -40,13 +40,12 @@ export class CharacterEffects {
             .map(action => action as SelectCharacterAction)
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
-            .flatMap(([action]) =>
-                Observable.concat(
-                    Observable.of(new BeginLoadingCharacterAction(action.id)),
-                    this.characterFacade
-                        .find(action.id)
-                        .map(character => new CacheCharacterAction(action.id, character))
-                )
+            .switchMap(([action]) =>
+                this.characterFacade
+                    .find(action.id)
+                    /* Cast to Action to keep the type loose enough to call startWith. */
+                    .map(character => new CacheCharacterAction(action.id, character) as Action)
+                    .startWith(new BeginLoadingCharacterAction(action.id))
             );
 
 }
