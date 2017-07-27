@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "4.3.0",
     "@angular/router": "4.3.0",
     "@ngrx/effects": "github:ngrx/effects-builds",
+    "@ngrx/router-store": "github:ngrx/router-store-builds",
     "@ngrx/store": "github:ngrx/store-builds",
     "@ngrx/store-devtools": "github:ngrx/store-devtools-builds",
     "babel-polyfill": "6.23.0",
@@ -42,7 +43,7 @@
     "rxjs": "5.4.2",
     "semantic-ui-less": "2.2.11",
     "web-animations-js": "2.2.5",
-    "zone.js": "0.8.13"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@angular/compiler-cli": "4.3.0",

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Actions, Effect } from '@ngrx/effects';
+import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 import { Action, Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +10,10 @@ import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
 
 import {
-    BeginLoadingCharacterAction, CacheCharacterAction, CharacterActionType,
+    BeginLoadingCharacterAction,
+    CacheCharacterAction,
+    CharacterActionType,
+    ErrorLoadingCharacterAction,
     SelectCharacterAction
 } from './character.actions';
 
@@ -22,20 +26,28 @@ export class CharacterEffects {
         private store: Store<AppState>
     ) {}
 
-    // TODO: This needs some error handling
+    @Effect() navigateToCharacter: Observable<Action> =
+        this.actions
+            .ofType(ROUTER_NAVIGATION)
+            .map(action => action as RouterNavigationAction)
+            .map(action => action.payload.routerState.root.firstChild)
+            .filter(state => state && state.url[0].path === 'character')
+            .map(state => new SelectCharacterAction(state.firstChild.url[0].path));
+
     @Effect() loadCharacter: Observable<Action> =
         this.actions
             .ofType(CharacterActionType.SELECT_CHARACTER)
             .map(action => action as SelectCharacterAction)
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
-            .flatMap(([action]) =>
+            .switchMap(([action]) =>
                 Observable.concat(
-                    Observable.of(new BeginLoadingCharacterAction(action.id)),
                     this.characterFacade
                         .find(action.id)
-                        .map(character => new CacheCharacterAction(action.id, character))
+                        .map(character => new CacheCharacterAction(action.id, character)),
+                    Observable.of(new BeginLoadingCharacterAction(action.id))
                 )
-            );
+            )
+            .catch(error => Observable.of(new ErrorLoadingCharacterAction(error)));
 
 }
