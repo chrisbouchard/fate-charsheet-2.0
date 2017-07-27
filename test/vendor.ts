@@ -1,8 +1,16 @@
 Error.stackTraceLimit = Infinity;
 
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 
-const dom = new JSDOM('<!doctype html><html><head></head><body></body></html>');
+const virtualConsole = new VirtualConsole();
+virtualConsole.sendTo(console);
+
+const dom = new JSDOM('<!doctype html><html><head></head><body></body></html>', {
+    referrer: 'http://fate.upliftinglemma.net',
+    url: 'http://fate.upliftinglemma.net',
+    virtualConsole
+});
+
 const window: any = dom.window;
 
 global['window'] = window;
@@ -14,10 +22,6 @@ Object.keys(window).forEach(property => {
         global[property] = window[property];
     }
 });
-
-global['navigator'] = {
-  userAgent: 'node.js'
-};
 
 import 'babel-polyfill';
 import 'core-js/es7/reflect';

@@ -44,6 +44,7 @@ The following projects are used by FATE Character Sheet:
 * [Angular](//github.com/angular/angular) as the core framework to build components.
 * [Babel](//github.com/babel/babel) to transpile ES6 output from `tsc` down to ES5.
 * [Haml](//github.com/haml/haml) to write templates more succinctly.
+* [JSDOM](//github.com/tmpvar/jsdom) to provide a DOM environment for testing.
 * [Less](//github.com/less/less.js) to write styles more succinctly.
 * [Mocha](//github.com/mochajs/mocha) to write unit tests.
 * [Semantic-UI](//github.com/Semantic-Org/Semantic-UI) as the main style and layout library.
