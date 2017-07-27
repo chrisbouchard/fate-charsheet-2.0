@@ -1,14 +1,23 @@
-(Error as any).stackTraceLimit = Infinity;
+Error.stackTraceLimit = Infinity;
 
 import { JSDOM } from 'jsdom';
 
-const dom = new JSDOM('<!doctype html><html><body></body></html>');
+const dom = new JSDOM('<!doctype html><html><head></head><body></body></html>');
 const window: any = dom.window;
 
+global['window'] = window;
 global['document'] = window.document;
-global['HTMLElement'] = window.HTMLElement;
-global['XMLHttpRequest'] = window.XMLHttpRequest;
-global['Node'] = window.Node;
+window.console = global.console;
+
+Object.keys(window).forEach(property => {
+    if (global[property] === undefined) {
+        global[property] = window[property];
+    }
+});
+
+global['navigator'] = {
+  userAgent: 'node.js'
+};
 
 import 'babel-polyfill';
 import 'core-js/es7/reflect';
