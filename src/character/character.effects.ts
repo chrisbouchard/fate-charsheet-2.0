@@ -13,6 +13,7 @@ import {
     BeginLoadingCharacterAction,
     CacheCharacterAction,
     CharacterActionType,
+    ErrorLoadingCharacterAction,
     SelectCharacterAction
 } from './character.actions';
 
@@ -25,7 +26,7 @@ export class CharacterEffects {
         private store: Store<AppState>
     ) {}
 
-    @Effect() navigateCharacter: Observable<Action> =
+    @Effect() navigateToCharacter: Observable<Action> =
         this.actions
             .ofType(ROUTER_NAVIGATION)
             .map(action => action as RouterNavigationAction)
@@ -33,7 +34,6 @@ export class CharacterEffects {
             .filter(state => state && state.url[0].path === 'character')
             .map(state => new SelectCharacterAction(state.firstChild.url[0].path));
 
-    // TODO: This needs some error handling
     @Effect() loadCharacter: Observable<Action> =
         this.actions
             .ofType(CharacterActionType.SELECT_CHARACTER)
@@ -48,5 +48,6 @@ export class CharacterEffects {
                         .map(character => new CacheCharacterAction(action.id, character))
                 )
             );
+            .catch(error => Observable.of(new ErrorLoadingCharacterAction(error)));
 
 }
