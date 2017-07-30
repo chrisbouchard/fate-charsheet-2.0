@@ -1,5 +1,7 @@
 import { MakeTypedRecord } from '../common/typed-record';
 
+import { AddsShifts } from './adds-shifts';
+
 module Aspect {
     export interface Options {
         label?: string;
@@ -12,4 +14,6 @@ export const DEFAULT_ASPECT: Aspect.Options = {
     name: undefined
 };
 
-export class Aspect extends MakeTypedRecord(DEFAULT_ASPECT) {}
+export class Aspect extends MakeTypedRecord(DEFAULT_ASPECT) implements AddsShifts {
+    readonly shiftsAdded: number = 2;
+}

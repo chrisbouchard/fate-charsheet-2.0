@@ -10,13 +10,15 @@ export module CharacterState {
         cache: Map<string, CacheEntry<Character>>;
         currentId: string;
         detail: CharacterDetail;
+        error: any;
     }
 }
 
 export const DEFAULT_CHARACTER_STATE: CharacterState.Options = {
     cache: Map<string, CacheEntry<Character>>(),
     currentId: undefined,
-    detail: new CharacterDetail()
+    detail: new CharacterDetail(),
+    error: undefined
 };
 
 export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {

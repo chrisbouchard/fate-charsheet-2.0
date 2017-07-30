@@ -8,6 +8,7 @@ import { Skill } from '../model/skill';
 export enum CharacterActionType {
     BEGIN_LOADING_CHARACTER = 'BEGIN_LOADING_CHARACTER',
     CACHE_CHARACTER = 'CACHE_CHARACTER',
+    ERROR_LOADING_CHARACTER = 'ERROR_LOADING_CHARACTER',
     SELECT_CHARACTER = 'SELECT_CHARACTER',
     SET_CHARACTER_STRESS = 'SET_CHARACTER_STRESS',
 
@@ -26,6 +27,11 @@ export class BeginLoadingCharacterAction implements Action {
 export class CacheCharacterAction implements Action {
     readonly type = CharacterActionType.CACHE_CHARACTER;
     constructor(public id: string, public character: Character) {}
+}
+
+export class ErrorLoadingCharacterAction implements Action {
+    readonly type = CharacterActionType.ERROR_LOADING_CHARACTER;
+    constructor(public error: any) {}
 }
 
 export class SelectCharacterAction implements Action {
@@ -60,6 +66,7 @@ export class ToggleSkillAction implements Action {
 export type CharacterAction
     = BeginLoadingCharacterAction
     | CacheCharacterAction
+    | ErrorLoadingCharacterAction
     | SelectCharacterAction
     | SetCharacterStressAction
     | ClearAspectsAction

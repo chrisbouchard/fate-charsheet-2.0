@@ -1,5 +1,7 @@
 import { MakeTypedRecord } from '../common/typed-record';
 
+import { AddsShifts } from './adds-shifts';
+
 module Consequence {
     export interface Options {
         label: string;
@@ -14,4 +16,6 @@ export const DEFAULT_CONSEQUENCE: Consequence.Options = {
     rank: 0
 };
 
-export class Consequence extends MakeTypedRecord(DEFAULT_CONSEQUENCE) {}
+export class Consequence extends MakeTypedRecord(DEFAULT_CONSEQUENCE) implements AddsShifts {
+    readonly shiftsAdded: number = 2;
+}
