@@ -23,15 +23,16 @@ export function characterReducer(state: CharacterState = new CharacterState(), a
             );
 
         case CharacterActionType.ERROR_LOADING_CHARACTER:
-            return state
-                .set('error', action.error)
-                .delete('currentId');
+            return state.update('cache', cache =>
+                cache.update(action.id, entry =>
+                    entry.set('loading', false).set('error', action.error)
+                )
+            );
 
         case CharacterActionType.SELECT_CHARACTER:
             return state
                 .set('currentId', action.id)
-                .delete('detail')
-                .delete('error');
+                .delete('detail');
 
         case CharacterActionType.SET_CHARACTER_STRESS:
             if (!state.currentCharacter) {

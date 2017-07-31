@@ -31,7 +31,7 @@ export class CacheCharacterAction implements Action {
 
 export class ErrorLoadingCharacterAction implements Action {
     readonly type = CharacterActionType.ERROR_LOADING_CHARACTER;
-    constructor(public error: any) {}
+    constructor(public id: string, public error: any) {}
 }
 
 export class SelectCharacterAction implements Action {

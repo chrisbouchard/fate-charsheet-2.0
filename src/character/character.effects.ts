@@ -46,8 +46,8 @@ export class CharacterEffects {
                     this.characterFacade
                         .find(action.id)
                         .map(character => new CacheCharacterAction(action.id, character))
+                        .catch(error => Observable.of(new ErrorLoadingCharacterAction(action.id, error)))
                 )
             );
-            .catch(error => Observable.of(new ErrorLoadingCharacterAction(error)));
 
 }
