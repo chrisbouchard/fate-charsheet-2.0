@@ -25,7 +25,7 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
     constructor(private store: Store<AppState>) {}
 
     ngOnInit(): void {
-        const cacheEntry = this.store.select(state => state.characterState.currentCacheEntry);
+        const cacheEntry = this.store.select(state => state.characterState.activeCacheEntry);
 
         this.character = cacheEntry.map(entry => entry.value);
         this.error = cacheEntry.map(entry => entry.error);

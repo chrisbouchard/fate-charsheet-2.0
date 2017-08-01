@@ -1,4 +1,4 @@
-import { Map } from 'immutable';
+import { Map, Set } from 'immutable';
 
 import { MakeTypedRecord } from '../common/typed-record';
 import { CacheEntry } from '../model/cache-entry';
@@ -8,25 +8,42 @@ import { CharacterDetail } from '../model/character-detail';
 export module CharacterState {
     export interface Options {
         cache: Map<string, CacheEntry<Character>>;
-        currentId: string;
+        activeId: string;
+        inactiveIds: Set<string>;
         detail: CharacterDetail;
     }
 }
 
 export const DEFAULT_CHARACTER_STATE: CharacterState.Options = {
     cache: Map<string, CacheEntry<Character>>(),
-    currentId: undefined,
+    activeId: undefined,
+    inactiveIds: Set(),
     detail: new CharacterDetail(),
 };
 
 export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {
-    get currentCacheEntry(): CacheEntry<Character> {
-        return this.cache.get(this.currentId, new CacheEntry<Character>());
+    get activeCacheEntry(): CacheEntry<Character> {
+        return this.getCacheEntry(this.activeId);
     }
 
-    get currentCharacter(): Character {
-        const entry = this.currentCacheEntry;
+    get inactiveCacheEntries(): Set<CacheEntry<Character>> {
+        return Set(this.inactiveIds.map(id => this.getCacheEntry(id)));
+    }
 
+    private getCacheEntry(id: string): CacheEntry<Character> {
+        return this.cache.get(id, new CacheEntry<Character>());
+    }
+
+
+    get activeCharacter(): Character {
+        return this.getCharacter(this.activeCacheEntry);
+    }
+
+    get inactiveCharacters(): Set<Character> {
+        return Set(this.inactiveCacheEntries.map(entry => this.getCharacter(entry)));
+    }
+
+    private getCharacter(entry: CacheEntry<Character>): Character {
         if (entry.error || entry.loading) {
             return undefined;
         }
@@ -34,13 +51,14 @@ export class CharacterState extends MakeTypedRecord(DEFAULT_CHARACTER_STATE) {
         return entry.value;
     }
 
-    updateCurrentCharacter(updater: (character: Character) => Character): this {
-        if (this.currentCharacter === undefined) {
+
+    updateActiveCharacter(updater: (character: Character) => Character): this {
+        if (this.activeCharacter === undefined) {
             return this;
         }
 
         return this.update('cache', cache =>
-            cache.update(this.currentId, entry =>
+            cache.update(this.activeId, entry =>
                 entry.update('value', updater)
             )
         );

@@ -10,15 +10,20 @@ export function characterReducer(state: CharacterState = new CharacterState(), a
 
         case CharacterActionType.SELECT_CHARACTER:
             return state
-                .set('currentId', action.id)
+                .update('inactiveIds', inactiveIds =>
+                    inactiveIds
+                        .add(state.activeId)
+                        .delete(action.id)
+                )
+                .set('activeId', action.id)
                 .delete('detail');
 
         case CharacterActionType.SET_CHARACTER_STRESS:
-            if (!state.currentCharacter) {
+            if (!state.activeCharacter) {
                 return state;
             }
 
-            return state.updateCurrentCharacter(character =>
+            return state.updateActiveCharacter(character =>
                 character.update('stressTracks', tracks =>
                     tracks.update(action.track, track =>
                         track.update('boxes', boxes =>
@@ -58,7 +63,7 @@ export function characterReducer(state: CharacterState = new CharacterState(), a
             return state.update('detail', detail => detail.delete('selectedSkills'));
 
         case CharacterActionType.TOGGLE_ASPECT:
-            if (!state.currentCharacter || !state.currentCharacter.aspects.contains(action.aspect)) {
+            if (!state.activeCharacter || !state.activeCharacter.aspects.contains(action.aspect)) {
                 return state;
             }
 
@@ -69,7 +74,7 @@ export function characterReducer(state: CharacterState = new CharacterState(), a
             );
 
         case CharacterActionType.TOGGLE_SKILL:
-            if (!state.currentCharacter || !state.currentCharacter.skills.contains(action.skill)) {
+            if (!state.activeCharacter || !state.activeCharacter.skills.contains(action.skill)) {
                 return state;
             }
 
