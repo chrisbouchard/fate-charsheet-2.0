@@ -10,10 +10,10 @@ import { AppState } from '../app/app.state';
 import { CharacterFacade } from '../common/character-facade';
 
 import {
-    BeginLoadingCharacterAction,
-    CacheCharacterAction,
     CharacterActionType,
-    ErrorLoadingCharacterAction,
+    CharacterLoadingFailureAction,
+    CharacterLoadingStartedAction,
+    CharacterLoadingSuccessAction,
     SelectCharacterAction
 } from './character.actions';
 
@@ -42,11 +42,11 @@ export class CharacterEffects {
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
             .switchMap(([action]) =>
                 Observable.concat(
-                    Observable.of(new BeginLoadingCharacterAction(action.id)),
+                    Observable.of(new CharacterLoadingStartedAction(action.id)),
                     this.characterFacade
                         .find(action.id)
-                        .map(character => new CacheCharacterAction(action.id, character))
-                        .catch(error => Observable.of(new ErrorLoadingCharacterAction(action.id, error)))
+                        .map(character => new CharacterLoadingSuccessAction(action.id, character))
+                        .catch(error => Observable.of(new CharacterLoadingFailureAction(action.id, error)))
                 )
             );
 

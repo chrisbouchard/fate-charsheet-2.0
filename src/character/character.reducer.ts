@@ -8,27 +8,6 @@ import { CharacterState } from './character.state';
 export function characterReducer(state: CharacterState = new CharacterState(), action: CharacterAction): CharacterState {
     switch (action.type) {
 
-        case CharacterActionType.BEGIN_LOADING_CHARACTER:
-            return state.update('cache', cache =>
-                cache.set(action.id, new CacheEntry<Character>({
-                    loading: true
-                }))
-            );
-
-        case CharacterActionType.CACHE_CHARACTER:
-            return state.update('cache', cache =>
-                cache.update(action.id, entry =>
-                    entry.set('loading', false).set('value', action.character)
-                )
-            );
-
-        case CharacterActionType.ERROR_LOADING_CHARACTER:
-            return state.update('cache', cache =>
-                cache.update(action.id, entry =>
-                    entry.set('loading', false).set('error', action.error)
-                )
-            );
-
         case CharacterActionType.SELECT_CHARACTER:
             return state
                 .set('currentId', action.id)
@@ -46,6 +25,28 @@ export function characterReducer(state: CharacterState = new CharacterState(), a
                             boxes.set(action.index, action.value)
                         )
                     )
+                )
+            );
+
+
+        case CharacterActionType.CHARACTER_LOADING_STARTED:
+            return state.update('cache', cache =>
+                cache.set(action.id, new CacheEntry<Character>({
+                    loading: true
+                }))
+            );
+
+        case CharacterActionType.CHARACTER_LOADING_SUCCESS:
+            return state.update('cache', cache =>
+                cache.update(action.id, entry =>
+                    entry.set('loading', false).set('value', action.character)
+                )
+            );
+
+        case CharacterActionType.CHARACTER_LOADING_FAILURE:
+            return state.update('cache', cache =>
+                cache.update(action.id, entry =>
+                    entry.set('loading', false).set('error', action.error)
                 )
             );
 

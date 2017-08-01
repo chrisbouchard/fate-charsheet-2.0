@@ -6,11 +6,12 @@ import { Skill } from '../model/skill';
 
 
 export enum CharacterActionType {
-    BEGIN_LOADING_CHARACTER = 'BEGIN_LOADING_CHARACTER',
-    CACHE_CHARACTER = 'CACHE_CHARACTER',
-    ERROR_LOADING_CHARACTER = 'ERROR_LOADING_CHARACTER',
     SELECT_CHARACTER = 'SELECT_CHARACTER',
     SET_CHARACTER_STRESS = 'SET_CHARACTER_STRESS',
+
+    CHARACTER_LOADING_STARTED = 'CHARACTER_LOADING_STARTED',
+    CHARACTER_LOADING_SUCCESS = 'CHARACTER_LOADING_SUCCESS',
+    CHARACTER_LOADING_FAILURE = 'CHARACTER_LOADING_FAILURE',
 
     CLEAR_ASPECTS = 'CLEAR_ASPECTS',
     CLEAR_SKILLS = 'CLEAR_SKILLS',
@@ -18,21 +19,6 @@ export enum CharacterActionType {
     TOGGLE_SKILL = 'TOGGLE_SKILL'
 }
 
-
-export class BeginLoadingCharacterAction implements Action {
-    readonly type = CharacterActionType.BEGIN_LOADING_CHARACTER;
-    constructor(public id: string) {}
-}
-
-export class CacheCharacterAction implements Action {
-    readonly type = CharacterActionType.CACHE_CHARACTER;
-    constructor(public id: string, public character: Character) {}
-}
-
-export class ErrorLoadingCharacterAction implements Action {
-    readonly type = CharacterActionType.ERROR_LOADING_CHARACTER;
-    constructor(public id: string, public error: any) {}
-}
 
 export class SelectCharacterAction implements Action {
     readonly type = CharacterActionType.SELECT_CHARACTER;
@@ -42,6 +28,22 @@ export class SelectCharacterAction implements Action {
 export class SetCharacterStressAction implements Action {
     readonly type = CharacterActionType.SET_CHARACTER_STRESS;
     constructor(public track: number, public index: number, public value: boolean) {}
+}
+
+
+export class CharacterLoadingStartedAction implements Action {
+    readonly type = CharacterActionType.CHARACTER_LOADING_STARTED;
+    constructor(public id: string) {}
+}
+
+export class CharacterLoadingSuccessAction implements Action {
+    readonly type = CharacterActionType.CHARACTER_LOADING_SUCCESS;
+    constructor(public id: string, public character: Character) {}
+}
+
+export class CharacterLoadingFailureAction implements Action {
+    readonly type = CharacterActionType.CHARACTER_LOADING_FAILURE;
+    constructor(public id: string, public error: any) {}
 }
 
 
@@ -64,11 +66,13 @@ export class ToggleSkillAction implements Action {
 }
 
 export type CharacterAction
-    = BeginLoadingCharacterAction
-    | CacheCharacterAction
-    | ErrorLoadingCharacterAction
-    | SelectCharacterAction
+    = SelectCharacterAction
     | SetCharacterStressAction
+
+    | CharacterLoadingStartedAction
+    | CharacterLoadingSuccessAction
+    | CharacterLoadingFailureAction
+
     | ClearAspectsAction
     | ClearSkillsAction
     | ToggleAspectAction
