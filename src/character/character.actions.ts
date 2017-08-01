@@ -6,6 +6,8 @@ import { Skill } from '../model/skill';
 
 
 export enum CharacterActionType {
+    CLOSE_CHARACTER = 'CLOSE_CHARACTER',
+    OPEN_CHARACTER = 'OPEN_CHARACTER',
     SELECT_CHARACTER = 'SELECT_CHARACTER',
     SET_CHARACTER_STRESS = 'SET_CHARACTER_STRESS',
 
@@ -19,6 +21,16 @@ export enum CharacterActionType {
     TOGGLE_SKILL = 'TOGGLE_SKILL'
 }
 
+
+export class CloseCharacterAction implements Action {
+    readonly type = CharacterActionType.CLOSE_CHARACTER;
+    constructor(public id: string) {}
+}
+
+export class OpenCharacterAction implements Action {
+    readonly type = CharacterActionType.OPEN_CHARACTER;
+    constructor(public id: string) {}
+}
 
 export class SelectCharacterAction implements Action {
     readonly type = CharacterActionType.SELECT_CHARACTER;
@@ -66,7 +78,9 @@ export class ToggleSkillAction implements Action {
 }
 
 export type CharacterAction
-    = SelectCharacterAction
+    = CloseCharacterAction
+    | OpenCharacterAction
+    | SelectCharacterAction
     | SetCharacterStressAction
 
     | CharacterLoadingStartedAction

@@ -8,11 +8,40 @@ import { CharacterState } from './character.state';
 export function characterReducer(state: CharacterState = new CharacterState(), action: CharacterAction): CharacterState {
     switch (action.type) {
 
+        // TODO: Remove old characters from the cache eventually.
+        case CharacterActionType.CLOSE_CHARACTER:
+            if (state.activeId === action.id) {
+                const firstId = state.inactiveIds.first();
+
+                /* Pick another to become active. */
+                // TODO: Pick better
+                // TODO: Handle closing the last character
+                return state
+                    .set('activeId', firstId)
+                    .update('inactiveIds', inactiveIds => inactiveIds.delete(firstId))
+                    .delete('detail');
+            }
+
+            return state.update('inactiveIds', inactiveIds => inactiveIds.delete(action.id));
+
+        case CharacterActionType.OPEN_CHARACTER:
+            if (state.activeId === action.id) {
+                return state;
+            }
+
+            return state.update('inactiveIds', inactiveIds => inactiveIds.add(action.id));
+
         case CharacterActionType.SELECT_CHARACTER:
+            if (state.activeId === action.id) {
+                return state;
+            }
+
             return state
                 .update('inactiveIds', inactiveIds =>
                     inactiveIds
+                        /* What was active becomes inactive. */
                         .add(state.activeId)
+                        /* If the selected character was inactive, it's not anymore. */
                         .delete(action.id)
                 )
                 .set('activeId', action.id)

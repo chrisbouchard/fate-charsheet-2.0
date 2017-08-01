@@ -14,6 +14,7 @@ import {
     CharacterLoadingFailureAction,
     CharacterLoadingStartedAction,
     CharacterLoadingSuccessAction,
+    OpenCharacterAction,
     SelectCharacterAction
 } from './character.actions';
 
@@ -36,8 +37,8 @@ export class CharacterEffects {
 
     @Effect() loadCharacter: Observable<Action> =
         this.actions
-            .ofType(CharacterActionType.SELECT_CHARACTER)
-            .map(action => action as SelectCharacterAction)
+            .ofType(CharacterActionType.OPEN_CHARACTER, CharacterActionType.SELECT_CHARACTER)
+            .map(action => action as OpenCharacterAction | SelectCharacterAction)
             .withLatestFrom(this.store)
             .filter(([action, state]) => !state.characterState.cache.has(action.id))
             .switchMap(([action]) =>
