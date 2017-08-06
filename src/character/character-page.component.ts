@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
+import { Set } from 'immutable'
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
@@ -20,6 +21,8 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
     error: Observable<boolean>;
     loading: Observable<boolean>;
 
+    inactiveCharacters: Observable<Set<Character>>;
+
     private paramsSub: Subscription;
 
     constructor(private store: Store<AppState>) {}
@@ -32,6 +35,8 @@ export class CharacterPageComponent implements OnDestroy, OnInit {
         this.loading = cacheEntry.map(entry => entry.loading);
 
         this.detail = this.store.select(state => state.characterState.detail);
+
+        this.inactiveCharacters = this.store.select(state => state.characterState.inactiveCharacters);
     }
 
     ngOnDestroy(): void {

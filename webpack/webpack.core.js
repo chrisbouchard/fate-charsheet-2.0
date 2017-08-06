@@ -163,7 +163,9 @@ module.exports = (profile, resolve) => ({
                 // TODO: url-loader?
                 loader: 'file-loader',
                 options: {
-                    name: 'assets/[name].[ext]'
+                    name: 'assets/[name].[ext]',
+                    publicPath: '/',
+                    useRelativePath: false
                 }
             }
         ]

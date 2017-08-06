@@ -1,0 +1,6 @@
+%svg(version="1.1" viewBox="0 0 100 25" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink")
+    %svg:rect#portrait-cover(x="0" y="0" width="100" height="25" [style.fill]="character?.color")
+    %svg:image#portrait-image(x="0" y="0" width="100" height="25" preserveAspectRatio="xMidYMid slice" [attr.xlink:href]="character?.portrait" [@imageStateChanged]="state")
+    %svg:polygon#portrait-cover(points="0,-1 60,-1 50,26 0,26" [@coverStateChanged]="state" [style.fill]="character?.color")
+    %svg:text#name-text(x="5" y="12.5" preserveAspectRatio="xMidYMid slice")
+        {{character?.name}}

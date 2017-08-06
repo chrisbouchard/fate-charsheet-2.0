@@ -24,7 +24,7 @@ export class CharacterFacade {
     private amaryllis: Character = new Character({
         name: 'Amaryllis Aster Jennings',
         player: this.mbouchard,
-        portrait: require('../assets/placeholder.svg'),
+        portrait: require('../assets/number-one.jpg'),
         color: 'purple',
 
         aspects: List([

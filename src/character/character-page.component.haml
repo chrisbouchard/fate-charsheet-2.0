@@ -1,2 +1,7 @@
-.ui.very.padded.container
-    %fate-sheet([character]="character | async" [detail]="detail | async" [loading]="loading | async")
+.ui.padded.container
+    .ui.stackable.grid
+        .twelve.wide.column
+            %fate-sheet([character]="character | async" [detail]="detail | async" [loading]="loading | async")
+        .four.wide.column
+            %fate-character-tab-list([characters]="inactiveCharacters | async")
+
